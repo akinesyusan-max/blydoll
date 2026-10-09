@@ -13,7 +13,7 @@
     <style>
         body {
             font-family: 'Prompt', sans-serif;
-            background-color: var(--bg-main, #fffcfc); /* ปรับสีพื้นหลังให้สว่างละมุนขึ้น */
+            background-color: var(--bg-main, #fffcfc); 
             color: #4a4a4a;
         }
         ::-webkit-scrollbar {
@@ -132,7 +132,7 @@
                 <div id="products-grid" class="grid grid-cols-2 gap-3"></div>
             </section>
 
-            <!-- TAB 3: QUEUE CHECK (Updated to match Image 67 Style) -->
+            <!-- TAB 3: QUEUE CHECK -->
             <section id="view-queue" class="view-section hidden space-y-4">
                 <!-- Banner Image -->
                 <div class="bg-white rounded-[32px] p-2 shadow-sm border border-[#f7eff0]">
@@ -155,8 +155,8 @@
                     <button onclick="setQueueFilter('เสร็จแล้ว')" id="q-filter-เสร็จแล้ว" class="flex-1 px-3 py-2.5 rounded-full text-[10px] font-medium text-[#c0aab1] transition">เสร็จแล้ว</button>
                 </div>
 
-                <!-- Queue List Container -->
-                <div id="queue-list-container" class="space-y-6 pt-2"></div>
+                <!-- Queue List Container (Smaller version) -->
+                <div id="queue-list-container" class="space-y-4 pt-2"></div>
             </section>
 
             <!-- TAB 4: DETAIL -->
@@ -507,7 +507,7 @@
             else { document.getElementById('auth-container').classList.add('hidden'); document.getElementById('customer-profile-view').classList.remove('hidden'); document.getElementById('acc-name-display').innerText = currentUser.name; }
         }
 
-        // QUEUE LOGIC (Image 67 Style)
+        // QUEUE LOGIC (Adjusted to be smaller matching Image 68)
         function setQueueFilter(filter) {
             currentQueueFilter = filter;
             ['ทั้งหมด', 'ยังไม่ได้เริ่ม', 'กำลังทำ', 'เสร็จแล้ว'].forEach(f => {
@@ -541,7 +541,6 @@
             container.innerHTML = filtered.map(q => {
                 let isDone = q.status === 'เสร็จแล้ว';
                 
-                // Colors logic based on status matching image 67
                 let cardBorder = isDone ? 'border-[#f0e6e7] opacity-70' : 'border-[#a7898d] shadow-sm';
                 let circleBorder = isDone ? 'border-[#dfcbce]' : 'border-[#a7898d]';
                 let circleText = isDone ? 'text-[#c0aab1]' : 'text-[#a7898d]';
@@ -555,33 +554,33 @@
 
                 let statusBadge = '';
                 if(isDone) {
-                    statusBadge = `<div class="px-3.5 py-1.5 bg-white border border-[#f0e6e7] rounded-full text-[10px] font-bold text-[#c0aab1] flex items-center gap-1.5"><i class="fa-solid fa-check text-[9px]"></i> เสร็จแล้ว</div>`;
+                    statusBadge = `<div class="px-2.5 py-1 bg-white border border-[#f0e6e7] rounded-full text-[9px] font-bold text-[#c0aab1] flex items-center gap-1"><i class="fa-solid fa-check text-[8px]"></i> เสร็จแล้ว</div>`;
                 } else if(q.status === 'กำลังทำ') {
-                    statusBadge = `<div class="px-4 py-1.5 bg-[#fcf2f4] rounded-full text-[10px] font-extrabold text-[#a7898d]">กำลังทำ</div>`;
+                    statusBadge = `<div class="px-3 py-1 bg-[#fcf2f4] rounded-full text-[9px] font-extrabold text-[#a7898d]">กำลังทำ</div>`;
                 } else {
-                    statusBadge = `<div class="px-4 py-1.5 bg-gray-50 rounded-full text-[10px] font-bold text-gray-400">ยังไม่ได้เริ่ม</div>`;
+                    statusBadge = `<div class="px-3 py-1 bg-gray-50 rounded-full text-[9px] font-bold text-gray-400">ยังไม่ได้เริ่ม</div>`;
                 }
 
                 return `
-                    <div class="bg-white rounded-[24px] p-5 border-[1.5px] ${cardBorder} relative mt-6 transition-all">
-                        <!-- Circle Badge -->
-                        <div class="absolute -top-4 left-4 w-9 h-9 rounded-full bg-white border-[1.5px] ${circleBorder} flex items-center justify-center text-[11px] font-extrabold ${circleText} z-10">
+                    <div class="bg-white rounded-[20px] p-3.5 border-[1.5px] ${cardBorder} relative mt-5 transition-all">
+                        <!-- Circle Badge (Smaller) -->
+                        <div class="absolute -top-3.5 left-3.5 w-7 h-7 rounded-full bg-white border-[1.5px] ${circleBorder} flex items-center justify-center text-[9px] font-extrabold ${circleText} z-10">
                             Q${q.seq || 2}
                         </div>
                         
                         <!-- Connecting Line -->
-                        <div class="absolute top-4 left-[33px] w-0.5 h-10 ${lineBg} rounded-full opacity-60 z-0"></div>
+                        <div class="absolute top-3.5 left-[27px] w-0.5 h-8 ${lineBg} rounded-full opacity-60 z-0"></div>
                         
-                        <div class="pl-8 flex justify-between items-start">
-                            <div class="space-y-2 mt-0.5">
+                        <div class="pl-7 flex justify-between items-start">
+                            <div class="space-y-1 mt-0.5">
                                 <div class="flex items-center space-x-2">
-                                    <span class="font-extrabold text-[15px] ${nameText}">${q.name}</span>
-                                    <span class="px-2 py-0.5 bg-white border ${circleBorder} rounded-full text-[8px] font-extrabold ${nameText} tracking-wider">LINE</span>
+                                    <span class="font-extrabold text-[13px] ${nameText}">${q.name}</span>
+                                    <span class="px-1.5 py-0.5 bg-white border ${circleBorder} rounded-full text-[7px] font-extrabold ${nameText} tracking-wider">LINE</span>
                                 </div>
-                                <p class="text-[11px] font-extrabold ${serviceText}">${q.service}</p>
+                                <p class="text-[10px] font-extrabold ${serviceText}">${q.service}</p>
                             </div>
-                            <div class="flex flex-col items-end space-y-2.5">
-                                <div class="px-3.5 py-1.5 bg-white rounded-full border ${dateBorder} text-[10px] font-extrabold ${dateText}">
+                            <div class="flex flex-col items-end space-y-1.5">
+                                <div class="px-2.5 py-1 bg-white rounded-full border ${dateBorder} text-[9px] font-extrabold ${dateText}">
                                     ${q.date || '15/09/69'}
                                 </div>
                                 ${statusBadge}

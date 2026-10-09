@@ -36,6 +36,15 @@
         .toast-center-animate {
             animation: fadeInOutCenter 2s ease-in-out forwards;
         }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
+        }
     </style>
 </head>
 <body id="app-body" class="min-h-screen pb-32 relative" style="--bg-main: #fffcfc;">
@@ -99,9 +108,9 @@
                 </div>
 
                 <div class="bg-[#fdfafb] border border-[#f7eff0] rounded-[24px] p-3 flex items-center space-x-3 overflow-hidden shadow-2xs">
-                    <i class="fa-solid fa-bullhorn text-[#a7898d] animate-bounce"></i>
-                    <div class="whitespace-nowrap overflow-hidden w-full">
-                        <p id="announcement-text" class="text-xs text-[#a7898d] font-medium inline-block">
+                    <i class="fa-solid fa-bullhorn text-[#a7898d] shrink-0"></i>
+                    <div class="overflow-hidden w-full relative">
+                        <p id="announcement-text" class="text-xs text-[#a7898d] font-medium animate-marquee">
                             🎉 โปรโมชั่นพิเศษต้อนรับเดือนนี้! ซื้อครบ 500 บาทสะสมแต้มฟรี!
                         </p>
                     </div>
@@ -162,6 +171,72 @@
                 <div class="bg-white rounded-[28px] p-5 shadow-sm border border-[#f7eff0] space-y-3">
                     <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-file-lines text-[#a7898d] mr-2"></i>รายละเอียดร้านค้า</h3>
                     <p class="text-xs text-gray-600 leading-relaxed">ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨</p>
+                </div>
+
+                <!-- How to Note slip Container (Matching Image 75 style with website theme colors) -->
+                <div class="bg-white rounded-[32px] p-6 shadow-sm border border-[#f7eff0] space-y-6">
+                    <h3 class="font-extrabold text-[15px] text-[#a7898d]">How to Note slip</h3>
+
+                    <div class="space-y-5 relative">
+                        <!-- Step 1 -->
+                        <div class="flex items-start space-x-4 relative">
+                            <div class="relative flex flex-col items-center shrink-0">
+                                <div class="w-9 h-9 rounded-full bg-[#fceef1] border border-[#f0e6e7] flex items-center justify-center text-xs font-extrabold text-[#a7898d] z-10 shadow-2xs">1</div>
+                                <div class="absolute top-9 bottom-[-24px] w-0.5 border-l-2 border-dotted border-[#dfcbce]"></div>
+                            </div>
+                            <div class="pt-1 space-y-0.5">
+                                <h4 class="font-bold text-xs text-gray-800">เข้าไปที่แอพธนาคาร</h4>
+                                <p class="text-[11px] text-[#c0aab1] leading-relaxed">บันทึกภาพบัญชีจากทางร้านไปได้เลยนะคะ</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex items-start space-x-4 relative pt-1">
+                            <div class="relative flex flex-col items-center shrink-0">
+                                <div class="w-9 h-9 rounded-full bg-[#fceef1] border border-[#f0e6e7] flex items-center justify-center text-xs font-extrabold text-[#a7898d] z-10 shadow-2xs">2</div>
+                                <div class="absolute top-9 bottom-[-24px] w-0.5 border-l-2 border-dotted border-[#dfcbce]"></div>
+                            </div>
+                            <div class="pt-1 space-y-0.5">
+                                <h4 class="font-bold text-xs text-gray-800">สแกนหรือใส่เลขบัญชีของทางร้าน</h4>
+                                <p class="text-[11px] text-[#c0aab1] leading-relaxed">โปรดตรวจสอบเลขบัญชีด้วยนะคะ หากโอนผิดทางร้านไม่รับผิดชอบทุกกรณี</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex items-start space-x-4 relative pt-1">
+                            <div class="relative flex flex-col items-center shrink-0">
+                                <div class="w-9 h-9 rounded-full bg-[#fceef1] border border-[#f0e6e7] flex items-center justify-center text-xs font-extrabold text-[#a7898d] z-10 shadow-2xs">3</div>
+                                <div class="absolute top-9 bottom-[-24px] w-0.5 border-l-2 border-dotted border-[#dfcbce]"></div>
+                            </div>
+                            <div class="pt-1 space-y-0.5">
+                                <h4 class="font-bold text-xs text-gray-800">หาคำว่า "กำกับข้อความ/บันทึกความจำ"</h4>
+                                <p class="text-[11px] text-[#c0aab1] leading-relaxed">ในแต่ละธนาคารจะมีข้อความไม่เหมือนกัน แต่จะไม่ต่างกันมากค่ะ</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="flex items-start space-x-4 relative pt-1">
+                            <div class="relative flex flex-col items-center shrink-0">
+                                <div class="w-9 h-9 rounded-full bg-[#fceef1] border border-[#f0e6e7] flex items-center justify-center text-xs font-extrabold text-[#a7898d] z-10 shadow-2xs">4</div>
+                                <div class="absolute top-9 bottom-[-24px] w-0.5 border-l-2 border-dotted border-[#dfcbce]"></div>
+                            </div>
+                            <div class="pt-1 space-y-0.5">
+                                <h4 class="font-bold text-xs text-gray-800">นำข้อความโน้ตสลิปของทางร้านวางลงไป</h4>
+                                <p class="text-[11px] text-[#c0aab1] leading-relaxed">หากลืมโน้ตสลิป ปรับ 0.01 บาทนะคะ</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="flex items-start space-x-4 relative pt-1">
+                            <div class="relative flex flex-col items-center shrink-0">
+                                <div class="w-9 h-9 rounded-full bg-[#fceef1] border border-[#f0e6e7] flex items-center justify-center text-xs font-extrabold text-[#a7898d] z-10 shadow-2xs">5</div>
+                            </div>
+                            <div class="pt-1 space-y-0.5">
+                                <h4 class="font-bold text-xs text-gray-800">เมื่อเรียบร้อยแล้วโอนได้เลยค่ะ</h4>
+                                <p class="text-[11px] text-[#c0aab1] leading-relaxed">ตรวจสอบชื่อบัญชีก่อนโอนอีกครั้งนะคะ หากโอนผิดทางร้านไม่สามารถรับผิดชอบได้คับ</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

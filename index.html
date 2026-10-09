@@ -82,14 +82,33 @@
                     
                     <div class="flex justify-between items-start px-2">
                         <div class="flex items-start space-x-3 pl-1 relative z-10">
-                            <!-- Wrapped Profile Picture with Frame overlay -->
-                            <div class="relative w-20 h-20 -mt-10 shrink-0 flex items-center justify-center">
+                            <!-- Profile Picture with Cute Pink Lace Frame -->
+                            <div class="relative w-24 h-24 -mt-10 shrink-0 flex items-center justify-center">
                                 <!-- Base Profile Image -->
-                                <div class="w-16 h-16 rounded-full overflow-hidden shadow-sm border-2 border-white bg-white relative z-10">
+                                <div class="w-14 h-14 rounded-full overflow-hidden shadow-inner bg-white relative z-10">
                                     <img id="home-profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Profile" class="w-full h-full object-cover">
                                 </div>
-                                <!-- Frame Image Overlay (mix-blend-screen for transparent black background) -->
-                                <img src="image_70.png" alt="Profile Frame" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] max-w-none object-contain z-20 pointer-events-none drop-shadow-sm" style="mix-blend-mode: screen;">
+                                <!-- Cute Pink Lace Frame Overlay (Embedded matching image 70 style) -->
+                                <div class="absolute inset-0 w-full h-full z-20 pointer-events-none flex items-center justify-center">
+                                    <svg viewBox="0 0 200 200" class="w-28 h-28 drop-shadow-md">
+                                        <!-- Outer Lace Petals Background -->
+                                        <path d="M100,10 C120,10 130,25 145,25 C160,25 170,15 185,30 C200,45 190,60 195,75 C200,90 195,100 195,115 C195,130 200,140 195,155 C190,170 200,185 185,200 C170,215 160,205 145,205 C130,205 120,220 100,220 C80,220 70,205 55,205 C40,205 30,215 15,200 C0,185 10,170 5,155 C0,140 5,130 5,115 C5,100 0,90 5,75 C10,60 0,45 15,30 C30,15 40,25 55,25 C70,25 80,10 100,10 Z" fill="#ffeaf0" stroke="#fff" stroke-width="4"/>
+                                        <!-- Inner Hollow Circle & Music Note Glow Effect -->
+                                        <circle cx="100" cy="115" r="62" fill="none" stroke="#fff" stroke-width="6" opacity="0.9"/>
+                                        <circle cx="100" cy="115" r="60" fill="none" stroke="#ffd1dc" stroke-width="2"/>
+                                        <!-- Decorative Bow at Top Right -->
+                                        <g transform="translate(130, 25) rotate(15)">
+                                            <ellipse cx="12" cy="8" rx="12" ry="7" fill="#ffb6c1"/>
+                                            <ellipse cx="-12" cy="8" rx="12" ry="7" fill="#ffb6c1"/>
+                                            <circle cx="0" cy="8" r="5" fill="#ff9ebb"/>
+                                            <path d="M-6,12 Q0,22 -10,28" fill="none" stroke="#ffb6c1" stroke-width="3" stroke-linecap="round"/>
+                                            <path d="M6,12 Q12,22 4,28" fill="none" stroke="#ffb6c1" stroke-width="3" stroke-linecap="round"/>
+                                        </g>
+                                        <!-- Cute Hearts at Left and Bottom Right -->
+                                        <path d="M 22,90 Q 15,78 30,75 Q 45,78 32,95 Z" fill="#ffb6c1" transform="rotate(-20 30 85)"/>
+                                        <path d="M 160,160 Q 150,145 170,140 Q 190,145 172,168 Z" fill="#ffb6c1" transform="rotate(15 170 155)"/>
+                                    </svg>
+                                </div>
                             </div>
                             
                             <div class="pt-1.5">
@@ -512,7 +531,6 @@
             else { document.getElementById('auth-container').classList.add('hidden'); document.getElementById('customer-profile-view').classList.remove('hidden'); document.getElementById('acc-name-display').innerText = currentUser.name; }
         }
 
-        // QUEUE LOGIC 
         function setQueueFilter(filter) {
             currentQueueFilter = filter;
             ['ทั้งหมด', 'ยังไม่ได้เริ่ม', 'กำลังทำ', 'เสร็จแล้ว'].forEach(f => {
@@ -567,7 +585,6 @@
 
                 return `
                     <div class="bg-white rounded-[20px] p-3.5 border-[1.5px] ${cardBorder} relative mt-5 transition-all">
-                        <!-- Circle Badge (No Vertical Line Below) -->
                         <div class="absolute -top-3.5 left-3.5 w-7 h-7 rounded-full bg-white border-[1.5px] ${circleBorder} flex items-center justify-center text-[9px] font-extrabold ${circleText} z-10">
                             Q${q.seq || 2}
                         </div>

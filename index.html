@@ -125,22 +125,36 @@
                 </div>
             </section>
 
-            <!-- TAB 2: PRODUCTS -->
+            <!-- TAB 2: PRODUCTS (GROUP MATCHING IMAGE 77) -->
             <section id="view-products" class="view-section hidden space-y-4">
-                <h2 class="font-bold text-lg text-gray-800"><i class="fa-solid fa-bag-shopping text-[#a7898d] mr-2"></i>สินค้าทั้งหมด</h2>
+                <h2 class="font-extrabold text-[22px] text-[#a7898d]">Group</h2>
                 
-                <div class="flex items-center space-x-2">
+                <!-- Search & Paw Filter -->
+                <div class="flex items-center space-x-2.5">
                     <div class="relative flex items-center bg-white border border-[#f7eff0] rounded-full shadow-2xs px-4 py-3 flex-1">
-                        <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-sm mr-2.5"></i>
+                        <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-sm mr-3"></i>
                         <input type="text" id="product-search-input" oninput="renderProducts()" placeholder="ค้นหาสินค้า..." class="w-full text-xs text-gray-600 focus:outline-none bg-transparent placeholder-[#c0aab1]">
                     </div>
-                    <button onclick="openCatFilterModal()" class="w-12 h-12 bg-white border border-[#f7eff0] rounded-full shadow-2xs flex items-center justify-center text-[#a7898d] hover:bg-[#fdfafb] transition shrink-0" title="ตัวกรอง">
-                        <i class="fa-solid fa-paw text-base"></i>
+                    <button onclick="openCatFilterModal()" class="w-11 h-11 bg-white border border-[#f7eff0] rounded-full shadow-2xs flex items-center justify-center text-[#a7898d] hover:bg-[#fdfafb] transition shrink-0" title="ตัวกรอง">
+                        <i class="fa-solid fa-paw text-sm"></i>
                     </button>
                 </div>
 
-                <div id="categories-tabs-container" class="flex space-x-2 overflow-x-auto pb-1 scrollbar-none"></div>
-                <div id="products-grid" class="grid grid-cols-2 gap-3"></div>
+                <!-- Sub-filters / Category Pills & Scroll Arrows matching image 77 -->
+                <div class="flex items-center space-x-2">
+                    <button class="w-8 h-8 rounded-full bg-white border border-[#f7eff0] text-[#a7898d] flex items-center justify-center shadow-2xs shrink-0 text-xs">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div id="categories-tabs-container" class="flex space-x-2 overflow-x-auto pb-1 scrollbar-none flex-1"></div>
+                    <button class="w-8 h-8 rounded-full bg-white border border-[#f7eff0] text-[#a7898d] flex items-center justify-center shadow-2xs shrink-0 text-xs">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div id="product-count-label" class="text-[11px] text-[#c0aab1] font-medium pt-0.5">2 items</div>
+
+                <!-- Products Grid matching image 77 exactly -->
+                <div id="products-grid" class="grid grid-cols-2 gap-3.5 pt-1"></div>
             </section>
 
             <!-- TAB 3: QUEUE CHECK -->
@@ -173,7 +187,6 @@
                     <p class="text-xs text-gray-600 leading-relaxed">ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨</p>
                 </div>
 
-                <!-- How to Note slip Container (Vector Heart Icon Steps) -->
                 <div class="bg-white rounded-[32px] p-6 shadow-sm border border-[#f7eff0] space-y-6">
                     <h3 class="font-extrabold text-[15px] text-[#a7898d]">How to Note slip</h3>
 
@@ -460,21 +473,19 @@
     <script>
         let currentTab = 'home';
         let currentUser = null;
-        let selectedFilterType = 'โปรโมชั่น';
-        let activeCategoryFilter = 'all';
-        let currentQueueFilter = 'ทั้งหมด';
+        let activeCategoryFilter = 'All';
 
         let appState = {
             shopName: "ชื่อร้าน",
             announcement: "🎉 โปรโมชั่นพิเศษต้อนรับเดือนนี้! ซื้อครบ 500 บาทสะสมแต้มฟรี!",
             categories: [
-                { id: 'all', name: 'ทั้งหมด', icon: '✨' },
-                { id: 'สกินแคร์', name: 'สกินแคร์', icon: '🎀' },
-                { id: 'เมคอัพ', name: 'เมคอัพ', icon: '💄' }
+                { id: 'All', name: 'All' },
+                { id: 'momonga', name: 'momonga' },
+                { id: 'mimiw', name: 'mimiw' }
             ],
             products: [
-                { id: 1, name: "เวดวกวด", price: 500, cost: 40, desc: "เค", category: "สกินแคร์", type: "โปรโมชั่น", featured: true, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=500" },
-                { id: 2, name: "Salee Gaming", price: 199, cost: 50, desc: "เกมมิ่ง", category: "เมคอัพ", type: "สิทธิ์ขาด", featured: false, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=500" }
+                { id: 1, name: "ชื่อกลุ่ม", price: 50, category: 'All', featured: true, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=500" },
+                { id: 2, name: "ชื่อกลุ่ม", price: 50, category: 'All', featured: true, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=500" }
             ],
             queues: [
                 { id: 101, name: "k'sobell", service: "ปกกลุ่มแนวเจ้าหญิง", date: "11/09/69", status: "เสร็จแล้ว", seq: 1 },
@@ -515,20 +526,12 @@
             const container = document.getElementById('categories-tabs-container');
             if(!container) return;
             container.innerHTML = appState.categories.map(c => `
-                <button onclick="setCategory('${c.id}')" class="px-5 py-2 rounded-full text-xs font-bold ${activeCategoryFilter === c.id ? 'bg-[#a7898d] text-white shadow-xs' : 'bg-white text-gray-600 border border-[#f7eff0]'} shrink-0">${c.icon || ''} ${c.name}</button>
+                <button onclick="setCategory('${c.id}')" class="px-5 py-2 rounded-full text-xs font-medium ${activeCategoryFilter === c.id ? 'bg-[#a7898d] text-white font-bold shadow-xs' : 'bg-white text-gray-500 border border-[#f7eff0]'} shrink-0 transition">${c.name}</button>
             `).join('');
         }
         function setCategory(catId) { activeCategoryFilter = catId; renderCategoriesTabs(); renderProducts(); }
         function openCatFilterModal() { document.getElementById('cat-filter-modal').classList.remove('hidden'); }
         function closeCatFilterModal() { document.getElementById('cat-filter-modal').classList.add('hidden'); }
-        function setFilterType(type) {
-            selectedFilterType = type;
-            ['โปรโมชั่น', 'สิทธิ์ขาด', 'เฉพาะ'].forEach(t => {
-                const btn = document.getElementById(`type-btn-${t}`);
-                if(btn) btn.className = (t === type) ? "py-2.5 bg-[#fdfafb] text-[#a7898d] rounded-full font-bold border border-[#f0e6e7] shadow-2xs" : "py-2.5 bg-[#fdfafb] text-gray-500 rounded-full border border-[#f7eff0]";
-            });
-        }
-        function applyCatFilter() { closeCatFilterModal(); renderProducts(); }
         function showMiniToast() {
             const toast = document.getElementById('mini-toast');
             toast.classList.remove('hidden');
@@ -556,20 +559,28 @@
             if(!grid) return;
             const searchVal = document.getElementById('product-search-input').value.toLowerCase();
             const filtered = appState.products.filter(p => {
-                const matchType = p.type === selectedFilterType;
-                const matchCat = activeCategoryFilter === 'all' || p.category === activeCategoryFilter;
+                const matchCat = activeCategoryFilter === 'All' || p.category === activeCategoryFilter;
                 const matchSearch = p.name.toLowerCase().includes(searchVal);
-                return matchType && matchCat && matchSearch;
+                return matchCat && matchSearch;
             });
+            
+            document.getElementById('product-count-label').innerText = `${filtered.length} items`;
+
             grid.innerHTML = filtered.map(p => `
-                <div class="bg-white rounded-[28px] p-3 border border-[#f7eff0] shadow-2xs flex flex-col justify-between relative">
-                    ${p.featured ? '<div class="absolute top-5 left-5 bg-[#fceef1] text-[#a7898d] text-[9px] font-bold px-2.5 py-0.5 rounded-full z-10 border border-[#f0e6e7]">แนะนำ</div>' : ''}
-                    <div class="aspect-square w-full rounded-[20px] bg-[#fdfafb] overflow-hidden mb-2 border border-[#f7eff0]">
-                        <img src="${p.img}" class="w-full h-full object-cover rounded-xl">
+                <div class="bg-white rounded-[28px] p-3.5 border border-[#f0e6e7] shadow-2xs flex flex-col justify-between space-y-3">
+                    <div class="aspect-square w-full rounded-[20px] bg-[#fdfafb] overflow-hidden border border-[#f7eff0]">
+                        <img src="${p.img}" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="font-bold text-xs text-gray-800 line-clamp-1">${p.name}</h4>
-                    <span class="font-extrabold text-[#a7898d] text-xs my-1">฿${p.price.toLocaleString()}</span>
-                    <button onclick="addToCart(${p.id})" class="w-full py-2 bg-[#fdfafb] hover:bg-[#f5e8ea] text-[#a7898d] border border-[#f0e6e7] rounded-full text-[10px] font-bold transition shadow-2xs">Add to Cart</button>
+                    
+                    <div class="flex justify-between items-center px-1">
+                        <span class="font-bold text-xs text-gray-800">${p.name}</span>
+                        <span class="font-extrabold text-[#a7898d] text-xs">${p.price} ฿</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-0.5">
+                        <button onclick="alert('ดูรายละเอียดเพิ่มเติม')" class="py-2 bg-white text-[#a7898d] border border-[#f0e6e7] rounded-full text-[11px] font-bold shadow-2xs hover:bg-[#fdfafb] transition text-center">Ex</button>
+                        <button onclick="addToCart(${p.id})" class="py-2 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-[11px] font-bold shadow-2xs transition text-center">add to cart</button>
+                    </div>
                 </div>
             `).join('');
         }

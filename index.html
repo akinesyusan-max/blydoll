@@ -49,18 +49,18 @@
     <!-- ==================== MAIN SHOP VIEW ==================== -->
     <div id="main-shop-container">
         <!-- Top Bar -->
-        <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md shadow-xs px-4 py-3 flex justify-between items-center border-b border-pink-50">
+        <header class="sticky top-0 z-40 bg-white/85 backdrop-blur-md shadow-xs px-4 py-3 flex justify-between items-center border-b border-[#f7eff0]">
             <div class="flex items-center space-x-2">
-                <button onclick="openAdminLoginModal()" class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-pink-600 hover:bg-pink-100 transition shadow-xs" title="เข้าสู่ระบบแอดมิน">
+                <button onclick="openAdminLoginModal()" class="w-8 h-8 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-[#a7898d] hover:bg-[#f5e8ea] transition shadow-2xs" title="เข้าสู่ระบบแอดมิน">
                     <i class="fa-solid fa-chess-rook text-sm"></i>
                 </button>
                 <span id="shop-title-header" class="text-[#a7898d] font-extrabold text-lg">ชื่อร้าน</span>
             </div>
             
             <div class="flex items-center space-x-3">
-                <button onclick="openCartModal()" class="relative w-9 h-9 rounded-full bg-pink-50 flex items-center justify-center text-pink-600 hover:bg-pink-100 transition shadow-2xs" title="ตะกร้าสินค้า">
+                <button onclick="openCartModal()" class="relative w-9 h-9 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-[#a7898d] hover:bg-[#f5e8ea] transition shadow-2xs" title="ตะกร้าสินค้า">
                     <i class="fa-solid fa-basket-shopping text-sm"></i>
-                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-xs">0</span>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-[#a7898d] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-xs">0</span>
                 </button>
                 <div class="flex flex-col space-y-1 w-6 opacity-30 cursor-default">
                     <span class="h-0.5 bg-gray-600 rounded-full w-full"></span>
@@ -76,69 +76,32 @@
             <!-- TAB 1: HOME -->
             <section id="view-home" class="view-section space-y-5">
                 <div class="relative space-y-2">
-                    <div class="h-44 w-full rounded-3xl overflow-hidden shadow-sm relative border border-pink-50">
+                    <div class="h-44 w-full rounded-[32px] overflow-hidden shadow-sm relative border border-[#f7eff0]">
                         <img id="home-banner-img" src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=800&q=80" alt="Banner" class="w-full h-full object-cover">
                     </div>
                     
                     <div class="flex justify-between items-start px-2">
-                        <div class="flex items-start space-x-3 pl-1 relative z-10">
-                            <!-- Profile Picture with Scalloped Frame (Image 72 style) -->
-                            <div class="relative w-20 h-20 -mt-10 shrink-0 flex items-center justify-center">
-                                <!-- Base Profile Image -->
-                                <div class="w-14 h-14 rounded-full overflow-hidden shadow-inner bg-white relative z-10">
-                                    <img id="home-profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Profile" class="w-full h-full object-cover">
-                                </div>
-                                <!-- Scalloped Frame Overlay -->
-                                <div class="absolute inset-0 w-full h-full z-20 pointer-events-none flex items-center justify-center">
-                                    <svg viewBox="0 0 120 120" class="w-24 h-24 drop-shadow-sm">
-                                        <path d="M60, 5 
-                                                 C65,5 68,12 74,12 
-                                                 C80,12 85,5 91,8 
-                                                 C97,11 98,20 103,24 
-                                                 C108,28 116,27 120,33 
-                                                 C124,39 120,48 123,54 
-                                                 C126,60 133,65 133,72 
-                                                 C133,79 126,84 123,90 
-                                                 C120,96 124,105 120,111 
-                                                 C116,117 108,116 103,120 
-                                                 C98,124 97,133 91,136 
-                                                 C85,139 80,132 74,132 
-                                                 C68,132 65,139 60,139 
-                                                 C55,139 52,132 46,132 
-                                                 C40,132 35,139 29,136 
-                                                 C23,133 22,124 17,120 
-                                                 C12,116 4,117 0,111 
-                                                 C-4,105 0,96 -3,90 
-                                                 C-6,84 -13,79 -13,72 
-                                                 C-13,65 -6,60 -3,54 
-                                                 C0,48 -4,39 0,33 
-                                                 C4,27 12,28 17,24 
-                                                 C22,20 23,11 29,8 
-                                                 C35,5 40,12 46,12 
-                                                 C52,12 55,5 60,5 Z" 
-                                              fill="none" stroke="#d5c2c7" stroke-width="4" transform="translate(13, -5) scale(0.75)"/>
-                                        <circle cx="60" cy="60" r="54" fill="none" stroke="#e8d5d9" stroke-width="2"/>
-                                    </svg>
-                                </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-20 h-20 rounded-full border-4 border-white overflow-hidden shadow-md bg-white -mt-10 shrink-0 relative z-10">
+                                <img id="home-profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Profile" class="w-full h-full object-cover">
                             </div>
-                            
-                            <div class="pt-1.5">
+                            <div class="pt-1">
                                 <h2 id="home-shop-name" class="font-bold text-base text-gray-800">ชื่อร้าน</h2>
                                 <p id="home-shop-caption" class="text-xs text-gray-500">แคปชั่น</p>
                             </div>
                         </div>
                         
-                        <div id="store-status-badge" class="px-4 py-1.5 rounded-full text-xs font-bold bg-green-100 text-green-700 flex items-center gap-1.5 shadow-2xs mt-1 relative z-10">
+                        <div id="store-status-badge" class="px-4 py-1.5 rounded-full text-xs font-bold bg-[#f4fcf6] border border-[#d2f0dc] text-green-700 flex items-center gap-1.5 shadow-2xs mt-1">
                             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             <span id="store-status-text">Open</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-pink-50 border border-pink-100 rounded-2xl p-3 flex items-center space-x-3 overflow-hidden shadow-2xs mt-4">
-                    <i class="fa-solid fa-bullhorn text-pink-500 animate-bounce"></i>
+                <div class="bg-[#fdfafb] border border-[#f7eff0] rounded-[24px] p-3 flex items-center space-x-3 overflow-hidden shadow-2xs">
+                    <i class="fa-solid fa-bullhorn text-[#a7898d] animate-bounce"></i>
                     <div class="whitespace-nowrap overflow-hidden w-full">
-                        <p id="announcement-text" class="text-xs text-pink-700 font-medium inline-block">
+                        <p id="announcement-text" class="text-xs text-[#a7898d] font-medium inline-block">
                             🎉 โปรโมชั่นพิเศษต้อนรับเดือนนี้! ซื้อครบ 500 บาทสะสมแต้มฟรี!
                         </p>
                     </div>
@@ -146,8 +109,8 @@
 
                 <div>
                     <div class="flex justify-between items-center mb-3">
-                        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-fire text-pink-500 mr-2"></i>สินค้าแนะนำ</h3>
-                        <button onclick="switchTab('products')" class="text-xs text-pink-500 font-medium hover:underline">ดูทั้งหมด</button>
+                        <h3 class="font-bold text-gray-800 text-base"><i class="fa-solid fa-fire text-[#a7898d] mr-2"></i>สินค้าแนะนำ</h3>
+                        <button onclick="switchTab('products')" class="text-xs text-[#a7898d] font-medium hover:underline">ดูทั้งหมด</button>
                     </div>
                     <div id="recommended-products-list" class="grid grid-cols-2 gap-3"></div>
                 </div>
@@ -155,14 +118,14 @@
 
             <!-- TAB 2: PRODUCTS -->
             <section id="view-products" class="view-section hidden space-y-4">
-                <h2 class="font-bold text-lg text-gray-800"><i class="fa-solid fa-bag-shopping text-pink-500 mr-2"></i>สินค้าทั้งหมด</h2>
+                <h2 class="font-bold text-lg text-gray-800"><i class="fa-solid fa-bag-shopping text-[#a7898d] mr-2"></i>สินค้าทั้งหมด</h2>
                 
                 <div class="flex items-center space-x-2">
-                    <div class="relative flex items-center bg-white border border-pink-100 rounded-full shadow-2xs px-4 py-3 flex-1">
-                        <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm mr-2.5"></i>
-                        <input type="text" id="product-search-input" oninput="renderProducts()" placeholder="ค้นหาสินค้า..." class="w-full text-xs focus:outline-none bg-transparent">
+                    <div class="relative flex items-center bg-white border border-[#f7eff0] rounded-full shadow-2xs px-4 py-3 flex-1">
+                        <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-sm mr-2.5"></i>
+                        <input type="text" id="product-search-input" oninput="renderProducts()" placeholder="ค้นหาสินค้า..." class="w-full text-xs text-gray-600 focus:outline-none bg-transparent placeholder-[#c0aab1]">
                     </div>
-                    <button onclick="openCatFilterModal()" class="w-12 h-12 bg-white border border-pink-100 rounded-full shadow-2xs flex items-center justify-center text-pink-500 hover:bg-pink-50 transition shrink-0" title="ตัวกรอง">
+                    <button onclick="openCatFilterModal()" class="w-12 h-12 bg-white border border-[#f7eff0] rounded-full shadow-2xs flex items-center justify-center text-[#a7898d] hover:bg-[#fdfafb] transition shrink-0" title="ตัวกรอง">
                         <i class="fa-solid fa-paw text-base"></i>
                     </button>
                 </div>
@@ -196,54 +159,54 @@
 
             <!-- TAB 4: DETAIL -->
             <section id="view-detail" class="view-section hidden space-y-4">
-                <div class="bg-white rounded-3xl p-5 shadow-sm border border-pink-100 space-y-3">
-                    <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-file-lines text-pink-500 mr-2"></i>รายละเอียดร้านค้า</h3>
+                <div class="bg-white rounded-[28px] p-5 shadow-sm border border-[#f7eff0] space-y-3">
+                    <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-file-lines text-[#a7898d] mr-2"></i>รายละเอียดร้านค้า</h3>
                     <p class="text-xs text-gray-600 leading-relaxed">ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨</p>
                 </div>
             </section>
 
             <!-- TAB 5: MEMBER -->
             <section id="view-member" class="view-section hidden space-y-4">
-                <div id="auth-container" class="bg-white rounded-3xl p-5 shadow-sm border border-pink-100 space-y-4">
-                    <div class="flex bg-pink-50 p-1 rounded-2xl mb-3">
-                        <button onclick="switchAuthMode('login')" id="auth-mode-login" class="flex-1 py-2 text-xs font-bold rounded-xl bg-white text-pink-600 shadow-xs transition">เข้าสู่ระบบ</button>
-                        <button onclick="switchAuthMode('register')" id="auth-mode-register" class="flex-1 py-2 text-xs font-bold rounded-xl text-gray-500 transition">สมัครสมาชิก</button>
+                <div id="auth-container" class="bg-white rounded-[28px] p-5 shadow-sm border border-[#f7eff0] space-y-4">
+                    <div class="flex bg-[#fdfafb] border border-[#f7eff0] p-1 rounded-full mb-3">
+                        <button onclick="switchAuthMode('login')" id="auth-mode-login" class="flex-1 py-2 text-xs font-bold rounded-full bg-white text-[#a7898d] shadow-xs transition">เข้าสู่ระบบ</button>
+                        <button onclick="switchAuthMode('register')" id="auth-mode-register" class="flex-1 py-2 text-xs font-bold rounded-full text-[#c0aab1] transition">สมัครสมาชิก</button>
                     </div>
                     <div id="form-login" class="space-y-3">
                         <div>
                             <label class="text-xs text-gray-600 font-medium">อีเมล</label>
-                            <input type="email" id="login-email" placeholder="example@email.com" class="w-full mt-1 px-3 py-2 bg-gray-50 border border-pink-200 rounded-xl text-sm">
+                            <input type="email" id="login-email" placeholder="example@email.com" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">
                         </div>
                         <div>
                             <label class="text-xs text-gray-600 font-medium">รหัสผ่าน</label>
-                            <input type="password" id="login-password" placeholder="••••••••" class="w-full mt-1 px-3 py-2 bg-gray-50 border border-pink-200 rounded-xl text-sm">
+                            <input type="password" id="login-password" placeholder="••••••••" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">
                         </div>
-                        <button onclick="handleLogin()" class="w-full py-2.5 bg-pink-500 text-white rounded-xl text-xs font-bold shadow-sm">เข้าสู่ระบบ</button>
+                        <button onclick="handleLogin()" class="w-full py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-xs font-bold shadow-sm transition">เข้าสู่ระบบ</button>
                     </div>
                     <div id="form-register" class="space-y-3 hidden">
                         <div>
                             <label class="text-xs text-gray-600 font-medium">ชื่อบัญชี</label>
-                            <input type="text" id="reg-name" placeholder="ชื่อของคุณ" class="w-full mt-1 px-3 py-2 bg-gray-50 border border-pink-200 rounded-xl text-sm">
+                            <input type="text" id="reg-name" placeholder="ชื่อของคุณ" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">
                         </div>
                         <div>
                             <label class="text-xs text-gray-600 font-medium">ไลน์ไอดี</label>
-                            <input type="text" id="reg-line" placeholder="@yourlineid" class="w-full mt-1 px-3 py-2 bg-gray-50 border border-pink-200 rounded-xl text-sm">
+                            <input type="text" id="reg-line" placeholder="@yourlineid" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">
                         </div>
                         <div>
                             <label class="text-xs text-gray-600 font-medium">อีเมล</label>
-                            <input type="email" id="reg-email" placeholder="example@email.com" class="w-full mt-1 px-3 py-2 bg-gray-50 border border-pink-200 rounded-xl text-sm">
+                            <input type="email" id="reg-email" placeholder="example@email.com" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">
                         </div>
                         <div>
                             <label class="text-xs text-gray-600 font-medium">รหัสผ่าน</label>
-                            <input type="password" id="reg-password" placeholder="••••••••" class="w-full mt-1 px-3 py-2 bg-gray-50 border border-pink-200 rounded-xl text-sm">
+                            <input type="password" id="reg-password" placeholder="••••••••" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none">
                         </div>
-                        <button onclick="handleRegister()" class="w-full py-2.5 bg-pink-500 text-white rounded-xl text-xs font-bold shadow-sm">สมัครสมาชิก</button>
+                        <button onclick="handleRegister()" class="w-full py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-xs font-bold shadow-sm transition">สมัครสมาชิก</button>
                     </div>
                 </div>
 
                 <div id="customer-profile-view" class="hidden space-y-4">
-                    <div class="bg-white rounded-3xl p-4 shadow-sm border border-pink-100 relative">
-                        <div class="h-32 w-full rounded-2xl overflow-hidden relative">
+                    <div class="bg-white rounded-[28px] p-4 shadow-sm border border-[#f7eff0] relative">
+                        <div class="h-32 w-full rounded-[20px] overflow-hidden relative">
                             <img id="acc-banner-img" src="https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=800&q=80" alt="Cover" class="w-full h-full object-cover">
                         </div>
                         <div class="flex items-center space-x-3 -mt-6 px-3 relative z-10">
@@ -255,22 +218,22 @@
                                 <p id="acc-caption-display" class="text-xs text-gray-500">สมาชิกทั่วไป</p>
                             </div>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs">
+                        <div class="mt-4 pt-3 border-t border-[#f7eff0] flex justify-between items-center text-xs">
                             <div>
                                 <span class="text-gray-400">แต้มสะสม:</span>
-                                <span id="acc-points-display" class="font-bold text-pink-600 ml-1 text-sm">0 แต้ม</span>
+                                <span id="acc-points-display" class="font-bold text-[#a7898d] ml-1 text-sm">0 แต้ม</span>
                             </div>
                         </div>
                     </div>
-                    <button onclick="handleLogout()" class="w-full py-2.5 bg-gray-100 text-gray-600 rounded-xl text-xs font-bold">ออกจากระบบ</button>
+                    <button onclick="handleLogout()" class="w-full py-2.5 bg-[#fdfafb] border border-[#f7eff0] text-gray-600 rounded-full text-xs font-bold hover:bg-[#f5e8ea] transition">ออกจากระบบ</button>
                 </div>
             </section>
         </main>
 
         <!-- Bottom Navigation Bar -->
         <div class="fixed bottom-4 left-0 right-0 max-w-sm mx-auto z-30 px-4">
-            <nav class="bg-white/95 backdrop-blur-md border border-pink-100 py-2.5 px-4 rounded-full flex justify-around items-center shadow-xl text-[10px]">
-                <button onclick="switchTab('home')" id="nav-btn-home" class="nav-btn flex flex-col items-center text-pink-600 transition">
+            <nav class="bg-white/95 backdrop-blur-md border border-[#f7eff0] py-2.5 px-4 rounded-full flex justify-around items-center shadow-xl text-[10px]">
+                <button onclick="switchTab('home')" id="nav-btn-home" class="nav-btn flex flex-col items-center text-[#a7898d] transition">
                     <i class="fa-solid fa-house text-sm"></i>
                     <span class="mt-1 font-semibold">Home</span>
                 </button>
@@ -296,9 +259,9 @@
         <!-- Floating Cat Button -->
         <div class="fixed bottom-20 right-5 z-40">
             <div id="social-menu-popup" class="absolute bottom-16 right-0 space-y-2 hidden w-48">
-                <a id="social-link-line" href="https://line.me" target="_blank" class="flex items-center justify-between px-4 py-2.5 bg-white/95 backdrop-blur-md rounded-full shadow-md text-xs font-bold text-gray-700"><span>Line Official</span><i class="fa-brands fa-line text-green-500"></i></a>
+                <a id="social-link-line" href="https://line.me" target="_blank" class="flex items-center justify-between px-4 py-2.5 bg-white/95 backdrop-blur-md rounded-full shadow-md text-xs font-bold text-gray-700 border border-[#f7eff0]"><span>Line Official</span><i class="fa-brands fa-line text-green-500"></i></a>
             </div>
-            <button onclick="toggleSocialMenu()" class="w-12 h-12 rounded-full bg-cyan-100 hover:bg-cyan-200 text-gray-700 shadow-xl flex items-center justify-center text-lg transition">
+            <button onclick="toggleSocialMenu()" class="w-12 h-12 rounded-full bg-[#fceef1] hover:bg-[#f7e0e4] text-[#a7898d] shadow-xl flex items-center justify-center text-lg transition border border-[#f0e6e7]">
                 <i class="fa-solid fa-cat"></i>
             </button>
         </div>
@@ -306,36 +269,36 @@
 
     <!-- ==================== CART MODAL ==================== -->
     <div id="cart-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-sm w-full p-5 relative shadow-2xl border border-pink-100 space-y-4 max-h-[80vh] overflow-y-auto text-xs">
-            <div class="flex justify-between items-center border-b pb-2">
-                <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-basket-shopping text-pink-500"></i> ตะกร้าสินค้า</h3>
-                <button onclick="closeCartModal()" class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+        <div class="bg-white rounded-[32px] max-w-sm w-full p-5 relative shadow-2xl border border-[#f7eff0] space-y-4 max-h-[80vh] overflow-y-auto text-xs">
+            <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2">
+                <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-basket-shopping text-[#a7898d]"></i> ตะกร้าสินค้า</h3>
+                <button onclick="closeCartModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f7eff0] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div id="cart-items-container" class="space-y-2"></div>
-            <div class="border-t pt-3 flex justify-between items-center font-bold text-sm">
+            <div class="border-t border-[#f7eff0] pt-3 flex justify-between items-center font-bold text-sm">
                 <span>ยอดรวม:</span>
-                <span id="cart-total-price" class="text-pink-600">฿0</span>
+                <span id="cart-total-price" class="text-[#a7898d]">฿0</span>
             </div>
-            <button onclick="checkoutCart()" class="w-full py-2.5 bg-pink-500 text-white rounded-xl font-bold">ชำระเงิน</button>
+            <button onclick="checkoutCart()" class="w-full py-2.5 bg-[#a7898d] text-white rounded-full font-bold shadow-sm">ชำระเงิน</button>
         </div>
     </div>
 
     <!-- ==================== CAT PAW FILTER MODAL ==================== -->
     <div id="cat-filter-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-xs w-full p-5 relative shadow-2xl border border-pink-100 space-y-4 text-xs">
-            <div class="flex justify-between items-center border-b pb-2">
-                <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-paw text-pink-500"></i> ตัวกรองสินค้า</h3>
-                <button onclick="closeCatFilterModal()" class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+        <div class="bg-white rounded-[32px] max-w-xs w-full p-5 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs">
+            <div class="flex justify-between items-center border-b border-[#f7eff0] pb-2">
+                <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-paw text-[#a7898d]"></i> ตัวกรองสินค้า</h3>
+                <button onclick="closeCatFilterModal()" class="w-6 h-6 rounded-full bg-[#fdfafb] border border-[#f7eff0] flex items-center justify-center text-gray-500"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-2">
                 <p class="font-bold text-gray-700">ประเภท</p>
                 <div class="grid grid-cols-3 gap-2">
-                    <button onclick="setFilterType('โปรโมชั่น')" id="type-btn-โปรโมชั่น" class="py-2 bg-pink-50 text-pink-600 rounded-xl font-bold border">โปรโมชั่น</button>
-                    <button onclick="setFilterType('สิทธิ์ขาด')" id="type-btn-สิทธิ์ขาด" class="py-2 bg-gray-50 text-gray-600 rounded-xl border">สิทธิ์ขาด</button>
-                    <button onclick="setFilterType('เฉพาะ')" id="type-btn-เฉพาะ" class="py-2 bg-gray-50 text-gray-600 rounded-xl border">เฉพาะ</button>
+                    <button onclick="setFilterType('โปรโมชั่น')" id="type-btn-โปรโมชั่น" class="py-2.5 bg-[#fdfafb] text-[#a7898d] rounded-full font-bold border border-[#f0e6e7] shadow-2xs">โปรโมชั่น</button>
+                    <button onclick="setFilterType('สิทธิ์ขาด')" id="type-btn-สิทธิ์ขาด" class="py-2.5 bg-[#fdfafb] text-gray-500 rounded-full border border-[#f7eff0]">สิทธิ์ขาด</button>
+                    <button onclick="setFilterType('เฉพาะ')" id="type-btn-เฉพาะ" class="py-2.5 bg-[#fdfafb] text-gray-500 rounded-full border border-[#f7eff0]">เฉพาะ</button>
                 </div>
             </div>
-            <button onclick="applyCatFilter()" class="w-full py-2.5 bg-pink-500 text-white rounded-xl font-bold">ยืนยัน</button>
+            <button onclick="applyCatFilter()" class="w-full py-2.5 bg-[#a7898d] text-white rounded-full font-bold shadow-sm">ยืนยัน</button>
         </div>
     </div>
 
@@ -343,39 +306,39 @@
     <div id="admin-full-page" class="hidden min-h-screen bg-gray-50 pb-20">
         <header class="bg-white border-b sticky top-0 z-40 px-6 py-4 flex justify-between items-center shadow-xs">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center font-bold"><i class="fa-solid fa-gear"></i></div>
+                <div class="w-10 h-10 rounded-2xl bg-[#fceef1] text-[#a7898d] flex items-center justify-center font-bold border border-[#f0e6e7]"><i class="fa-solid fa-gear"></i></div>
                 <div>
                     <h1 class="font-bold text-gray-800 text-base">ระบบหลังบ้าน (Admin Dashboard)</h1>
                 </div>
             </div>
-            <button onclick="closeAdminFullPage()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold">กลับหน้าหลัก</button>
+            <button onclick="closeAdminFullPage()" class="px-4 py-2 bg-[#fdfafb] hover:bg-[#f5e8ea] text-gray-700 border border-[#f7eff0] rounded-full text-xs font-bold transition">กลับหน้าหลัก</button>
         </header>
 
         <div class="max-w-4xl mx-auto px-4 pt-4">
-            <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-none border-b text-xs">
-                <button onclick="switchAdminSubTab('shop')" id="adm-tab-shop" class="adm-tab px-4 py-2.5 rounded-xl font-bold bg-pink-500 text-white shrink-0">ร้าน/ธีม</button>
-                <button onclick="switchAdminSubTab('products')" id="adm-tab-products" class="adm-tab px-4 py-2.5 rounded-xl font-medium bg-white text-gray-600 border shrink-0">สินค้า (คลาวด์)</button>
-                <button onclick="switchAdminSubTab('queue')" id="adm-tab-queue" class="adm-tab px-4 py-2.5 rounded-xl font-medium bg-white text-gray-600 border shrink-0">คิว</button>
+            <div class="flex space-x-2 overflow-x-auto pb-2 scrollbar-none border-b border-[#f7eff0] text-xs">
+                <button onclick="switchAdminSubTab('shop')" id="adm-tab-shop" class="adm-tab px-4 py-2.5 rounded-full font-bold bg-[#a7898d] text-white shrink-0 shadow-2xs">ร้าน/ธีม</button>
+                <button onclick="switchAdminSubTab('products')" id="adm-tab-products" class="adm-tab px-4 py-2.5 rounded-full font-medium bg-white text-gray-600 border border-[#f7eff0] shrink-0">สินค้า (คลาวด์)</button>
+                <button onclick="switchAdminSubTab('queue')" id="adm-tab-queue" class="adm-tab px-4 py-2.5 rounded-full font-medium bg-white text-gray-600 border border-[#f7eff0] shrink-0">คิว</button>
             </div>
         </div>
 
         <main class="max-w-4xl mx-auto p-4 space-y-4">
-            <div id="adm-content-shop" class="adm-content space-y-4 text-xs bg-white p-5 rounded-3xl shadow-sm border">
-                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-store text-pink-500 mr-2"></i>ตั้งค่าร้าน</h3>
+            <div id="adm-content-shop" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[32px] shadow-sm border border-[#f7eff0]">
+                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-store text-[#a7898d] mr-2"></i>ตั้งค่าร้าน</h3>
                 <div>
                     <label class="font-bold text-gray-700">ชื่อร้าน</label>
-                    <input type="text" id="adm-shop-name-input" class="w-full mt-1 px-3 py-2 bg-gray-50 border rounded-xl" value="ชื่อร้าน">
+                    <input type="text" id="adm-shop-name-input" class="w-full mt-1 px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-xs text-gray-600 focus:outline-none" value="ชื่อร้าน">
                 </div>
-                <button onclick="saveShopThemeSettings()" class="w-full py-3 bg-pink-500 text-white rounded-xl font-bold text-sm">บันทึก</button>
+                <button onclick="saveShopThemeSettings()" class="w-full py-3 bg-[#a7898d] text-white rounded-full font-bold text-sm shadow-sm">บันทึก</button>
             </div>
 
-            <div id="adm-content-products" class="adm-content space-y-4 text-xs bg-white p-5 rounded-3xl shadow-sm border hidden">
-                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-box text-pink-500 mr-2"></i>จัดการสินค้า</h3>
+            <div id="adm-content-products" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[32px] shadow-sm border border-[#f7eff0] hidden">
+                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-box text-[#a7898d] mr-2"></i>จัดการสินค้า</h3>
                 <div id="admin-products-cloud-list" class="space-y-3"></div>
             </div>
 
-            <div id="adm-content-queue" class="adm-content space-y-4 text-xs bg-white p-5 rounded-3xl shadow-sm border hidden">
-                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-list-check text-pink-500 mr-2"></i>จัดการคิว</h3>
+            <div id="adm-content-queue" class="adm-content space-y-4 text-xs bg-white p-5 rounded-[32px] shadow-sm border border-[#f7eff0] hidden">
+                <h3 class="font-bold text-sm text-gray-800"><i class="fa-solid fa-list-check text-[#a7898d] mr-2"></i>จัดการคิว</h3>
                 <div id="admin-queue-list" class="space-y-2"></div>
             </div>
         </main>
@@ -383,13 +346,13 @@
 
     <!-- ==================== ADMIN LOGIN MODAL ==================== -->
     <div id="admin-login-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-xs w-full p-6 relative shadow-2xl border border-pink-100 space-y-4 text-xs">
+        <div class="bg-white rounded-[32px] max-w-xs w-full p-6 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs">
             <div class="text-center space-y-2">
-                <div class="w-12 h-12 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center mx-auto text-lg border"><i class="fa-solid fa-chess-rook"></i></div>
+                <div class="w-12 h-12 bg-[#fceef1] text-[#a7898d] rounded-full flex items-center justify-center mx-auto text-lg border border-[#f0e6e7]"><i class="fa-solid fa-chess-rook"></i></div>
                 <h3 class="font-bold text-gray-800 text-base">Admin Login</h3>
             </div>
-            <input type="password" id="admin-pass-input" value="admin1234" class="w-full px-3 py-2.5 bg-gray-50 border rounded-xl text-center" placeholder="รหัสผ่าน">
-            <button onclick="verifyAdminLogin()" class="w-full py-2.5 bg-pink-500 text-white rounded-xl font-bold shadow-sm">Login</button>
+            <input type="password" id="admin-pass-input" value="admin1234" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f7eff0] rounded-2xl text-center text-xs text-gray-600 focus:outline-none" placeholder="รหัสผ่าน">
+            <button onclick="verifyAdminLogin()" class="w-full py-2.5 bg-[#a7898d] text-white rounded-full font-bold shadow-sm">Login</button>
         </div>
     </div>
 
@@ -426,11 +389,11 @@
             document.getElementById(`view-${tabId}`).classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('text-pink-600');
+                btn.classList.remove('text-[#a7898d]');
                 btn.classList.add('text-gray-400');
             });
             document.getElementById(`nav-btn-${tabId}`).classList.remove('text-gray-400');
-            document.getElementById(`nav-btn-${tabId}`).classList.add('text-pink-600');
+            document.getElementById(`nav-btn-${tabId}`).classList.add('text-[#a7898d]');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if(tabId === 'products') renderProducts();
@@ -452,7 +415,7 @@
             const container = document.getElementById('categories-tabs-container');
             if(!container) return;
             container.innerHTML = appState.categories.map(c => `
-                <button onclick="setCategory('${c.id}')" class="px-5 py-2 rounded-full text-xs font-bold ${activeCategoryFilter === c.id ? 'bg-pink-500 text-white shadow-xs' : 'bg-white text-gray-600 border border-pink-100'} shrink-0">${c.icon || ''} ${c.name}</button>
+                <button onclick="setCategory('${c.id}')" class="px-5 py-2 rounded-full text-xs font-bold ${activeCategoryFilter === c.id ? 'bg-[#a7898d] text-white shadow-xs' : 'bg-white text-gray-600 border border-[#f7eff0]'} shrink-0">${c.icon || ''} ${c.name}</button>
             `).join('');
         }
         function setCategory(catId) { activeCategoryFilter = catId; renderCategoriesTabs(); renderProducts(); }
@@ -462,7 +425,7 @@
             selectedFilterType = type;
             ['โปรโมชั่น', 'สิทธิ์ขาด', 'เฉพาะ'].forEach(t => {
                 const btn = document.getElementById(`type-btn-${t}`);
-                if(btn) btn.className = (t === type) ? "py-2 bg-pink-50 text-pink-600 rounded-xl font-bold border" : "py-2 bg-gray-50 text-gray-600 rounded-xl border";
+                if(btn) btn.className = (t === type) ? "py-2.5 bg-[#fdfafb] text-[#a7898d] rounded-full font-bold border border-[#f0e6e7] shadow-2xs" : "py-2.5 bg-[#fdfafb] text-gray-500 rounded-full border border-[#f7eff0]";
             });
         }
         function applyCatFilter() { closeCatFilterModal(); renderProducts(); }
@@ -476,14 +439,14 @@
             const container = document.getElementById('recommended-products-list');
             if(!container) return;
             container.innerHTML = appState.products.filter(p => p.featured).map(p => `
-                <div class="bg-white rounded-3xl p-3 border border-pink-100 shadow-2xs flex flex-col justify-between relative">
-                    <div class="absolute top-5 left-5 bg-pink-100 text-pink-700 text-[9px] font-bold px-2 py-0.5 rounded-full z-10">แนะนำ</div>
-                    <div class="aspect-square w-full rounded-2xl bg-pink-50 overflow-hidden mb-2">
+                <div class="bg-white rounded-[28px] p-3 border border-[#f7eff0] shadow-2xs flex flex-col justify-between relative">
+                    <div class="absolute top-5 left-5 bg-[#fceef1] text-[#a7898d] text-[9px] font-bold px-2.5 py-0.5 rounded-full z-10 border border-[#f0e6e7]">แนะนำ</div>
+                    <div class="aspect-square w-full rounded-[20px] bg-[#fdfafb] overflow-hidden mb-2 border border-[#f7eff0]">
                         <img src="${p.img}" class="w-full h-full object-cover rounded-xl">
                     </div>
                     <h4 class="font-bold text-xs text-gray-800 line-clamp-1">${p.name}</h4>
-                    <span class="font-extrabold text-pink-600 text-xs my-1">฿${p.price.toLocaleString()}</span>
-                    <button onclick="addToCart(${p.id})" class="w-full py-2 bg-pink-50 hover:bg-pink-100 text-pink-600 rounded-xl text-[10px] font-bold transition">Add to Cart</button>
+                    <span class="font-extrabold text-[#a7898d] text-xs my-1">฿${p.price.toLocaleString()}</span>
+                    <button onclick="addToCart(${p.id})" class="w-full py-2 bg-[#fdfafb] hover:bg-[#f5e8ea] text-[#a7898d] border border-[#f0e6e7] rounded-full text-[10px] font-bold transition shadow-2xs">Add to Cart</button>
                 </div>
             `).join('');
         }
@@ -499,14 +462,14 @@
                 return matchType && matchCat && matchSearch;
             });
             grid.innerHTML = filtered.map(p => `
-                <div class="bg-white rounded-3xl p-3 border border-pink-100 shadow-2xs flex flex-col justify-between relative">
-                    ${p.featured ? '<div class="absolute top-5 left-5 bg-pink-100 text-pink-700 text-[9px] font-bold px-2 py-0.5 rounded-full z-10">แนะนำ</div>' : ''}
-                    <div class="aspect-square w-full rounded-2xl bg-pink-50 overflow-hidden mb-2">
+                <div class="bg-white rounded-[28px] p-3 border border-[#f7eff0] shadow-2xs flex flex-col justify-between relative">
+                    ${p.featured ? '<div class="absolute top-5 left-5 bg-[#fceef1] text-[#a7898d] text-[9px] font-bold px-2.5 py-0.5 rounded-full z-10 border border-[#f0e6e7]">แนะนำ</div>' : ''}
+                    <div class="aspect-square w-full rounded-[20px] bg-[#fdfafb] overflow-hidden mb-2 border border-[#f7eff0]">
                         <img src="${p.img}" class="w-full h-full object-cover rounded-xl">
                     </div>
                     <h4 class="font-bold text-xs text-gray-800 line-clamp-1">${p.name}</h4>
-                    <span class="font-extrabold text-pink-600 text-xs my-1">฿${p.price.toLocaleString()}</span>
-                    <button onclick="addToCart(${p.id})" class="w-full py-2 bg-pink-50 hover:bg-pink-100 text-pink-600 rounded-xl text-[10px] font-bold transition">Add to Cart</button>
+                    <span class="font-extrabold text-[#a7898d] text-xs my-1">฿${p.price.toLocaleString()}</span>
+                    <button onclick="addToCart(${p.id})" class="w-full py-2 bg-[#fdfafb] hover:bg-[#f5e8ea] text-[#a7898d] border border-[#f0e6e7] rounded-full text-[10px] font-bold transition shadow-2xs">Add to Cart</button>
                 </div>
             `).join('');
         }
@@ -521,7 +484,7 @@
             let total = 0;
             container.innerHTML = appState.cart.map((item, idx) => {
                 total += item.price;
-                return `<div class="flex justify-between items-center bg-gray-50 p-2.5 rounded-xl border"><span>${item.name}</span><span class="text-pink-600 font-bold">฿${item.price}</span></div>`;
+                return `<div class="flex justify-between items-center bg-[#fdfafb] p-2.5 rounded-2xl border border-[#f7eff0]"><span>${item.name}</span><span class="text-[#a7898d] font-bold">฿${item.price}</span></div>`;
             }).join('') || '<p class="text-center text-gray-400">ว่างเปล่า</p>';
             document.getElementById('cart-total-price').innerText = `฿${total.toLocaleString()}`;
             document.getElementById('cart-modal').classList.remove('hidden');

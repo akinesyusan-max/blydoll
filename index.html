@@ -155,7 +155,7 @@
                     <button onclick="setQueueFilter('เสร็จแล้ว')" id="q-filter-เสร็จแล้ว" class="flex-1 px-3 py-2.5 rounded-full text-[10px] font-medium text-[#c0aab1] transition">เสร็จแล้ว</button>
                 </div>
 
-                <!-- Queue List Container (Smaller version) -->
+                <!-- Queue List Container -->
                 <div id="queue-list-container" class="space-y-4 pt-2"></div>
             </section>
 
@@ -507,7 +507,6 @@
             else { document.getElementById('auth-container').classList.add('hidden'); document.getElementById('customer-profile-view').classList.remove('hidden'); document.getElementById('acc-name-display').innerText = currentUser.name; }
         }
 
-        // QUEUE LOGIC (Adjusted to be smaller matching Image 68)
         function setQueueFilter(filter) {
             currentQueueFilter = filter;
             ['ทั้งหมด', 'ยังไม่ได้เริ่ม', 'กำลังทำ', 'เสร็จแล้ว'].forEach(f => {
@@ -544,7 +543,6 @@
                 let cardBorder = isDone ? 'border-[#f0e6e7] opacity-70' : 'border-[#a7898d] shadow-sm';
                 let circleBorder = isDone ? 'border-[#dfcbce]' : 'border-[#a7898d]';
                 let circleText = isDone ? 'text-[#c0aab1]' : 'text-[#a7898d]';
-                let lineBg = isDone ? 'bg-[#f0e6e7]' : 'bg-[#a7898d]';
                 
                 let nameText = isDone ? 'text-[#c0aab1]' : 'text-[#a7898d]';
                 let serviceText = isDone ? 'text-[#d6c7c9]' : 'text-[#8c6b70]';
@@ -567,9 +565,6 @@
                         <div class="absolute -top-3.5 left-3.5 w-7 h-7 rounded-full bg-white border-[1.5px] ${circleBorder} flex items-center justify-center text-[9px] font-extrabold ${circleText} z-10">
                             Q${q.seq || 2}
                         </div>
-                        
-                        <!-- Connecting Line -->
-                        <div class="absolute top-3.5 left-[27px] w-0.5 h-8 ${lineBg} rounded-full opacity-60 z-0"></div>
                         
                         <div class="pl-7 flex justify-between items-start">
                             <div class="space-y-1 mt-0.5">

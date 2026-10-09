@@ -147,14 +147,26 @@
                     </div>
                 </div>
 
-                <!-- Soft Interactive Queue User Status Banner -->
-                <div class="bg-white rounded-full px-5 py-3 shadow-sm border border-[#f7eff0] flex justify-between items-center text-xs">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-2 h-2 rounded-full bg-[#a7898d] animate-pulse"></span>
-                        <span class="font-bold text-gray-700">คิวของคุณ: <span id="my-queue-name-display" class="text-[#a7898d]">k'sobell</span></span>
+                <!-- Soft Interactive Queue User Status Banner (Styled exactly like queue cards) -->
+                <div class="bg-white rounded-[24px] p-4.5 border-[1.5px] border-[#a7898d] shadow-sm relative mt-4">
+                    <div class="absolute -top-3.5 left-5 px-3 py-0.5 rounded-full bg-white border-[1.5px] border-[#a7898d] text-[10px] font-extrabold text-[#a7898d] z-10 shadow-2xs">
+                        คิวของคุณ
                     </div>
-                    <div class="text-[11px] font-semibold text-gray-500">
-                        สถานะ: <span id="my-queue-status-display" class="text-green-600 font-bold">เสร็จแล้ว</span> (<span id="my-queue-service-display">ปกกลุ่มแนวเจ้าหญิง</span>)
+                    <div class="absolute left-7 top-7 bottom-4 w-0.5 border-l-2 border-dotted border-red-400"></div>
+
+                    <div class="pl-7 flex justify-between items-center">
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-2.5">
+                                <span id="my-queue-name-display" class="font-extrabold text-sm text-[#a7898d]">k'sobell</span>
+                                <span class="px-2.5 py-0.5 bg-white border border-[#a7898d] rounded-full text-[9px] font-extrabold text-[#a7898d] tracking-wider">LINE</span>
+                            </div>
+                            <p id="my-queue-service-display" class="text-xs font-extrabold text-[#8c6b70]">ปกกลุ่มแนวเจ้าหญิง</p>
+                        </div>
+                        <div>
+                            <div id="my-queue-status-display" class="px-5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-full text-[11px] font-bold text-[#a7898d] shadow-2xs">
+                                เสร็จแล้ว
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -678,7 +690,7 @@
                         <!-- Red Dotted Vertical Line -->
                         <div class="absolute left-7 top-7 bottom-4 w-0.5 border-l-2 border-dotted border-red-400"></div>
 
-                        <!-- Card Content Matching Image 88 Exactly -->
+                        <!-- Card Content Matching Image -->
                         <div class="pl-7 flex justify-between items-center">
                             <div class="space-y-1">
                                 <div class="flex items-center space-x-2.5">

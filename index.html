@@ -125,7 +125,7 @@
                 </div>
             </section>
 
-            <!-- TAB 2: PRODUCTS -->
+            <!-- TAB 2: PRODUCTS (GROUP MATCHING IMAGE 82 & 83) -->
             <section id="view-products" class="view-section hidden space-y-4">
                 <h2 class="font-extrabold text-[22px] text-[#a7898d]">Group</h2>
                 
@@ -361,7 +361,7 @@
             </nav>
         </div>
 
-        <!-- Floating Social Menu (Icons Only, No Outer Circle) -->
+        <!-- Floating Social Menu -->
         <div class="fixed bottom-20 right-5 z-40 flex flex-col items-end">
             <div id="social-menu-popup" class="space-y-2 mb-2 hidden w-44">
                 <a href="https://line.me" target="_blank" class="flex items-center justify-between px-3.5 py-2 bg-white/95 backdrop-blur-md rounded-full shadow-md text-[11px] font-bold text-[#a7898d] border border-[#f7eff0] transition hover:bg-[#fdfafb]">
@@ -545,14 +545,21 @@
             const container = document.getElementById('recommended-products-list');
             if(!container) return;
             container.innerHTML = appState.products.filter(p => p.featured).map(p => `
-                <div class="bg-white rounded-[28px] p-3 border border-[#f7eff0] shadow-2xs flex flex-col justify-between relative">
-                    <div class="absolute top-5 left-5 bg-[#fceef1] text-[#a7898d] text-[9px] font-bold px-2.5 py-0.5 rounded-full z-10 border border-[#f0e6e7]">แนะนำ</div>
-                    <div class="aspect-square w-full rounded-[20px] bg-[#fdfafb] overflow-hidden mb-2 border border-[#f7eff0]">
-                        <img src="${p.img}" class="w-full h-full object-cover rounded-xl">
+                <div class="bg-white rounded-[32px] p-4 border border-[#f0e6e7] shadow-2xs flex flex-col justify-between space-y-3 relative">
+                    <div class="absolute top-6 left-6 px-3 py-0.5 bg-white/90 backdrop-blur-xs text-[#a7898d] text-[10px] font-extrabold rounded-full z-10 border border-[#f0e6e7] shadow-2xs">แนะนำ</div>
+                    <div class="aspect-square w-full rounded-[24px] bg-[#fdfafb] overflow-hidden border border-[#f7eff0]">
+                        <img src="${p.img}" class="w-full h-full object-cover">
                     </div>
-                    <h4 class="font-bold text-xs text-gray-800 line-clamp-1">${p.name}</h4>
-                    <span class="font-extrabold text-[#a7898d] text-xs my-1">฿${p.price.toLocaleString()}</span>
-                    <button onclick="addToCart(${p.id})" class="w-full py-2 bg-[#fdfafb] hover:bg-[#f5e8ea] text-[#a7898d] border border-[#f0e6e7] rounded-full text-[10px] font-bold transition shadow-2xs">Add to Cart</button>
+                    
+                    <div class="flex justify-between items-center px-1">
+                        <span class="font-bold text-xs text-gray-800">${p.name}</span>
+                        <span class="font-extrabold text-[#a7898d] text-xs">${p.price} ฿</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-0.5">
+                        <button onclick="alert('ดูรายละเอียดเพิ่มเติม')" class="py-2.5 bg-white text-[#a7898d] border border-[#f0e6e7] rounded-full text-[11px] font-bold shadow-2xs hover:bg-[#fdfafb] transition text-center">Ex</button>
+                        <button onclick="addToCart(${p.id})" class="py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-[11px] font-bold shadow-2xs transition text-center">add to cart</button>
+                    </div>
                 </div>
             `).join('');
         }
@@ -570,8 +577,9 @@
             document.getElementById('product-count-label').innerText = `${filtered.length} items`;
 
             grid.innerHTML = filtered.map(p => `
-                <div class="bg-white rounded-[28px] p-3.5 border border-[#f0e6e7] shadow-2xs flex flex-col justify-between space-y-3">
-                    <div class="aspect-square w-full rounded-[20px] bg-[#fdfafb] overflow-hidden border border-[#f7eff0]">
+                <div class="bg-white rounded-[32px] p-4 border border-[#f0e6e7] shadow-2xs flex flex-col justify-between space-y-3 relative">
+                    <div class="absolute top-6 left-6 px-3 py-0.5 bg-white/90 backdrop-blur-xs text-[#a7898d] text-[10px] font-extrabold rounded-full z-10 border border-[#f0e6e7] shadow-2xs">แนะนำ</div>
+                    <div class="aspect-square w-full rounded-[24px] bg-[#fdfafb] overflow-hidden border border-[#f7eff0]">
                         <img src="${p.img}" class="w-full h-full object-cover">
                     </div>
                     
@@ -581,8 +589,8 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-2 pt-0.5">
-                        <button onclick="alert('ดูรายละเอียดเพิ่มเติม')" class="py-2 bg-white text-[#a7898d] border border-[#f0e6e7] rounded-full text-[11px] font-bold shadow-2xs hover:bg-[#fdfafb] transition text-center">Ex</button>
-                        <button onclick="addToCart(${p.id})" class="py-2 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-[11px] font-bold shadow-2xs transition text-center">add to cart</button>
+                        <button onclick="alert('ดูรายละเอียดเพิ่มเติม')" class="py-2.5 bg-white text-[#a7898d] border border-[#f0e6e7] rounded-full text-[11px] font-bold shadow-2xs hover:bg-[#fdfafb] transition text-center">Ex</button>
+                        <button onclick="addToCart(${p.id})" class="py-2.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full text-[11px] font-bold shadow-2xs transition text-center">add to cart</button>
                     </div>
                 </div>
             `).join('');

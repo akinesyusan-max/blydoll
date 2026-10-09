@@ -125,11 +125,10 @@
                 </div>
             </section>
 
-            <!-- TAB 2: PRODUCTS (GROUP MATCHING IMAGE 77) -->
+            <!-- TAB 2: PRODUCTS -->
             <section id="view-products" class="view-section hidden space-y-4">
                 <h2 class="font-extrabold text-[22px] text-[#a7898d]">Group</h2>
                 
-                <!-- Search & Paw Filter -->
                 <div class="flex items-center space-x-2.5">
                     <div class="relative flex items-center bg-white border border-[#f7eff0] rounded-full shadow-2xs px-4 py-3 flex-1">
                         <i class="fa-solid fa-magnifying-glass text-[#c0aab1] text-sm mr-3"></i>
@@ -140,7 +139,6 @@
                     </button>
                 </div>
 
-                <!-- Sub-filters / Category Pills & Scroll Arrows matching image 77 -->
                 <div class="flex items-center space-x-2">
                     <button class="w-8 h-8 rounded-full bg-white border border-[#f7eff0] text-[#a7898d] flex items-center justify-center shadow-2xs shrink-0 text-xs">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -153,7 +151,6 @@
 
                 <div id="product-count-label" class="text-[11px] text-[#c0aab1] font-medium pt-0.5">2 items</div>
 
-                <!-- Products Grid matching image 77 exactly -->
                 <div id="products-grid" class="grid grid-cols-2 gap-3.5 pt-1"></div>
             </section>
 
@@ -191,7 +188,6 @@
                     <h3 class="font-extrabold text-[15px] text-[#a7898d]">How to Note slip</h3>
 
                     <div class="space-y-5 relative">
-                        <!-- Step 1 -->
                         <div class="flex items-start space-x-4 relative">
                             <div class="relative flex flex-col items-center shrink-0">
                                 <div class="w-10 h-10 relative flex items-center justify-center z-15">
@@ -208,7 +204,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
                         <div class="flex items-start space-x-4 relative pt-1">
                             <div class="relative flex flex-col items-center shrink-0">
                                 <div class="w-10 h-10 relative flex items-center justify-center z-15">
@@ -225,7 +220,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 3 -->
                         <div class="flex items-start space-x-4 relative pt-1">
                             <div class="relative flex flex-col items-center shrink-0">
                                 <div class="w-10 h-10 relative flex items-center justify-center z-15">
@@ -242,7 +236,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 4 -->
                         <div class="flex items-start space-x-4 relative pt-1">
                             <div class="relative flex flex-col items-center shrink-0">
                                 <div class="w-10 h-10 relative flex items-center justify-center z-15">
@@ -259,7 +252,6 @@
                             </div>
                         </div>
 
-                        <!-- Step 5 -->
                         <div class="flex items-start space-x-4 relative pt-1">
                             <div class="relative flex flex-col items-center shrink-0">
                                 <div class="w-10 h-10 relative flex items-center justify-center z-15">
@@ -369,10 +361,27 @@
             </nav>
         </div>
 
-        <!-- Floating Cat Button -->
-        <div class="fixed bottom-20 right-5 z-40">
-            <div id="social-menu-popup" class="absolute bottom-16 right-0 space-y-2 hidden w-48">
-                <a id="social-link-line" href="https://line.me" target="_blank" class="flex items-center justify-between px-4 py-2.5 bg-white/95 backdrop-blur-md rounded-full shadow-md text-xs font-bold text-gray-700 border border-[#f7eff0]"><span>Line Official</span><i class="fa-brands fa-line text-green-500"></i></a>
+        <!-- Floating Social Menu matching Image 78 exactly (preserving main cat button) -->
+        <div class="fixed bottom-20 right-5 z-40 flex flex-col items-end">
+            <div id="social-menu-popup" class="space-y-2.5 mb-2.5 hidden w-52">
+                <a href="https://line.me" target="_blank" class="flex items-center justify-between px-5 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg text-xs font-bold text-[#a7898d] border border-[#f7eff0] transition hover:bg-[#fdfafb]">
+                    <span>Line Official</span>
+                    <div class="w-8 h-8 rounded-full bg-white border border-[#f0e6e7] flex items-center justify-center text-[#52b788] shadow-2xs">
+                        <i class="fa-solid fa-comment text-xs"></i>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="flex items-center justify-between px-5 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg text-xs font-bold text-[#a7898d] border border-[#f7eff0] transition hover:bg-[#fdfafb]">
+                    <span>Instagram</span>
+                    <div class="w-8 h-8 rounded-full bg-white border border-[#f0e6e7] flex items-center justify-center text-[#c9184a] shadow-2xs">
+                        <i class="fa-brands fa-instagram text-sm"></i>
+                    </div>
+                </a>
+                <a href="https://facebook.com" target="_blank" class="flex items-center justify-between px-5 py-3 bg-white/95 backdrop-blur-md rounded-full shadow-lg text-xs font-bold text-[#a7898d] border border-[#f7eff0] transition hover:bg-[#fdfafb]">
+                    <span>Facebook</span>
+                    <div class="w-8 h-8 rounded-full bg-white border border-[#f0e6e7] flex items-center justify-center text-[#457b9d] shadow-2xs">
+                        <i class="fa-brands fa-facebook-f text-xs"></i>
+                    </div>
+                </a>
             </div>
             <button onclick="toggleSocialMenu()" class="w-12 h-12 rounded-full bg-[#fceef1] hover:bg-[#f7e0e4] text-[#a7898d] shadow-xl flex items-center justify-center text-lg transition border border-[#f0e6e7]">
                 <i class="fa-solid fa-cat"></i>

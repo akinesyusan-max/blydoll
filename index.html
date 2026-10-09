@@ -27,15 +27,6 @@
             background: #ffb3c1;
             border-radius: 10px;
         }
-        @keyframes fadeInOutCenter {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-            15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-        }
-        .toast-center-animate {
-            animation: fadeInOutCenter 2s ease-in-out forwards;
-        }
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -48,12 +39,6 @@
     </style>
 </head>
 <body id="app-body" class="min-h-screen pb-32 relative" style="--bg-main: #fffcfc;">
-
-    <!-- ==================== CENTER MINI TOAST NOTIFICATION ==================== -->
-    <div id="mini-toast" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-[#c5b7b8]/95 backdrop-blur-md text-white px-6 py-3.5 rounded-full shadow-xl flex items-center space-x-3 text-xs font-medium tracking-wide hidden toast-center-animate pointer-events-none">
-        <i class="fa-solid fa-bag-shopping text-pink-200 text-sm"></i>
-        <span>ใส่ตะกร้าแล้วค่ะ</span>
-    </div>
 
     <!-- ==================== MAIN SHOP VIEW ==================== -->
     <div id="main-shop-container">
@@ -535,11 +520,6 @@
         function setCategory(catId) { activeCategoryFilter = catId; renderCategoriesTabs(); renderProducts(); }
         function openCatFilterModal() { document.getElementById('cat-filter-modal').classList.remove('hidden'); }
         function closeCatFilterModal() { document.getElementById('cat-filter-modal').classList.add('hidden'); }
-        function showMiniToast() {
-            const toast = document.getElementById('mini-toast');
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 2000);
-        }
 
         function renderRecommendedProducts() {
             const container = document.getElementById('recommended-products-list');
@@ -598,7 +578,7 @@
 
         function addToCart(productId) {
             const p = appState.products.find(x => x.id === productId);
-            if(p) { appState.cart.push(p); updateCartBadge(); showMiniToast(); }
+            if(p) { appState.cart.push(p); updateCartBadge(); }
         }
         function updateCartBadge() { document.getElementById('cart-badge').innerText = appState.cart.length; }
         function openCartModal() {

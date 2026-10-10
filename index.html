@@ -108,6 +108,13 @@
                     </div>
                     <div id="recommended-products-list" class="grid grid-cols-2 gap-3"></div>
                 </div>
+
+                <!-- Booking Queue Button under recommended products -->
+                <div class="pt-2">
+                    <button onclick="openBookingModal()" class="w-full py-3.5 bg-[#a7898d] hover:bg-[#927377] text-white rounded-full font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-base"></i> จองคิว
+                    </button>
+                </div>
             </section>
 
             <!-- TAB 2: PRODUCTS (GROUP) -->
@@ -394,6 +401,30 @@
         </div>
     </div>
 
+    <!-- ==================== BOOKING SERVICE MODAL ==================== -->
+    <div id="booking-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-[32px] max-w-sm w-full p-6 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs">
+            <div class="flex justify-between items-center border-b border-[#f7eff0] pb-3">
+                <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calendar-plus text-[#a7898d] mr-1.5"></i> เลือกบริการจองคิว</h3>
+                <button onclick="closeBookingModal()" class="w-7 h-7 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500 hover:bg-[#f5e8ea] transition"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="space-y-2.5 pt-1">
+                <button onclick="selectService('ทำป้าย')" class="w-full p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex items-center justify-between font-bold text-gray-700 transition shadow-2xs">
+                    <span>ทำป้าย</span>
+                    <i class="fa-solid fa-chevron-right text-[#a7898d] text-xs"></i>
+                </button>
+                <button onclick="selectService('Commission')" class="w-full p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex items-center justify-between font-bold text-gray-700 transition shadow-2xs">
+                    <span>Commission</span>
+                    <i class="fa-solid fa-chevron-right text-[#a7898d] text-xs"></i>
+                </button>
+                <button onclick="selectService('เว็บไซต์')" class="w-full p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex items-center justify-between font-bold text-gray-700 transition shadow-2xs">
+                    <span>เว็บไซต์</span>
+                    <i class="fa-solid fa-chevron-right text-[#a7898d] text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== CART MODAL ==================== -->
     <div id="cart-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-[32px] max-w-sm w-full p-5 relative shadow-2xl border border-[#f7eff0] space-y-4 max-h-[80vh] overflow-y-auto text-xs">
@@ -533,6 +564,20 @@
             renderCategoriesTabs();
             renderRecommendedProducts();
             updateCartBadge();
+        }
+
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function selectService(serviceName) {
+            closeBookingModal();
+            alert(`คุณเลือกบริการ: ${serviceName} สำหรับจองคิวเรียบร้อยแล้วค่ะ!`);
+            switchTab('queue');
         }
 
         function toggleSocialMenu() { document.getElementById('social-menu-popup').classList.toggle('hidden'); }

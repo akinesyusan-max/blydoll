@@ -147,14 +147,9 @@
                     </div>
                 </div>
 
-                <!-- Soft Interactive Queue User Status Banner (Styled exactly like queue cards) -->
+                <!-- Soft Interactive Queue User Status Banner (Without top badge and without red dotted line) -->
                 <div class="bg-white rounded-[24px] p-4.5 border-[1.5px] border-[#a7898d] shadow-sm relative mt-4">
-                    <div class="absolute -top-3.5 left-5 px-3 py-0.5 rounded-full bg-white border-[1.5px] border-[#a7898d] text-[10px] font-extrabold text-[#a7898d] z-10 shadow-2xs">
-                        คิวของคุณ
-                    </div>
-                    <div class="absolute left-7 top-7 bottom-4 w-0.5 border-l-2 border-dotted border-red-400"></div>
-
-                    <div class="pl-7 flex justify-between items-center">
+                    <div class="flex justify-between items-center px-2">
                         <div class="space-y-1">
                             <div class="flex items-center space-x-2.5">
                                 <span id="my-queue-name-display" class="font-extrabold text-sm text-[#a7898d]">k'sobell</span>
@@ -686,12 +681,9 @@
                         <div class="absolute -top-3.5 left-5 w-8 h-8 rounded-full bg-white border-[1.5px] ${circleBorder} flex items-center justify-center text-[10px] font-extrabold ${circleText} z-10 shadow-2xs">
                             Q${q.seq || 2}
                         </div>
-                        
-                        <!-- Red Dotted Vertical Line -->
-                        <div class="absolute left-7 top-7 bottom-4 w-0.5 border-l-2 border-dotted border-red-400"></div>
 
-                        <!-- Card Content Matching Image -->
-                        <div class="pl-7 flex justify-between items-center">
+                        <!-- Card Content Without Red Dotted Line -->
+                        <div class="px-2 flex justify-between items-center">
                             <div class="space-y-1">
                                 <div class="flex items-center space-x-2.5">
                                     <span class="font-extrabold text-sm ${nameText}">${q.name}</span>

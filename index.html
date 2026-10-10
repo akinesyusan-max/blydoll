@@ -147,9 +147,9 @@
                     </div>
                 </div>
 
-                <!-- Soft Interactive Queue User Status Banner (Without top badge and without red dotted line) -->
+                <!-- Soft Interactive Queue User Status Banner with dynamic queue countdown -->
                 <div class="bg-white rounded-[24px] p-4.5 border-[1.5px] border-[#a7898d] shadow-sm relative mt-4">
-                    <div class="flex justify-between items-center px-2">
+                    <div class="px-2 flex justify-between items-center">
                         <div class="space-y-1">
                             <div class="flex items-center space-x-2.5">
                                 <span id="my-queue-name-display" class="font-extrabold text-sm text-[#a7898d]">k'sobell</span>
@@ -158,8 +158,8 @@
                             <p id="my-queue-service-display" class="text-xs font-extrabold text-[#8c6b70]">ปกกลุ่มแนวเจ้าหญิง</p>
                         </div>
                         <div>
-                            <div id="my-queue-status-display" class="px-5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-full text-[11px] font-bold text-[#a7898d] shadow-2xs">
-                                เสร็จแล้ว
+                            <div id="my-queue-status-btn" class="px-5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-full text-[11px] font-bold text-[#a7898d] shadow-2xs">
+                                รออีก 0 คิว
                             </div>
                         </div>
                     </div>
@@ -525,6 +525,19 @@
             renderCategoriesTabs();
             renderRecommendedProducts();
             updateCartBadge();
+            updateMyQueueStatus();
+        }
+
+        function updateMyQueueStatus() {
+            const btn = document.getElementById('my-queue-status-btn');
+            if(!btn) return;
+            // ตัวอย่าง: ถ้าคิวเสร็จแล้วหรือถึงคิว ให้แสดง "ถึงคิวแล้ว" ถ้ายังให้แสดง "รออีก 0 คิว"
+            let remainingQueues = 0; // สามารถปรับเปลี่ยนตัวเลขหรือเชื่อมโยงกับสถานะจริงได้
+            if (remainingQueues === 0) {
+                btn.innerText = "ถึงคิวแล้ว";
+            } else {
+                btn.innerText = `รออีก ${remainingQueues} คิว`;
+            }
         }
 
         function toggleSocialMenu() { document.getElementById('social-menu-popup').classList.toggle('hidden'); }

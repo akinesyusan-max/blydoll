@@ -401,25 +401,33 @@
         </div>
     </div>
 
-    <!-- ==================== BOOKING SERVICE MODAL ==================== -->
+    <!-- ==================== BOOKING SERVICE MODAL (2 COLUMNS) ==================== -->
     <div id="booking-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-[32px] max-w-sm w-full p-6 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs">
             <div class="flex justify-between items-center border-b border-[#f7eff0] pb-3">
                 <h3 class="font-bold text-gray-800 text-sm"><i class="fa-solid fa-calendar-plus text-[#a7898d] mr-1.5"></i> เลือกบริการจองคิว</h3>
                 <button onclick="closeBookingModal()" class="w-7 h-7 rounded-full bg-[#fdfafb] border border-[#f0e6e7] flex items-center justify-center text-gray-500 hover:bg-[#f5e8ea] transition"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="space-y-2.5 pt-1">
-                <button onclick="selectService('ทำป้าย')" class="w-full p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex items-center justify-between font-bold text-gray-700 transition shadow-2xs">
+            <div class="grid grid-cols-2 gap-2.5 pt-1">
+                <button onclick="selectService('ทำป้าย')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                    <i class="fa-solid fa-image text-[#a7898d] text-base mb-0.5"></i>
                     <span>ทำป้าย</span>
-                    <i class="fa-solid fa-chevron-right text-[#a7898d] text-xs"></i>
                 </button>
-                <button onclick="selectService('Commission')" class="w-full p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex items-center justify-between font-bold text-gray-700 transition shadow-2xs">
+                <button onclick="selectService('Commission')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                    <i class="fa-solid fa-paintbrush text-[#a7898d] text-base mb-0.5"></i>
                     <span>Commission</span>
-                    <i class="fa-solid fa-chevron-right text-[#a7898d] text-xs"></i>
                 </button>
-                <button onclick="selectService('เว็บไซต์')" class="w-full p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex items-center justify-between font-bold text-gray-700 transition shadow-2xs">
+                <button onclick="selectService('เว็บไซต์')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                    <i class="fa-solid fa-globe text-[#a7898d] text-base mb-0.5"></i>
                     <span>เว็บไซต์</span>
-                    <i class="fa-solid fa-chevron-right text-[#a7898d] text-xs"></i>
+                </button>
+                <button onclick="selectService('ทำดิส')" class="p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                    <i class="fa-solid fa-circle-user text-[#a7898d] text-base mb-0.5"></i>
+                    <span>ทำดิส</span>
+                </button>
+                <button onclick="selectService('แต่งฟอร์ม')" class="col-span-2 p-3.5 bg-[#fdfafb] hover:bg-[#f5e8ea] border border-[#f0e6e7] rounded-2xl flex flex-col items-center justify-center font-bold text-gray-700 transition shadow-2xs space-y-1">
+                    <i class="fa-solid fa-file-pen text-[#a7898d] text-base mb-0.5"></i>
+                    <span>แต่งฟอร์ม</span>
                 </button>
             </div>
         </div>

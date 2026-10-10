@@ -147,21 +147,29 @@
                     </div>
                 </div>
 
-                <!-- Soft Interactive Queue User Status Banner with dynamic queue countdown -->
-                <div class="bg-white rounded-[24px] p-4.5 border-[1.5px] border-[#a7898d] shadow-sm relative mt-4">
-                    <div class="px-2 flex justify-between items-center">
+                <!-- Dual Box Layout for Queue Status -->
+                <div class="grid grid-cols-3 gap-3">
+                    <!-- Left Box: User Queue Info -->
+                    <div class="col-span-2 bg-white rounded-[24px] p-4 border-[1.5px] border-[#a7898d] shadow-sm flex items-center justify-between">
                         <div class="space-y-1">
-                            <div class="flex items-center space-x-2.5">
+                            <div class="flex items-center space-x-2">
                                 <span id="my-queue-name-display" class="font-extrabold text-sm text-[#a7898d]">k'sobell</span>
-                                <span class="px-2.5 py-0.5 bg-white border border-[#a7898d] rounded-full text-[9px] font-extrabold text-[#a7898d] tracking-wider">LINE</span>
+                                <span class="px-2 py-0.5 bg-white border border-[#a7898d] rounded-full text-[8px] font-extrabold text-[#a7898d] tracking-wider">LINE</span>
                             </div>
                             <p id="my-queue-service-display" class="text-xs font-extrabold text-[#8c6b70]">ปกกลุ่มแนวเจ้าหญิง</p>
                         </div>
                         <div>
-                            <div id="my-queue-status-btn" class="px-5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-full text-[11px] font-bold text-[#a7898d] shadow-2xs">
-                                รออีก 0 คิว
+                            <div id="my-queue-status-btn" class="px-3.5 py-2 bg-[#fdfafb] border border-[#f0e6e7] rounded-full text-[10px] font-bold text-[#a7898d] shadow-2xs whitespace-nowrap">
+                                ถึงคิวแล้ว
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Right Box: Remaining Queue Count -->
+                    <div class="bg-white rounded-[24px] p-3 border-[1.5px] border-[#a7898d] shadow-sm flex flex-col items-center justify-center text-center">
+                        <span class="text-[10px] font-bold text-[#8c6b70]">เหลืออีก</span>
+                        <div class="text-xl font-extrabold text-[#a7898d] leading-none my-0.5">0</div>
+                        <span class="text-[10px] font-bold text-[#8c6b70]">Q</span>
                     </div>
                 </div>
 
@@ -525,19 +533,6 @@
             renderCategoriesTabs();
             renderRecommendedProducts();
             updateCartBadge();
-            updateMyQueueStatus();
-        }
-
-        function updateMyQueueStatus() {
-            const btn = document.getElementById('my-queue-status-btn');
-            if(!btn) return;
-            // ตัวอย่าง: ถ้าคิวเสร็จแล้วหรือถึงคิว ให้แสดง "ถึงคิวแล้ว" ถ้ายังให้แสดง "รออีก 0 คิว"
-            let remainingQueues = 0; // สามารถปรับเปลี่ยนตัวเลขหรือเชื่อมโยงกับสถานะจริงได้
-            if (remainingQueues === 0) {
-                btn.innerText = "ถึงคิวแล้ว";
-            } else {
-                btn.innerText = `รออีก ${remainingQueues} คิว`;
-            }
         }
 
         function toggleSocialMenu() { document.getElementById('social-menu-popup').classList.toggle('hidden'); }

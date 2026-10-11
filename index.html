@@ -523,7 +523,7 @@
         </div>
     </div>
 
-    <!-- ==================== EXACT MATCH PAYMENT MODAL WITH COPY BUTTONS ==================== -->
+    <!-- ==================== EXACT MATCH PAYMENT MODAL (WITH QR TEXT) ==================== -->
     <div id="payment-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-[32px] max-w-sm w-full p-6 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center pb-1">
@@ -580,12 +580,12 @@
                 <input type="text" id="pay-note" value="ค่าทำป้าย 89 บาท" placeholder="โน้ตสลิป" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
             </div>
 
-            <!-- QR Code Square (Admin can change) -->
-            <div class="flex flex-col items-center justify-center space-y-1">
+            <!-- QR Code Section with exact text "หรือสแกน QR Code" -->
+            <div class="flex flex-col items-center justify-center space-y-1.5 pt-1">
+                <span class="text-[11px] font-bold text-gray-500">หรือสแกน QR Code</span>
                 <div id="qr-code-box" class="w-32 h-32 rounded-[20px] bg-[#fdfafb] border border-[#f0e6e7] overflow-hidden flex items-center justify-center shadow-2xs relative">
                     <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ThipkamonKBANK" class="w-full h-full object-cover">
                 </div>
-                <span class="text-[9px] text-gray-400">สแกนเพื่อชำระเงิน</span>
             </div>
 
             <!-- แนบสลิปโอนเงิน -->

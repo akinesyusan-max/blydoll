@@ -523,7 +523,7 @@
         </div>
     </div>
 
-    <!-- ==================== EXACT MATCH PAYMENT MODAL ==================== -->
+    <!-- ==================== EXACT MATCH PAYMENT MODAL WITH COPY BUTTONS ==================== -->
     <div id="payment-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-[32px] max-w-sm w-full p-6 relative shadow-2xl border border-[#f7eff0] space-y-4 text-xs max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center pb-1">
@@ -552,21 +552,32 @@
                 </div>
             </div>
 
-            <!-- ยอดรวม & ธนาคาร -->
+            <!-- ยอดรวม & ธนาคาร (พร้อมปุ่มคัดลอกเลขบัญชี) -->
             <div class="bg-[#fdfafb] border border-[#f0e6e7] p-3.5 rounded-2xl space-y-2">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-gray-700">ยอดรวม :</span>
                     <span id="pay-total-display" class="font-extrabold text-[#a7898d] text-sm">000 บาท</span>
                 </div>
-                <div class="text-[11px] font-bold text-gray-600">
-                    Kbank : Thipkamon D.
+                <div class="flex justify-between items-center pt-1 border-t border-[#f0e6e7]">
+                    <div>
+                        <p class="text-[11px] font-bold text-gray-600">Kbank : Thipkamon D.</p>
+                        <p id="bank-acc-num" class="text-[10px] text-gray-400 font-mono">123-4-56789-0</p>
+                    </div>
+                    <button onclick="copyToClipboard('123-4-56789-0', 'คัดลอกเลขบัญชีสำเร็จ!')" class="px-3 py-1 bg-white border border-[#f0e6e7] rounded-full text-[10px] font-bold text-[#a7898d] shadow-2xs hover:bg-[#f5e8ea] transition flex items-center gap-1">
+                        <i class="fa-regular fa-copy"></i> คัดลอก
+                    </button>
                 </div>
             </div>
 
-            <!-- โน้ตสลิป -->
+            <!-- โน้ตสลิป (พร้อมปุ่มคัดลอก) -->
             <div>
-                <label class="font-bold text-gray-700 mb-1 block">โน้ตสลิป</label>
-                <input type="text" id="pay-note" placeholder="โน้ตสลิป (เช่น ค่าทำป้าย 89 บาท)" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
+                <div class="flex justify-between items-center mb-1">
+                    <label class="font-bold text-gray-700">โน้ตสลิป</label>
+                    <button onclick="copyNoteSlip()" class="text-[10px] text-[#a7898d] font-bold hover:underline flex items-center gap-1">
+                        <i class="fa-regular fa-copy"></i> คัดลอกโน้ต
+                    </button>
+                </div>
+                <input type="text" id="pay-note" value="ค่าทำป้าย 89 บาท" placeholder="โน้ตสลิป" class="w-full px-3.5 py-2.5 bg-[#fdfafb] border border-[#f0e6e7] rounded-2xl text-[11px] text-gray-600 focus:outline-none">
             </div>
 
             <!-- QR Code Square (Admin can change) -->
@@ -787,12 +798,26 @@
             currentBookingService = 'ทำป้าย';
             const total = signQty * pricePerSign;
             document.getElementById('pay-total-display').innerText = `${total} บาท`;
+            document.getElementById('pay-note').value = `ค่าทำป้าย ${total} บาท`;
             document.getElementById('qr-code-img').src = globalQRCodeUrl;
             closeSignBookingDetails();
             document.getElementById('payment-modal').classList.remove('hidden');
         }
 
         function closePaymentModal() { document.getElementById('payment-modal').classList.add('hidden'); }
+
+        function copyToClipboard(text, successMsg) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(successMsg);
+            }).catch(err => {
+                alert("ไม่สามารถคัดลอกได้");
+            });
+        }
+
+        function copyNoteSlip() {
+            const noteVal = document.getElementById('pay-note').value;
+            copyToClipboard(noteVal, 'คัดลอกโน้ตสลิปสำเร็จ!');
+        }
 
         function submitBookingAndFinish() {
             const name = document.getElementById('pay-name').value.trim();
@@ -830,6 +855,7 @@
             closeBookingModal();
             currentBookingService = serviceName;
             document.getElementById('pay-total-display').innerText = `89 บาท`;
+            document.getElementById('pay-note').value = `ค่าบริการ ${serviceName} 89 บาท`;
             document.getElementById('qr-code-img').src = globalQRCodeUrl;
             document.getElementById('payment-modal').classList.remove('hidden');
         }

@@ -3,77 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angel Gotch - Sanrio Edition</title>
+    <title>Hwayemi - Tamagotchi Web App</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1p:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1p:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'M PLUS Rounded 1p', sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #fae8ff 50%, #f3e8ff 100%);
+            background: linear-gradient(135deg, #fffcf9 0%, #fff4ec 50%, #fef2f2 100%);
             min-height: 100vh;
             user-select: none;
             overflow-x: hidden;
-            color: #57534e;
+            color: #78716c;
         }
-        .pixel-font {
-            font-family: 'VT323', monospace;
-        }
-        /* Soft tactile button & container style from reference image */
+        /* Soft tactile pill style matching reference image */
         .soft-card {
-            background: #ffffff;
-            border: 1.5px solid #f3d2e1;
-            box-shadow: 0 4px 15px rgba(244, 184, 204, 0.25);
-            border-radius: 1.5rem;
-            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid #fde2e4;
+            box-shadow: 0 8px 30px rgba(244, 184, 196, 0.25);
+            border-radius: 2.5rem;
         }
         .soft-btn {
             background: #ffffff;
-            border: 1.5px solid #f3d2e1;
-            box-shadow: 0 3px 10px rgba(244, 184, 204, 0.2);
+            border: 1.5px solid #fbd5db;
+            box-shadow: 0 4px 12px rgba(244, 184, 196, 0.25);
             border-radius: 9999px;
             transition: all 0.15s ease;
             cursor: pointer;
         }
-        .soft-btn:active, .glow-btn:active {
-            transform: scale(0.96);
-            box-shadow: 0 1px 5px rgba(244, 184, 204, 0.15);
+        .soft-btn:active {
+            transform: scale(0.95);
         }
         .soft-btn-active {
-            background: #fdf2f8;
-            border-color: #ec4899;
-            color: #db2777;
+            background: linear-gradient(135deg, #ffb5c2 0%, #ff8fa3 100%);
+            border-color: #ff758c;
+            color: #ffffff;
             font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
         }
+        /* Tamagotchi Shell matching reference */
         .tamagotchi-shell {
-            background: radial-gradient(circle at 30% 30%, #ffc0cb 0%, #ff9ebb 50%, #f472b6 100%);
+            background: linear-gradient(135deg, #ffedf0 0%, #ffd6de 50%, #ffc2cd 100%);
             box-shadow: 
-                inset 0 10px 20px rgba(255,255,255,0.7),
-                inset 0 -10px 20px rgba(190,40,90,0.3),
-                0 15px 35px rgba(244, 114, 182, 0.3);
+                inset 0 12px 25px rgba(255, 255, 255, 0.8),
+                inset 0 -12px 25px rgba(220, 100, 120, 0.2),
+                0 20px 40px rgba(255, 150, 165, 0.3);
             border: 4px solid #ffffff;
+            border-radius: 55% 55% 48% 48% / 50% 50% 50% 50%;
         }
         .lcd-screen {
-            background: #fdf4f8;
-            box-shadow: inset 0 0 12px rgba(236, 72, 153, 0.15);
-            border: 3px solid #fbcfe8;
+            background: #fff0f3;
+            box-shadow: inset 0 0 15px rgba(255, 150, 170, 0.25);
+            border: 3.5px solid #f4aab6;
+            border-radius: 1.5rem;
+            overflow: hidden;
         }
     </style>
 </head>
 <body class="flex flex-col justify-between items-center min-h-screen py-3 px-3 max-w-md mx-auto">
 
     <!-- Top Bar -->
-    <header class="w-full flex justify-between items-center px-2 py-1 z-10">
-        <div class="flex items-center space-x-2">
-            <span class="text-lg">🌿</span>
-            <span id="current-time" class="font-bold text-gray-700 text-base">18:33</span>
+    <header class="w-full flex justify-between items-center px-4 py-2 z-10">
+        <div class="flex items-center space-x-1.5 font-bold text-gray-700 text-base">
+            <span id="current-time">10:33</span>
+            <span class="text-sm">🐰</span>
+            <span class="text-xs">❤️</span>
         </div>
-        <!-- Editable Shop Name -->
-        <div class="flex items-center space-x-1">
-            <span class="text-sm">🏰</span>
-            <input type="text" id="shop-name-input" value="ชื่อร้าน" class="bg-transparent font-bold text-pink-700 text-center w-28 focus:outline-none border-b border-dashed border-pink-300 text-sm" title="คลิกเพื่อเปลี่ยนชื่อร้าน">
-        </div>
-        <div class="flex items-center space-x-2 text-gray-700">
-            <button id="music-btn" class="soft-btn w-8 h-8 flex items-center justify-center text-pink-600 hover:bg-pink-50" title="Music">
+        <div class="flex items-center space-x-3 text-gray-700">
+            <button id="music-btn" class="soft-btn w-8 h-8 flex items-center justify-center text-pink-500 hover:bg-pink-50" title="Music">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-2v13M9 10l12-2M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/></svg>
             </button>
             <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M5.283 13.575a9.5 9.5 0 0113.434 0M2.455 10.747C7.337 5.865 16.663 5.865 21.545 10.747M12 20h.01"/></svg>
@@ -82,97 +79,99 @@
     </header>
 
     <!-- Main Dynamic Views -->
-    <main class="w-full flex-1 flex flex-col items-center justify-center my-2">
+    <main class="w-full flex-1 flex flex-col items-center justify-center my-auto">
         
-        <!-- VIEW 1: HOME (Tamagotchi Sanrio Edition) -->
+        <!-- VIEW 1: HOME (Tamagotchi Exact Reference Design) -->
         <div id="view-home" class="w-full flex flex-col items-center">
-            <!-- Tamagotchi Shell -->
-            <div class="tamagotchi-shell relative w-68 h-[360px] rounded-[45px] flex flex-col items-center justify-between p-5 shadow-2xl">
-                <!-- Charms & Accessories decorations -->
-                <div class="absolute left-[-22px] top-[120px] bg-white/90 p-1.5 rounded-full shadow-md border border-pink-200">
-                    <span class="text-sm">🧁</span>
-                </div>
-                <div class="absolute right-[-18px] top-[70px] flex flex-col items-center text-xs text-pink-400">
-                    <span class="text-base">✨🤍</span>
-                </div>
-                <div class="absolute right-[-24px] top-[110px] bg-white/90 p-1.5 rounded-full shadow-md border border-pink-200">
-                    <span class="text-sm">🐰</span>
+            
+            <!-- Tamagotchi Shell Container -->
+            <div class="tamagotchi-shell relative w-76 h-[400px] flex flex-col items-center justify-between p-6 shadow-2xl">
+                
+                <!-- Bow on top -->
+                <div class="absolute -top-5 text-pink-300 text-4xl select-none">
+                    🎀
                 </div>
 
-                <!-- Header Hearts (Vector) -->
-                <div class="flex space-x-1.5 mt-1 text-pink-500">
-                    <svg class="w-3.5 h-3.5 fill-current drop-shadow-sm" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    <svg class="w-3.5 h-3.5 fill-current drop-shadow-sm" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    <svg class="w-3.5 h-3.5 fill-current drop-shadow-sm" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                <!-- Floating Decor Hearts & Sparkles left/right -->
+                <div class="absolute left-2 top-24 text-pink-400 text-lg animate-pulse">💖</div>
+                <div class="absolute left-4 top-36 text-amber-300 text-sm">✨</div>
+                <div class="absolute right-3 top-32 text-pink-400 text-lg animate-pulse">💕</div>
+                <div class="absolute right-5 top-44 text-amber-300 text-sm">✨</div>
+
+                <!-- Top Shop Name (Editable) -->
+                <div class="flex items-center space-x-1 mt-1 z-10">
+                    <span class="text-xs text-pink-500">♡</span>
+                    <input type="text" id="shop-name-input" value="Hwayemi" class="bg-transparent font-bold text-pink-700 text-center w-32 focus:outline-none border-b border-dashed border-pink-300 text-sm tracking-wide" title="คลิกเพื่อเปลี่ยนชื่อร้าน">
+                    <span class="text-xs text-pink-500">♡</span>
                 </div>
 
-                <!-- LCD Screen (Compact Square) -->
-                <div class="lcd-screen w-48 h-36 rounded-xl flex flex-col justify-between relative overflow-hidden my-1">
-                    <div class="flex-1 flex flex-col items-center justify-center relative">
-                        <div class="absolute text-pink-200 opacity-70 select-none pointer-events-none">
-                            <svg class="w-20 h-20 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        </div>
-                        <!-- Character -->
-                        <div id="character" class="relative z-10 transition-transform duration-300 animate-bounce text-pink-700">
-                            <svg class="w-12 h-12 fill-current drop-shadow" viewBox="0 0 24 24"><path d="M12 2a5 5 0 00-5 5v2a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3v-6a3 3 0 00-3-3V7a5 5 0 00-5-5zm0 2a3 3 0 013 3v2H9V7a3 3 0 013-3zm-6 8h12v6H6v-6z"/></svg>
+                <!-- LCD Screen -->
+                <div class="lcd-screen w-64 h-52 flex flex-col justify-between p-2 relative my-1">
+                    <!-- Background Character Image / Illustration -->
+                    <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=500&q=80" alt="Room Background" class="w-full h-full object-cover opacity-30 absolute">
+                        <!-- Cute bunny illustration matching image -->
+                        <div class="relative z-10 flex flex-col items-center mt-2">
+                            <div class="text-7xl drop-shadow-md select-none animate-bounce">🐰</div>
+                            <!-- Speech bubble -->
+                            <div class="absolute -top-4 -left-6 bg-white/90 px-2 py-0.5 rounded-full text-[10px] shadow border border-pink-200 text-pink-600 font-bold flex items-center space-x-1">
+                                <span>❤️</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- Bottom message (no background box, floating clean text) -->
-                    <div class="text-pink-900 text-[11px] text-center font-bold z-10 pb-1 px-1 truncate" id="screen-message">
-                        ยินดีต้อนรับสู่หน้าแรก
+
+                    <div class="mt-auto z-10">
+                        <!-- Contact Button inside LCD -->
+                        <div onclick="switchTab('details')" class="soft-btn bg-white/90 py-1.5 px-4 flex items-center justify-center space-x-2 shadow-sm border border-pink-200 cursor-pointer hover:bg-white">
+                            <svg class="w-3.5 h-3.5 text-pink-500 fill-current" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <span class="text-xs font-bold text-gray-700 tracking-wider">Contact</span>
+                            <span class="text-xs text-pink-400">♥</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Tamagotchi 3 Tactile Buttons -->
-                <div class="flex space-x-5 mb-1 items-center">
+                <!-- 3 Tamagotchi Action Buttons (Before, Home, Next) -->
+                <div class="flex space-x-6 mb-1 items-center z-10">
                     <div class="flex flex-col items-center">
-                        <button onclick="prevAction()" class="soft-btn w-10 h-10 flex items-center justify-center text-gray-700" title="กด้อน">
+                        <button onclick="prevAction()" class="soft-btn w-10 h-10 flex items-center justify-center text-gray-600 bg-white" title="ก่อนหน้า">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                         </button>
-                        <span class="text-[9px] text-pink-900 font-bold mt-0.5">กด้อน</span>
+                        <span class="text-[10px] text-pink-900 font-bold mt-0.5">ก่อนหน้า</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <button onclick="middleAction()" class="soft-btn w-11 h-11 flex items-center justify-center text-pink-600" title="ตรงกลาง">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <button onclick="middleAction()" class="soft-btn w-12 h-12 flex items-center justify-center text-pink-500 bg-white shadow-md" title="หน้าหลัก">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
                         </button>
-                        <span class="text-[9px] text-pink-900 font-bold mt-0.5">ตรงกลาง</span>
+                        <span class="text-[10px] text-pink-900 font-bold mt-0.5">หน้าหลัก</span>
                     </div>
                     <div class="flex flex-col items-center">
-                        <button onclick="nextAction()" class="soft-btn w-10 h-10 flex items-center justify-center text-gray-700" title="ถัดไป">
+                        <button onclick="nextAction()" class="soft-btn w-10 h-10 flex items-center justify-center text-gray-600 bg-white" title="ถัดไป">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                         </button>
-                        <span class="text-[9px] text-pink-900 font-bold mt-0.5">ถัดไป</span>
+                        <span class="text-[10px] text-pink-900 font-bold mt-0.5">ถัดไป</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- VIEW 2: CHECK QUEUE (เช็คคิว) -->
-        <div id="view-queue" class="w-full flex flex-col space-y-3 px-1 hidden">
-            <!-- Banner Image Box -->
+        <div id="view-queue" class="w-full flex flex-col space-y-3 px-2 hidden">
             <div class="soft-card w-full h-36 overflow-hidden relative flex items-center justify-center bg-pink-50">
                 <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Queue Banner" class="w-full h-full object-cover opacity-90">
-                <div class="absolute bottom-2 right-2 bg-white/80 px-2.5 py-1 rounded-full text-[11px] font-bold text-pink-600 shadow-sm">
+                <div class="absolute bottom-2 right-2 bg-white/80 px-3 py-1 rounded-full text-xs font-bold text-pink-600 shadow-sm">
                     ✨ คิวงานปัจจุบัน
                 </div>
             </div>
-
-            <!-- Search & Status Row -->
             <div class="flex space-x-2">
-                <!-- Search Box -->
                 <div class="soft-card flex-1 flex items-center px-3 py-2 bg-white">
                     <svg class="w-4 h-4 text-pink-400 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     <input type="text" placeholder="ค้นหาคิวงาน..." class="w-full text-xs bg-transparent focus:outline-none text-gray-700">
                 </div>
-                <!-- Status Box -->
                 <div class="soft-btn px-4 py-2 flex items-center justify-center text-xs font-bold text-pink-600 bg-pink-50">
                     ทั้งหมด
                 </div>
             </div>
-
-            <!-- Queue Cards List -->
-            <div class="space-y-2.5 overflow-y-auto max-h-[250px] pr-1">
-                <!-- Queue Item 1 -->
+            <div class="space-y-2.5 overflow-y-auto max-h-[260px] pr-1">
                 <div class="soft-card relative p-3.5 pl-10 flex justify-between items-center bg-white">
                     <div class="absolute left-[-6px] top-3 bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">Q1</div>
                     <div>
@@ -182,12 +181,8 @@
                         </div>
                         <p class="text-[11px] text-gray-500 mt-0.5">ปกกลุ่มแนวเจ้าหญิง</p>
                     </div>
-                    <button class="soft-btn px-3 py-1 text-xs text-pink-600 font-semibold bg-pink-50 hover:bg-pink-100">
-                        เสร็จแล้ว
-                    </button>
+                    <button class="soft-btn px-3 py-1 text-xs text-pink-600 font-semibold bg-pink-50">เสร็จแล้ว</button>
                 </div>
-
-                <!-- Queue Item 2 -->
                 <div class="soft-card relative p-3.5 pl-10 flex justify-between items-center bg-white">
                     <div class="absolute left-[-6px] top-3 bg-pink-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">Q2</div>
                     <div>
@@ -197,16 +192,14 @@
                         </div>
                         <p class="text-[11px] text-gray-500 mt-0.5">Sign / Banner</p>
                     </div>
-                    <button class="soft-btn px-3 py-1 text-xs text-amber-600 font-semibold bg-amber-50 hover:bg-amber-100">
-                        กำลังทำ
-                    </button>
+                    <button class="soft-btn px-3 py-1 text-xs text-amber-600 font-semibold bg-amber-50">กำลังทำ</button>
                 </div>
             </div>
         </div>
 
         <!-- VIEW 3: POINTS (สะสมแต้ม) -->
-        <div id="view-points" class="w-full flex flex-col items-center justify-center p-6 soft-card bg-white text-center hidden">
-            <span class="text-3xl mb-2">🎟️</span>
+        <div id="view-points" class="w-full flex flex-col items-center justify-center p-8 soft-card bg-white text-center hidden">
+            <span class="text-4xl mb-2">🎟️</span>
             <h2 class="font-bold text-pink-600 text-base mb-1">ระบบสะสมแต้ม</h2>
             <p class="text-xs text-gray-500 mb-4">สะสมแต้มทุกครั้งที่ใช้บริการเพื่อแลกรับของรางวัลสุดน่ารัก!</p>
             <div class="soft-btn px-6 py-2 bg-pink-50 text-pink-600 font-bold text-sm">
@@ -215,34 +208,34 @@
         </div>
 
         <!-- VIEW 4: GROUP (กลุ่ม) -->
-        <div id="view-group" class="w-full flex flex-col items-center justify-center p-6 soft-card bg-white text-center hidden">
-            <span class="text-3xl mb-2">📁</span>
+        <div id="view-group" class="w-full flex flex-col items-center justify-center p-8 soft-card bg-white text-center hidden">
+            <span class="text-4xl mb-2">📁</span>
             <h2 class="font-bold text-pink-600 text-base mb-1">หมวดหมู่กลุ่ม</h2>
             <p class="text-xs text-gray-500">รวมผลงาน คอลเลกชัน และกลุ่มสินค้าทั้งหมดของร้านที่นี่</p>
         </div>
 
-        <!-- VIEW 5: DETAILS (Details / Contact) -->
-        <div id="view-details" class="w-full flex flex-col items-center justify-center p-6 soft-card bg-white text-center hidden">
-            <span class="text-3xl mb-2">📖</span>
-            <h2 class="font-bold text-pink-600 text-base mb-1">Details & Contact</h2>
-            <p class="text-xs text-gray-500 mb-3">ช่องทางการติดต่อและรายละเอียดเงื่อนไขการใช้บริการ</p>
+        <!-- VIEW 5: CREDIT (เครดิต / Details) -->
+        <div id="view-credit" class="w-full flex flex-col items-center justify-center p-8 soft-card bg-white text-center hidden">
+            <span class="text-4xl mb-2">💳</span>
+            <h2 class="font-bold text-pink-600 text-base mb-1">เครดิต & ช่องทางติดต่อ</h2>
+            <p class="text-xs text-gray-500 mb-3">ช่องทางการติดต่อและรายละเอียดเครดิตผู้จัดทำ</p>
             <div class="soft-btn px-4 py-2 bg-pink-50 text-pink-600 text-xs font-bold">
-                Line Official: @yourshop
+                Line Official: @hwayemi
             </div>
         </div>
     </main>
 
-    <!-- Bottom Navigation Bar (Ordered as requested: สะสมแต้ม, กลุ่ม, หน้าหลัก [Center], เช็คคิว, Details) -->
-    <nav class="w-full soft-card bg-white/95 backdrop-blur-md px-2 py-2 flex justify-around items-center z-10">
+    <!-- Bottom Navigation Bar (Ordered exactly as reference image: กลุ่ม, สะสมแต้ม, หน้าหลัก [Center], เช็คคิว, เครดิต) -->
+    <nav class="w-full soft-card bg-white/95 backdrop-blur-md px-2 py-2 flex justify-around items-center z-10 mt-2">
+        <!-- กลุ่ม -->
+        <button onclick="switchTab('group')" id="tab-group" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
+            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <span>กลุ่ม</span>
+        </button>
         <!-- สะสมแต้ม -->
         <button onclick="switchTab('points')" id="tab-points" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <span>สะสมแต้ม</span>
-        </button>
-        <!-- กลุ่ม -->
-        <button onclick="switchTab('group')" id="tab-group" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
-            <span>กลุ่ม</span>
         </button>
         <!-- หน้าหลัก (Center & Highlighted) -->
         <button onclick="switchTab('home')" id="tab-home" class="soft-btn soft-btn-active flex flex-col items-center px-4 py-1.5 transition-all text-xs shadow-sm">
@@ -254,10 +247,10 @@
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
             <span>เช็คคิว</span>
         </button>
-        <!-- Details -->
-        <button onclick="switchTab('details')" id="tab-details" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-            <span>Details</span>
+        <!-- เครดิต -->
+        <button onclick="switchTab('credit')" id="tab-credit" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
+            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            <span>เครดิต</span>
         </button>
     </nav>
 
@@ -272,68 +265,40 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Tamagotchi interactive modes
-        let modeIndex = 0;
-        const modes = [
-            { text: "ยินดีต้อนรับสู่หน้าแรก", icon: '<svg class="w-12 h-12 fill-current drop-shadow" viewBox="0 0 24 24"><path d="M12 2a5 5 0 00-5 5v2a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3v-6a3 3 0 00-3-3V7a5 5 0 00-5-5zm0 2a3 3 0 013 3v2H9V7a3 3 0 013-3zm-6 8h12v6H6v-6z"/></svg>' },
-            { text: "โหมดอาหาร: อร่อยและมีประโยชน์", icon: '<svg class="w-12 h-12 fill-current drop-shadow text-amber-700" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.03-.42 1.98-1.07 2.75z"/></svg>' },
-            { text: "โหมดเล่นสนุก: สดใส ร่าเริง", icon: '<svg class="w-12 h-12 fill-current drop-shadow text-purple-600" viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>' },
-            { text: "โหมดนอนหลับ: พักผ่อนยามค่ำคืน", icon: '<svg class="w-12 h-12 fill-current drop-shadow text-indigo-700" viewBox="0 0 24 24"><path d="M12.3 2.05c.5.07.9.52.88 1.03-.32 8.04 6.13 14.5 14.17 14.18.51-.02.96.38 1.03.88.24 1.76-.84 3.42-2.52 3.99-6.9 2.34-14.47-3.1-14.47-10.42 0-3.32 1.34-6.33 3.51-8.51.6-.6 1.48-.68 2.08-.17z"/></svg>' }
-        ];
-
-        function showMsg(text) {
-            document.getElementById('screen-message').innerText = text;
-        }
-
-        function updateDisplay() {
-            document.getElementById('screen-message').innerText = modes[modeIndex].text;
-            document.getElementById('character').innerHTML = modes[modeIndex].icon;
-            animateCharacter();
-        }
-
         function prevAction() {
-            modeIndex = (modeIndex - 1 + modes.length) % modes.length;
-            updateDisplay();
+            alert("ไปหน้าก่อนหน้า ◀️");
         }
-
         function middleAction() {
-            showMsg("เลือกคำสั่งสำเร็จเรียบร้อย");
-            animateCharacter();
+            switchTab('home');
         }
-
         function nextAction() {
-            modeIndex = (modeIndex + 1) % modes.length;
-            updateDisplay();
-        }
-
-        function animateCharacter() {
-            const char = document.getElementById('character');
-            char.style.transform = "scale(1.15) rotate(8deg)";
-            setTimeout(() => {
-                char.style.transform = "scale(1) rotate(0deg)";
-            }, 300);
+            alert("ไปหน้าถัดไป ▶️");
         }
 
         // Bottom Navigation Tab Switching
         function switchTab(tabName) {
-            // Hide all views
-            ['home', 'queue', 'points', 'group', 'details'].forEach(t => {
-                document.getElementById(`view-${t}`).classList.add('hidden');
+            ['home', 'queue', 'points', 'group', 'credit'].forEach(t => {
+                const viewEl = document.getElementById(`view-${t}`);
+                if (viewEl) viewEl.classList.add('hidden');
                 const btn = document.getElementById(`tab-${t}`);
-                btn.classList.remove('soft-btn-active');
-                btn.classList.add('text-gray-400');
+                if (btn) {
+                    btn.classList.remove('soft-btn-active');
+                    btn.classList.add('text-gray-400');
+                }
             });
 
-            // Show selected view and activate tab button
-            document.getElementById(`view-${tabName}`).classList.remove('hidden');
+            const activeView = document.getElementById(`view-${tabName}`);
+            if (activeView) activeView.classList.remove('hidden');
+            
             const activeBtn = document.getElementById(`tab-${tabName}`);
-            activeBtn.classList.remove('text-gray-400');
-            activeBtn.classList.add('soft-btn-active');
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-400');
+                activeBtn.classList.add('soft-btn-active');
+            }
         }
 
         // Sound effect on music button click
         document.getElementById('music-btn').addEventListener('click', () => {
-            showMsg("กำลังเล่นเสียงดนตรีแบ๊คกราウンド");
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioCtx.createOscillator();

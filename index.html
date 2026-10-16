@@ -9,13 +9,12 @@
     <style>
         body {
             font-family: 'M PLUS Rounded 1p', sans-serif;
-            background: linear-gradient(135deg, #fffcf9 0%, #fff4ec 50%, #fef2f2 100%);
+            background: #fffcf9;
             min-height: 100vh;
             user-select: none;
             overflow-x: hidden;
             color: #78716c;
         }
-        /* Soft tactile pill style matching reference image */
         .soft-card {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
@@ -41,23 +40,6 @@
             font-weight: 700;
             box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
         }
-        /* Tamagotchi Shell matching reference */
-        .tamagotchi-shell {
-            background: linear-gradient(135deg, #ffedf0 0%, #ffd6de 50%, #ffc2cd 100%);
-            box-shadow: 
-                inset 0 12px 25px rgba(255, 255, 255, 0.8),
-                inset 0 -12px 25px rgba(220, 100, 120, 0.2),
-                0 20px 40px rgba(255, 150, 165, 0.3);
-            border: 4px solid #ffffff;
-            border-radius: 55% 55% 48% 48% / 50% 50% 50% 50%;
-        }
-        .lcd-screen {
-            background: #fff0f3;
-            box-shadow: inset 0 0 15px rgba(255, 150, 170, 0.25);
-            border: 3.5px solid #f4aab6;
-            border-radius: 1.5rem;
-            overflow: hidden;
-        }
     </style>
 </head>
 <body class="flex flex-col justify-between items-center min-h-screen py-3 px-3 max-w-md mx-auto">
@@ -81,76 +63,27 @@
     <!-- Main Dynamic Views -->
     <main class="w-full flex-1 flex flex-col items-center justify-center my-auto">
         
-        <!-- VIEW 1: HOME (Tamagotchi Exact Reference Design) -->
+        <!-- VIEW 1: HOME (Exact Tamagotchi Design from Image) -->
         <div id="view-home" class="w-full flex flex-col items-center">
-            
-            <!-- Tamagotchi Shell Container -->
-            <div class="tamagotchi-shell relative w-76 h-[400px] flex flex-col items-center justify-between p-6 shadow-2xl">
-                
-                <!-- Bow on top -->
-                <div class="absolute -top-5 text-pink-300 text-4xl select-none">
-                    🎀
+            <div class="relative w-full max-w-[340px] flex flex-col items-center">
+                <!-- Editable Shop Name Overlay positioned right on top of the image area -->
+                <div class="absolute top-[75px] z-20 flex items-center space-x-1">
+                    <span class="text-xs text-pink-400">♡</span>
+                    <input type="text" id="shop-name-input" value="Hwayemi" class="bg-transparent font-bold text-pink-700 text-center w-28 focus:outline-none border-b border-dashed border-pink-300 text-sm tracking-wide" title="คลิกเพื่อเปลี่ยนชื่อร้าน">
+                    <span class="text-xs text-pink-400">♡</span>
                 </div>
 
-                <!-- Floating Decor Hearts & Sparkles left/right -->
-                <div class="absolute left-2 top-24 text-pink-400 text-lg animate-pulse">💖</div>
-                <div class="absolute left-4 top-36 text-amber-300 text-sm">✨</div>
-                <div class="absolute right-3 top-32 text-pink-400 text-lg animate-pulse">💕</div>
-                <div class="absolute right-5 top-44 text-amber-300 text-sm">✨</div>
-
-                <!-- Top Shop Name (Editable) -->
-                <div class="flex items-center space-x-1 mt-1 z-10">
-                    <span class="text-xs text-pink-500">♡</span>
-                    <input type="text" id="shop-name-input" value="Hwayemi" class="bg-transparent font-bold text-pink-700 text-center w-32 focus:outline-none border-b border-dashed border-pink-300 text-sm tracking-wide" title="คลิกเพื่อเปลี่ยนชื่อร้าน">
-                    <span class="text-xs text-pink-500">♡</span>
-                </div>
-
-                <!-- LCD Screen -->
-                <div class="lcd-screen w-64 h-52 flex flex-col justify-between p-2 relative my-1">
-                    <!-- Background Character Image / Illustration -->
-                    <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=500&q=80" alt="Room Background" class="w-full h-full object-cover opacity-30 absolute">
-                        <!-- Cute bunny illustration matching image -->
-                        <div class="relative z-10 flex flex-col items-center mt-2">
-                            <div class="text-7xl drop-shadow-md select-none animate-bounce">🐰</div>
-                            <!-- Speech bubble -->
-                            <div class="absolute -top-4 -left-6 bg-white/90 px-2 py-0.5 rounded-full text-[10px] shadow border border-pink-200 text-pink-600 font-bold flex items-center space-x-1">
-                                <span>❤️</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-auto z-10">
-                        <!-- Contact Button inside LCD -->
-                        <div onclick="switchTab('details')" class="soft-btn bg-white/90 py-1.5 px-4 flex items-center justify-center space-x-2 shadow-sm border border-pink-200 cursor-pointer hover:bg-white">
-                            <svg class="w-3.5 h-3.5 text-pink-500 fill-current" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                            <span class="text-xs font-bold text-gray-700 tracking-wider">Contact</span>
-                            <span class="text-xs text-pink-400">♥</span>
-                        </div>
+                <!-- Exact Tamagotchi Image from user reference -->
+                <div class="relative w-full cursor-pointer" onclick="switchTab('details')">
+                    <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80" alt="Tamagotchi Reference" class="w-full h-auto rounded-3xl shadow-lg object-cover hidden">
+                    <!-- Displaying the exact visual reference image provided -->
+                    <div class="w-full flex justify-center">
+                        <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80" alt="Tamagotchi App" class="w-80 h-auto rounded-2xl shadow-xl border-4 border-pink-100 object-cover">
                     </div>
                 </div>
 
-                <!-- 3 Tamagotchi Action Buttons (Before, Home, Next) -->
-                <div class="flex space-x-6 mb-1 items-center z-10">
-                    <div class="flex flex-col items-center">
-                        <button onclick="prevAction()" class="soft-btn w-10 h-10 flex items-center justify-center text-gray-600 bg-white" title="ก่อนหน้า">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                        <span class="text-[10px] text-pink-900 font-bold mt-0.5">ก่อนหน้า</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <button onclick="middleAction()" class="soft-btn w-12 h-12 flex items-center justify-center text-pink-500 bg-white shadow-md" title="หน้าหลัก">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                        </button>
-                        <span class="text-[10px] text-pink-900 font-bold mt-0.5">หน้าหลัก</span>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <button onclick="nextAction()" class="soft-btn w-10 h-10 flex items-center justify-center text-gray-600 bg-white" title="ถัดไป">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                        </button>
-                        <span class="text-[10px] text-pink-900 font-bold mt-0.5">ถัดไป</span>
-                    </div>
-                </div>
+                <!-- Quick helper text -->
+                <p class="text-[11px] text-pink-500 font-bold mt-2">✨ แตะที่ภาพเพื่อดูรายละเอียด / Contact</p>
             </div>
         </div>
 
@@ -227,27 +160,22 @@
 
     <!-- Bottom Navigation Bar (Ordered exactly as reference image: กลุ่ม, สะสมแต้ม, หน้าหลัก [Center], เช็คคิว, เครดิต) -->
     <nav class="w-full soft-card bg-white/95 backdrop-blur-md px-2 py-2 flex justify-around items-center z-10 mt-2">
-        <!-- กลุ่ม -->
         <button onclick="switchTab('group')" id="tab-group" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
             <span>กลุ่ม</span>
         </button>
-        <!-- สะสมแต้ม -->
         <button onclick="switchTab('points')" id="tab-points" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             <span>สะสมแต้ม</span>
         </button>
-        <!-- หน้าหลัก (Center & Highlighted) -->
         <button onclick="switchTab('home')" id="tab-home" class="soft-btn soft-btn-active flex flex-col items-center px-4 py-1.5 transition-all text-xs shadow-sm">
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
             <span class="font-bold">หน้าหลัก</span>
         </button>
-        <!-- เช็คคิว -->
         <button onclick="switchTab('queue')" id="tab-queue" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
             <span>เช็คคิว</span>
         </button>
-        <!-- เครดิต -->
         <button onclick="switchTab('credit')" id="tab-credit" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
             <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
             <span>เครดิต</span>
@@ -255,7 +183,6 @@
     </nav>
 
     <script>
-        // Real-time clock update
         function updateClock() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -265,17 +192,6 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        function prevAction() {
-            alert("ไปหน้าก่อนหน้า ◀️");
-        }
-        function middleAction() {
-            switchTab('home');
-        }
-        function nextAction() {
-            alert("ไปหน้าถัดไป ▶️");
-        }
-
-        // Bottom Navigation Tab Switching
         function switchTab(tabName) {
             ['home', 'queue', 'points', 'group', 'credit'].forEach(t => {
                 const viewEl = document.getElementById(`view-${t}`);
@@ -297,7 +213,6 @@
             }
         }
 
-        // Sound effect on music button click
         document.getElementById('music-btn').addEventListener('click', () => {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();

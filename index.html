@@ -15,7 +15,6 @@
             --btn-color: #ffffff;
             --btn-shadow: #e0e0e0;
             --text-color: #5c3a21;
-            --theme-accent: #b08984;
         }
 
         * {
@@ -222,15 +221,16 @@
             display: flex;
         }
 
-        /* =================== GROUP VIEW (Exact Match to Image 5) =================== */
+        /* =================== GROUP VIEW (Strict Left Alignment) =================== */
         #view-group {
             background: #fff;
             border-radius: 24px;
             padding: 16px;
             text-align: left;
-            max-width: 450px;
+            max-width: 420px;
             margin: 0 auto;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            align-items: flex-start !important; /* บังคับจัดชิดซ้ายทั้งหมด */
         }
 
         .group-header-title {
@@ -238,6 +238,8 @@
             font-weight: 700;
             color: #6e554d;
             margin-bottom: 12px;
+            text-align: left;
+            width: 100%;
         }
 
         .group-search-row {
@@ -245,6 +247,7 @@
             gap: 8px;
             margin-bottom: 12px;
             align-items: center;
+            width: 100%;
         }
 
         .group-search-box {
@@ -283,6 +286,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            flex-shrink: 0;
         }
         .group-filter-icon-btn svg {
             width: 18px;
@@ -296,7 +300,9 @@
             overflow-x: auto;
             padding-bottom: 6px;
             margin-bottom: 14px;
+            width: 100%;
             scrollbar-width: none;
+            justify-content: flex-start;
         }
         .group-categories-row::-webkit-scrollbar { display: none; }
 
@@ -323,6 +329,8 @@
             font-size: 12px;
             color: #9c8a82;
             margin-bottom: 10px;
+            text-align: left;
+            width: 100%;
         }
 
         .group-grid {
@@ -342,6 +350,7 @@
             flex-direction: column;
             box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             position: relative;
+            text-align: left;
         }
 
         .group-card-img-wrap {
@@ -652,13 +661,13 @@
     </div>
 
     <!-- 2. STAMPS VIEW (Member) -->
-    <div id="view-stamps" class="view-content" style="padding: 10px; max-width:450px; margin:0 auto; background:#fff; border-radius:24px;">
+    <div id="view-stamps" class="view-content" style="padding: 10px; max-width:420px; margin:0 auto; background:#fff; border-radius:24px;">
         <h3>บัตรสะสมสแตมป์ (10 ดวง)</h3>
         <div style="font-size:11px; text-align:center; margin-bottom:6px;">กดที่ช่องเพื่อสะสมแต้ม! (<span id="stamp-count">0</span>/10)</div>
         <div class="stamp-grid" id="stamp-grid-container"></div>
     </div>
 
-    <!-- 3. GROUP VIEW (Exact Match to Image 5 with Add to Cart removed)[span_2](start_span)[span_2](end_span) -->
+    <!-- 3. GROUP VIEW (Strict Left Aligned) -->
     <div id="view-group" class="view-content">
         <div class="group-header-title">Group</div>
         <div class="group-search-row">
@@ -703,13 +712,13 @@
     </div>
 
     <!-- 4. QUEUE VIEW -->
-    <div id="view-queue" class="view-content" style="padding: 10px; max-width:450px; margin:0 auto; background:#fff; border-radius:24px;">
+    <div id="view-queue" class="view-content" style="padding: 10px; max-width:420px; margin:0 auto; background:#fff; border-radius:24px;">
         <h3>เช็คคิวร้านค้า</h3>
         <div class="queue-list" id="queue-container"></div>
     </div>
 
     <!-- 5. CREDITS & REVIEWS VIEW (Detail) -->
-    <div id="view-credits" class="view-content" style="padding: 10px; max-width:450px; margin:0 auto; background:#fff; border-radius:24px;">
+    <div id="view-credits" class="view-content" style="padding: 10px; max-width:420px; margin:0 auto; background:#fff; border-radius:24px;">
         <h3>รีวิว & เครดิตลูกค้า</h3>
         <div class="review-form">
             <input type="text" id="review-name" placeholder="ชื่อของคุณ...">
@@ -726,7 +735,7 @@
         <div class="reviews-scroll" id="reviews-list-container"></div>
     </div>
 
-    <!-- Floating Bottom Menu Dock (Reference Style Position)[span_3](start_span)[span_3](end_span) -->
+    <!-- Floating Bottom Menu Dock -->
     <div class="bottom-dock-wrapper">
         <button class="floating-action-badge" onclick="feedTama()" title="ทักทายน้องทามา">
             <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>

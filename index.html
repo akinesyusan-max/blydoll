@@ -34,7 +34,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px;
+            padding: 10px 10px 90px 10px; /* เพิ่มพื้นที่ด้านล่างเผื่อแถบเมนูลอย */
             overflow-x: hidden;
         }
 
@@ -208,18 +208,54 @@
             box-shadow: 0 1px 0 var(--btn-shadow), 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Bottom Menu Bar (Reference Style)[span_1](start_span)[span_1](end_span) */
-        .nav-categories {
+        /* Floating Bottom Menu Area (Reference Style)[span_1](start_span)[span_1](end_span) */
+        .bottom-dock-wrapper {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
             max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: 0 15px;
+            z-index: 99;
+        }
+
+        /* Floating Floating Pet/Action Button above dock right */
+        .floating-action-badge {
             background: #ffffff;
-            border-radius: 40px;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+        .floating-action-badge:hover {
+            transform: scale(1.08);
+        }
+        .floating-action-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--case-shadow);
+        }
+
+        .nav-categories {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 35px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 10px 15px;
-            margin-top: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
         .cat-btn {
@@ -229,17 +265,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             font-size: 11px;
             font-weight: 600;
             color: #8c7365;
             transition: all 0.2s;
-            padding: 4px 8px;
+            padding: 2px 4px;
         }
 
         .cat-btn svg {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             fill: #8c7365;
             transition: fill 0.2s;
         }
@@ -454,7 +490,7 @@
 </head>
 <body>
 
-    <!-- Top Status Bar (With Admin Login Button next to time) -->
+    <!-- Top Status Bar -->
     <div class="status-bar">
         <div class="status-left">
             <span id="clock-display">21:06</span>
@@ -539,33 +575,33 @@
         </div>
     </div>
 
-    <!-- 5 Categories Navigation Bottom (Vector Icons & Style updated)[span_2](start_span)[span_2](end_span) -->
-    <div class="nav-categories">
-        <!-- Stamp / Member or Detail equivalent -->
-        <button class="cat-btn" id="nav-stamps" onclick="switchTab('stamps')">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-            Member
+    <!-- Floating Bottom Menu Dock (Reference Style Position)[span_2](start_span)[span_2](end_span) -->
+    <div class="bottom-dock-wrapper">
+        <button class="floating-action-badge" onclick="feedTama()" title="ทักทายน้องทามา">
+            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         </button>
-        <!-- Group -->
-        <button class="cat-btn" id="nav-group" onclick="switchTab('group')">
-            <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
-            Group
-        </button>
-        <!-- Home -->
-        <button class="cat-btn active" id="nav-home" onclick="switchTab('home')">
-            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            Home
-        </button>
-        <!-- Queue -->
-        <button class="cat-btn" id="nav-queue" onclick="switchTab('queue')">
-            <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-            Queue
-        </button>
-        <!-- Credits / Detail -->
-        <button class="cat-btn" id="nav-credits" onclick="switchTab('credits')">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-            Detail
-        </button>
+        <div class="nav-categories">
+            <button class="cat-btn" id="nav-stamps" onclick="switchTab('stamps')">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                Member
+            </button>
+            <button class="cat-btn" id="nav-group" onclick="switchTab('group')">
+                <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+                Group
+            </button>
+            <button class="cat-btn active" id="nav-home" onclick="switchTab('home')">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Home
+            </button>
+            <button class="cat-btn" id="nav-queue" onclick="switchTab('queue')">
+                <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+                Queue
+            </button>
+            <button class="cat-btn" id="nav-credits" onclick="switchTab('credits')">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                Detail
+            </button>
+        </div>
     </div>
 
     <!-- Admin Login Modal -->
@@ -794,4 +830,3 @@
     </script>
 </body>
 </html>
-

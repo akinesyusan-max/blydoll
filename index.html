@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #ffe6f0;
+            --bg-color: #fff6f9;
             --case-pink: #ffb3d1;
             --case-shadow: #ff80b3;
             --screen-bg: #c2f0c2;
@@ -15,6 +15,7 @@
             --btn-color: #ffffff;
             --btn-shadow: #e0e0e0;
             --text-color: #5c3a21;
+            --theme-accent: #b08984;
         }
 
         * {
@@ -27,14 +28,11 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(#ffcce6 15%, transparent 16%), radial-gradient(#ffcce6 15%, transparent 16%);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 10px 10px 90px 10px; /* เพิ่มพื้นที่ด้านล่างเผื่อแถบเมนูลอย */
+            padding: 10px 10px 100px 10px;
             overflow-x: hidden;
         }
 
@@ -45,11 +43,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             padding: 8px 16px;
             border-radius: 20px;
             margin-bottom: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             font-weight: bold;
             font-size: 14px;
         }
@@ -89,7 +87,7 @@
             fill: var(--text-color);
         }
 
-        /* Tamagotchi Egg Body */
+        /* Tamagotchi Egg Body (Home View Container) */
         .tama-container {
             position: relative;
             width: 320px;
@@ -208,87 +206,7 @@
             box-shadow: 0 1px 0 var(--btn-shadow), 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Floating Bottom Menu Area (Reference Style)[span_1](start_span)[span_1](end_span) */
-        .bottom-dock-wrapper {
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 420px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            padding: 0 15px;
-            z-index: 99;
-        }
-
-        /* Floating Floating Pet/Action Button above dock right */
-        .floating-action-badge {
-            background: #ffffff;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            cursor: pointer;
-            margin-bottom: 8px;
-            transition: transform 0.2s;
-        }
-        .floating-action-badge:hover {
-            transform: scale(1.08);
-        }
-        .floating-action-badge svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--case-shadow);
-        }
-
-        .nav-categories {
-            width: 100%;
-            background: #ffffff;
-            border-radius: 35px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-
-        .cat-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #8c7365;
-            transition: all 0.2s;
-            padding: 2px 4px;
-        }
-
-        .cat-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: #8c7365;
-            transition: fill 0.2s;
-        }
-
-        .cat-btn.active {
-            color: var(--case-shadow);
-        }
-
-        .cat-btn.active svg {
-            fill: var(--case-shadow);
-        }
-
-        /* Modal & Views Inside Screen */
+        /* Global View Controllers */
         .view-content {
             width: 100%;
             height: 100%;
@@ -300,11 +218,194 @@
             font-size: 12px;
             overflow-y: auto;
         }
-
         .view-content.active {
             display: flex;
         }
 
+        /* =================== GROUP VIEW (Exact Match to Image 5) =================== */
+        #view-group {
+            background: #fff;
+            border-radius: 24px;
+            padding: 16px;
+            text-align: left;
+            max-width: 450px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .group-header-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6e554d;
+            margin-bottom: 12px;
+        }
+
+        .group-search-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+
+        .group-search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #faf8f6;
+            border: 1px solid #eee;
+            border-radius: 25px;
+            padding: 8px 14px;
+            gap: 8px;
+        }
+
+        .group-search-box svg {
+            width: 16px;
+            height: 16px;
+            fill: #b0a095;
+        }
+
+        .group-search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 12px;
+            width: 100%;
+            color: #5c3a21;
+        }
+
+        .group-filter-icon-btn {
+            background: #faf8f6;
+            border: 1px solid #eee;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .group-filter-icon-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #8c7365;
+        }
+
+        .group-categories-row {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+            scrollbar-width: none;
+        }
+        .group-categories-row::-webkit-scrollbar { display: none; }
+
+        .chip-btn {
+            background: #faf8f6;
+            border: 1px solid #e8e0dc;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8c7365;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .chip-btn.active {
+            background: #a88379;
+            color: #fff;
+            border-color: #a88379;
+        }
+
+        .group-items-count {
+            font-size: 12px;
+            color: #9c8a82;
+            margin-bottom: 10px;
+        }
+
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .group-card {
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 20px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .group-card-img-wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            background: #f7f3f0;
+            margin-bottom: 8px;
+        }
+
+        .group-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .group-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #f3e9e4;
+            color: #8c7365;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 8px;
+        }
+
+        .group-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #5c3a21;
+            margin-bottom: 2px;
+        }
+
+        .group-card-price {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8c7365;
+            margin-bottom: 8px;
+        }
+
+        .group-card-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .group-btn-ex {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #e0d4d0;
+            border-radius: 14px;
+            padding: 6px 0;
+            text-align: center;
+            font-size: 11px;
+            font-weight: bold;
+            color: #6e554d;
+            cursor: pointer;
+        }
+
+        /* =================== OTHER VIEWS =================== */
         h3 {
             font-size: 13px;
             margin-bottom: 6px;
@@ -312,7 +413,6 @@
             text-align: center;
         }
 
-        /* Stamp Card (10 Stamps) */
         .stamp-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -338,7 +438,6 @@
             background: #ffe6f0;
         }
 
-        /* Queue List */
         .queue-list {
             width: 100%;
             max-height: 130px;
@@ -358,7 +457,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        /* Reviews & Credits Form */
         .review-form {
             display: flex;
             flex-direction: column;
@@ -384,13 +482,8 @@
             margin: 2px 0;
         }
 
-        .star {
-            color: #ddd;
-            transition: color 0.2s;
-        }
-        .star.selected {
-            color: #ffcc00;
-        }
+        .star { color: #ddd; transition: color 0.2s; }
+        .star.selected { color: #ffcc00; }
 
         .submit-btn {
             background: var(--case-pink);
@@ -420,7 +513,69 @@
             text-align: left;
         }
 
-        /* Admin Modal Overlay */
+        /* Floating Bottom Dock (Reference Style Position)[span_1](start_span)[span_1](end_span) */
+        .bottom-dock-wrapper {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: 0 15px;
+            z-index: 99;
+        }
+
+        .floating-action-badge {
+            background: #ffffff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+        .floating-action-badge:hover { transform: scale(1.08); }
+        .floating-action-badge svg { width: 20px; height: 20px; fill: var(--case-shadow); }
+
+        .nav-categories {
+            width: 100%;
+            background: #ffffff;
+            border-radius: 35px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .cat-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #8c7365;
+            transition: all 0.2s;
+            padding: 2px 4px;
+        }
+
+        .cat-btn svg { width: 20px; height: 20px; fill: #8c7365; transition: fill 0.2s; }
+        .cat-btn.active { color: var(--case-shadow); }
+        .cat-btn.active svg { fill: var(--case-shadow); }
+
+        /* Admin Modals */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -450,40 +605,12 @@
             color: var(--case-shadow);
         }
 
-        .form-group {
-            margin-bottom: 10px;
-        }
+        .form-group { margin-bottom: 10px; }
+        .form-group label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 3px; }
+        .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; }
 
-        .form-group label {
-            font-size: 12px;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 12px;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .modal-actions button {
-            flex: 1;
-            padding: 8px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
+        .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
+        .modal-actions button { flex: 1; padding: 8px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
         .btn-save { background: #ff80b3; color: #fff; }
         .btn-close { background: #ddd; color: #333; }
     </style>
@@ -495,87 +622,111 @@
         <div class="status-left">
             <span id="clock-display">21:06</span>
             <button class="admin-login-btn" onclick="openAdminLogin()" title="ระบบหลังบ้าน">
-                <!-- Lock Vector SVG -->
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
             </button>
         </div>
         <div class="status-right">
-            <!-- Wifi SVG -->
             <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9.5 2.03-12.83 5.33l1.41 1.41C3.54 7.15 7.52 5.5 12 5.5s8.46 1.65 11.42 4.24l1.41-1.41C21.5 5.03 16.97 3 12 3zm0 4c-3.14 0-6 1.28-8.07 3.35l1.41 1.41C7.03 10.23 9.38 9.2 12 9.2s4.97 1.03 6.66 2.71l1.41-1.41C18 8.28 15.14 7 12 7zm0 4c-1.3 0-2.5.5-3.41 1.41l3.41 3.41 3.41-3.41C14.5 11.5 13.3 11 12 11z"/></svg>
-            <!-- Battery SVG -->
             <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
         </div>
     </div>
 
-    <!-- Tamagotchi Shell Body -->
-    <div class="tama-container" id="tama-case">
-        <div class="shop-title-tag" id="shop-title-text">TAMAGOTCHI SHOP</div>
-        
-        <!-- LCD Screen -->
-        <div class="lcd-screen">
-            <div class="screen-inner">
-
-                <!-- 1. HOME VIEW (Center) -->
-                <div id="view-home" class="view-content active">
+    <!-- 1. HOME VIEW (Center - Tamagotchi Egg) -->
+    <div id="view-home" class="view-content active" style="align-items: center;">
+        <div class="tama-container" id="tama-case">
+            <div class="shop-title-tag" id="shop-title-text">TAMAGOTCHI SHOP</div>
+            <div class="lcd-screen">
+                <div class="screen-inner">
                     <div style="display:flex; flex-direction:column; align-items:center; width:100%; justify-content:center; height:100%;">
                         <img id="tama-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="tama-avatar" onclick="feedTama()" alt="Tama">
                         <div class="tama-dialog" id="tama-status-msg">สวัสดีจ้า! มาเล่นกันเถอะ 💕</div>
                     </div>
                 </div>
-
-                <!-- 2. STAMPS VIEW (Left 1) -->
-                <div id="view-stamps" class="view-content">
-                    <h3>บัตรสะสมสแตมป์ (10 ดวง)</h3>
-                    <div style="font-size:10px; text-align:center; margin-bottom:2px;">กดที่ช่องเพื่อสะสมแต้ม! (<span id="stamp-count">0</span>/10)</div>
-                    <div class="stamp-grid" id="stamp-grid-container"></div>
-                </div>
-
-                <!-- 3. GROUP VIEW (Left 2) -->
-                <div id="view-group" class="view-content">
-                    <h3>กลุ่มคอมมูนิตี้</h3>
-                    <div style="background:#fff; padding:8px; border-radius:8px; width:100%; margin-top:5px; text-align:center;">
-                        <p style="font-weight:bold; font-size:12px;" id="group-name-display">✨ คลับคนรักทามาก็อตจิ ✨</p>
-                        <p style="font-size:11px; margin-top:4px;" id="group-desc-display">มาร่วมแชร์ความน่ารัก พูดคุย และแลกเปลี่ยนไอเทมกันเถอะ!</p>
-                        <a id="group-link-btn" href="#" target="_blank" style="display:inline-block; margin-top:8px; background:#ff80b3; color:#fff; padding:4px 10px; border-radius:6px; text-decoration:none; font-size:11px;">เข้าร่วมกลุ่ม LINE / Facebook</a>
-                    </div>
-                </div>
-
-                <!-- 4. QUEUE VIEW (Right 1) -->
-                <div id="view-queue" class="view-content">
-                    <h3>เช็คคิวร้านค้า</h3>
-                    <div class="queue-list" id="queue-container"></div>
-                </div>
-
-                <!-- 5. CREDITS & REVIEWS VIEW (Right 2) -->
-                <div id="view-credits" class="view-content">
-                    <h3>รีวิว & เครดิตลูกค้า</h3>
-                    <div class="review-form">
-                        <input type="text" id="review-name" placeholder="ชื่อของคุณ...">
-                        <div class="star-rating" id="star-picker">
-                            <span class="star selected" data-value="1">★</span>
-                            <span class="star selected" data-value="2">★</span>
-                            <span class="star selected" data-value="3">★</span>
-                            <span class="star selected" data-value="4">★</span>
-                            <span class="star selected" data-value="5">★</span>
-                        </div>
-                        <textarea id="review-text" placeholder="เขียนรีวิวความประทับใจ..." rows="2"></textarea>
-                        <button class="submit-btn" onclick="submitReview()">ส่งรีวิว</button>
-                    </div>
-                    <div class="reviews-scroll" id="reviews-list-container"></div>
-                </div>
-
             </div>
-        </div>
-
-        <!-- 3 Physical Buttons -->
-        <div class="button-row">
-            <button class="tama-btn" onclick="switchTab('stamps')"></button>
-            <button class="tama-btn" onclick="switchTab('home')"></button>
-            <button class="tama-btn" onclick="switchTab('queue')"></button>
+            <div class="button-row">
+                <button class="tama-btn" onclick="switchTab('stamps')"></button>
+                <button class="tama-btn" onclick="switchTab('home')"></button>
+                <button class="tama-btn" onclick="switchTab('queue')"></button>
+            </div>
         </div>
     </div>
 
-    <!-- Floating Bottom Menu Dock (Reference Style Position)[span_2](start_span)[span_2](end_span) -->
+    <!-- 2. STAMPS VIEW (Member) -->
+    <div id="view-stamps" class="view-content" style="padding: 10px; max-width:450px; margin:0 auto; background:#fff; border-radius:24px;">
+        <h3>บัตรสะสมสแตมป์ (10 ดวง)</h3>
+        <div style="font-size:11px; text-align:center; margin-bottom:6px;">กดที่ช่องเพื่อสะสมแต้ม! (<span id="stamp-count">0</span>/10)</div>
+        <div class="stamp-grid" id="stamp-grid-container"></div>
+    </div>
+
+    <!-- 3. GROUP VIEW (Exact Match to Image 5 with Add to Cart removed)[span_2](start_span)[span_2](end_span) -->
+    <div id="view-group" class="view-content">
+        <div class="group-header-title">Group</div>
+        <div class="group-search-row">
+            <div class="group-search-box">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" placeholder="ค้นหาสินค้า...">
+            </div>
+            <button class="group-filter-icon-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+        </div>
+        <div class="group-categories-row">
+            <button class="chip-btn active">All</button>
+            <button class="chip-btn">momonga</button>
+            <button class="chip-btn">mimiw</button>
+        </div>
+        <div class="group-items-count">2 items</div>
+        <div class="group-grid">
+            <div class="group-card">
+                <div class="group-card-img-wrap">
+                    <span class="group-badge">แนะนำ</span>
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Group">
+                </div>
+                <div class="group-card-title">ชื่อกลุ่ม</div>
+                <div class="group-card-price">50 ฿</div>
+                <div class="group-card-actions">
+                    <div class="group-btn-ex">Ex</div>
+                </div>
+            </div>
+            <div class="group-card">
+                <div class="group-card-img-wrap">
+                    <span class="group-badge">แนะนำ</span>
+                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300" alt="Group">
+                </div>
+                <div class="group-card-title">ชื่อกลุ่ม</div>
+                <div class="group-card-price">50 ฿</div>
+                <div class="group-card-actions">
+                    <div class="group-btn-ex">Ex</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. QUEUE VIEW -->
+    <div id="view-queue" class="view-content" style="padding: 10px; max-width:450px; margin:0 auto; background:#fff; border-radius:24px;">
+        <h3>เช็คคิวร้านค้า</h3>
+        <div class="queue-list" id="queue-container"></div>
+    </div>
+
+    <!-- 5. CREDITS & REVIEWS VIEW (Detail) -->
+    <div id="view-credits" class="view-content" style="padding: 10px; max-width:450px; margin:0 auto; background:#fff; border-radius:24px;">
+        <h3>รีวิว & เครดิตลูกค้า</h3>
+        <div class="review-form">
+            <input type="text" id="review-name" placeholder="ชื่อของคุณ...">
+            <div class="star-rating" id="star-picker">
+                <span class="star selected" data-value="1">★</span>
+                <span class="star selected" data-value="2">★</span>
+                <span class="star selected" data-value="3">★</span>
+                <span class="star selected" data-value="4">★</span>
+                <span class="star selected" data-value="5">★</span>
+            </div>
+            <textarea id="review-text" placeholder="เขียนรีวิวความประทับใจ..." rows="2"></textarea>
+            <button class="submit-btn" onclick="submitReview()">ส่งรีวิว</button>
+        </div>
+        <div class="reviews-scroll" id="reviews-list-container"></div>
+    </div>
+
+    <!-- Floating Bottom Menu Dock (Reference Style Position)[span_3](start_span)[span_3](end_span) -->
     <div class="bottom-dock-wrapper">
         <button class="floating-action-badge" onclick="feedTama()" title="ทักทายน้องทามา">
             <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>

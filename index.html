@@ -3,235 +3,774 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hwayemi - Tamagotchi Web App</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1p:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tamagotchi Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #ffe6f0;
+            --case-pink: #ffb3d1;
+            --case-shadow: #ff80b3;
+            --screen-bg: #c2f0c2;
+            --screen-border: #4d944d;
+            --btn-color: #ffffff;
+            --btn-shadow: #e0e0e0;
+            --text-color: #5c3a21;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            color: var(--text-color);
+        }
+
         body {
-            font-family: 'M PLUS Rounded 1p', sans-serif;
-            background: #fffcf9;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#ffcce6 15%, transparent 16%), radial-gradient(#ffcce6 15%, transparent 16%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
             min-height: 100vh;
-            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
             overflow-x: hidden;
-            color: #78716c;
         }
-        .soft-card {
+
+        /* Top Status Bar */
+        .status-bar {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid #fde2e4;
-            box-shadow: 0 8px 30px rgba(244, 184, 196, 0.25);
-            border-radius: 2.5rem;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-weight: bold;
+            font-size: 14px;
         }
-        .soft-btn {
-            background: #ffffff;
-            border: 1.5px solid #fbd5db;
-            box-shadow: 0 4px 12px rgba(244, 184, 196, 0.25);
-            border-radius: 9999px;
-            transition: all 0.15s ease;
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-login-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .admin-login-btn:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        /* Tamagotchi Egg Body */
+        .tama-container {
+            position: relative;
+            width: 320px;
+            height: 410px;
+            background: var(--case-pink);
+            border-radius: 160px 160px 140px 140px;
+            box-shadow: inset 0 -15px 25px var(--case-shadow), 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 35px;
+            margin: 10px auto;
+            border: 6px solid #fff;
+        }
+
+        /* Cute Decors on Egg */
+        .tama-container::before {
+            content: "🎀";
+            position: absolute;
+            top: 15px;
+            left: 35px;
+            font-size: 28px;
+        }
+        .tama-container::after {
+            content: "💖";
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 20px;
+        }
+
+        .shop-title-tag {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* LCD Screen */
+        .lcd-screen {
+            width: 250px;
+            height: 240px;
+            background-color: var(--screen-bg);
+            border: 8px solid #fff;
+            border-radius: 35px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .screen-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        /* Tamagotchi Character */
+        .tama-avatar {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: bounce 2s infinite ease-in-out;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .tama-dialog {
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Physical Buttons Below Screen */
+        .button-row {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 25px;
+        }
+
+        .tama-btn {
+            width: 42px;
+            height: 42px;
+            background: var(--btn-color);
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 5px 0 var(--btn-shadow), 0 6px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .tama-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 var(--btn-shadow), 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* 5 Categories Navigation Panel */
+        .nav-categories {
+            width: 100%;
+            max-width: 450px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-top: 15px;
+            padding: 0 5px;
+        }
+
+        .cat-btn {
+            background: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 8px 2px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            transition: all 0.2s;
+        }
+
+        .cat-btn span {
+            font-size: 16px;
+        }
+
+        .cat-btn.active {
+            background: var(--case-pink);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255,131,179,0.3);
+        }
+        .cat-btn.active span {
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        /* Modal & Views Inside Screen */
+        .view-content {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            font-size: 12px;
+            overflow-y: auto;
+        }
+
+        .view-content.active {
+            display: flex;
+        }
+
+        h3 {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Stamp Card (10 Stamps) */
+        .stamp-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 5px;
+            margin: 8px 0;
+            width: 100%;
+        }
+
+        .stamp-item {
+            aspect-ratio: 1;
+            background: #fff;
+            border: 2px dashed #ff80b3;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
             cursor: pointer;
         }
-        .soft-btn:active {
-            transform: scale(0.95);
+
+        .stamp-item.filled {
+            border-style: solid;
+            background: #ffe6f0;
         }
-        .soft-btn-active {
-            background: linear-gradient(135deg, #ffb5c2 0%, #ff8fa3 100%);
-            border-color: #ff758c;
-            color: #ffffff;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+
+        /* Queue List */
+        .queue-list {
+            width: 100%;
+            max-height: 130px;
+            overflow-y: auto;
+            margin-top: 5px;
         }
+
+        .queue-card {
+            background: #fff;
+            padding: 4px 8px;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* Reviews & Credits Form */
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .review-form input, .review-form textarea {
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 11px;
+            width: 100%;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 2px 0;
+        }
+
+        .star {
+            color: #ddd;
+            transition: color 0.2s;
+        }
+        .star.selected {
+            color: #ffcc00;
+        }
+
+        .submit-btn {
+            background: var(--case-pink);
+            color: #fff;
+            border: none;
+            padding: 4px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .reviews-scroll {
+            width: 100%;
+            max-height: 90px;
+            overflow-y: auto;
+            margin-top: 5px;
+        }
+
+        .review-card {
+            background: #fff;
+            padding: 5px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            font-size: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        /* Admin Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .modal-box {
+            background: #fff;
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-box h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: var(--case-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-save { background: #ff80b3; color: #fff; }
+        .btn-close { background: #ddd; color: #333; }
     </style>
 </head>
-<body class="flex flex-col justify-between items-center min-h-screen py-3 px-3 max-w-md mx-auto">
+<body>
 
-    <!-- Top Bar -->
-    <header class="w-full flex justify-between items-center px-4 py-2 z-10">
-        <div class="flex items-center space-x-1.5 font-bold text-gray-700 text-base">
-            <span id="current-time">10:33</span>
-            <span class="text-sm">🐰</span>
-            <span class="text-xs">❤️</span>
+    <!-- Top Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span id="clock-display">21:06</span>
+            <button class="admin-login-btn" onclick="openAdminLogin()" title="ระบบหลังบ้าน">🔐</button>
         </div>
-        <div class="flex items-center space-x-3 text-gray-700">
-            <button id="music-btn" class="soft-btn w-8 h-8 flex items-center justify-center text-pink-500 hover:bg-pink-50" title="Music">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-2v13M9 10l12-2M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-2c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/></svg>
-            </button>
-            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M5.283 13.575a9.5 9.5 0 0113.434 0M2.455 10.747C7.337 5.865 16.663 5.865 21.545 10.747M12 20h.01"/></svg>
-            <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 7h11a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2zm13 3h1v4h-1"/></svg>
+        <div class="status-right">
+            <span>📶 5G</span>
+            <span>🔋 100%</span>
         </div>
-    </header>
+    </div>
 
-    <!-- Main Dynamic Views -->
-    <main class="w-full flex-1 flex flex-col items-center justify-center my-auto">
+    <!-- Tamagotchi Shell Body -->
+    <div class="tama-container" id="tama-case">
+        <div class="shop-title-tag" id="shop-title-text">TAMAGOTCHI SHOP</div>
         
-        <!-- VIEW 1: HOME (Exact Tamagotchi Design from Image) -->
-        <div id="view-home" class="w-full flex flex-col items-center">
-            <div class="relative w-full max-w-[340px] flex flex-col items-center">
-                <!-- Editable Shop Name Overlay positioned right on top of the image area -->
-                <div class="absolute top-[75px] z-20 flex items-center space-x-1">
-                    <span class="text-xs text-pink-400">♡</span>
-                    <input type="text" id="shop-name-input" value="Hwayemi" class="bg-transparent font-bold text-pink-700 text-center w-28 focus:outline-none border-b border-dashed border-pink-300 text-sm tracking-wide" title="คลิกเพื่อเปลี่ยนชื่อร้าน">
-                    <span class="text-xs text-pink-400">♡</span>
-                </div>
+        <!-- LCD Screen -->
+        <div class="lcd-screen">
+            <div class="screen-inner">
 
-                <!-- Exact Tamagotchi Image from user reference -->
-                <div class="relative w-full cursor-pointer" onclick="switchTab('details')">
-                    <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80" alt="Tamagotchi Reference" class="w-full h-auto rounded-3xl shadow-lg object-cover hidden">
-                    <!-- Displaying the exact visual reference image provided -->
-                    <div class="w-full flex justify-center">
-                        <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80" alt="Tamagotchi App" class="w-80 h-auto rounded-2xl shadow-xl border-4 border-pink-100 object-cover">
+                <!-- 1. HOME VIEW (Center) -->
+                <div id="view-home" class="view-content active">
+                    <div style="display:flex; flex-direction:column; align-items:center; width:100%; justify-content:center; height:100%;">
+                        <img id="tama-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="tama-avatar" onclick="feedTama()" alt="Tama">
+                        <div class="tama-dialog" id="tama-status-msg">สวัสดีจ้า! มาเล่นกันเถอะ 💕</div>
                     </div>
                 </div>
 
-                <!-- Quick helper text -->
-                <p class="text-[11px] text-pink-500 font-bold mt-2">✨ แตะที่ภาพเพื่อดูรายละเอียด / Contact</p>
-            </div>
-        </div>
+                <!-- 2. STAMPS VIEW (Left 1) -->
+                <div id="view-stamps" class="view-content">
+                    <h3>บัตรสะสมสแตมป์ (10 ดวง)</h3>
+                    <div style="font-size:10px; text-align:center; margin-bottom:2px;">กดที่ช่องเพื่อสะสมแต้ม! (<span id="stamp-count">0</span>/10)</div>
+                    <div class="stamp-grid" id="stamp-grid-container">
+                        <!-- Generated via JS -->
+                    </div>
+                </div>
 
-        <!-- VIEW 2: CHECK QUEUE (เช็คคิว) -->
-        <div id="view-queue" class="w-full flex flex-col space-y-3 px-2 hidden">
-            <div class="soft-card w-full h-36 overflow-hidden relative flex items-center justify-center bg-pink-50">
-                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80" alt="Queue Banner" class="w-full h-full object-cover opacity-90">
-                <div class="absolute bottom-2 right-2 bg-white/80 px-3 py-1 rounded-full text-xs font-bold text-pink-600 shadow-sm">
-                    ✨ คิวงานปัจจุบัน
+                <!-- 3. GROUP VIEW (Left 2) -->
+                <div id="view-group" class="view-content">
+                    <h3>กลุ่มคอมมูนิตี้</h3>
+                    <div style="background:#fff; padding:8px; border-radius:8px; width:100%; margin-top:5px; text-align:center;">
+                        <p style="font-weight:bold; font-size:12px;" id="group-name-display">✨ คลับคนรักทามาก็อตจิ ✨</p>
+                        <p style="font-size:11px; margin-top:4px;" id="group-desc-display">มาร่วมแชร์ความน่ารัก พูดคุย และแลกเปลี่ยนไอเทมกันเถอะ!</p>
+                        <a id="group-link-btn" href="#" target="_blank" style="display:inline-block; margin-top:8px; background:#ff80b3; color:#fff; padding:4px 10px; border-radius:6px; text-decoration:none; font-size:11px;">เข้าร่วมกลุ่ม LINE / Facebook</a>
+                    </div>
                 </div>
-            </div>
-            <div class="flex space-x-2">
-                <div class="soft-card flex-1 flex items-center px-3 py-2 bg-white">
-                    <svg class="w-4 h-4 text-pink-400 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    <input type="text" placeholder="ค้นหาคิวงาน..." class="w-full text-xs bg-transparent focus:outline-none text-gray-700">
+
+                <!-- 4. QUEUE VIEW (Right 1) -->
+                <div id="view-queue" class="view-content">
+                    <h3>เช็คคิวร้านค้า</h3>
+                    <div class="queue-list" id="queue-container">
+                        <!-- Queue items -->
+                    </div>
                 </div>
-                <div class="soft-btn px-4 py-2 flex items-center justify-center text-xs font-bold text-pink-600 bg-pink-50">
-                    ทั้งหมด
-                </div>
-            </div>
-            <div class="space-y-2.5 overflow-y-auto max-h-[260px] pr-1">
-                <div class="soft-card relative p-3.5 pl-10 flex justify-between items-center bg-white">
-                    <div class="absolute left-[-6px] top-3 bg-pink-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">Q1</div>
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="font-bold text-xs text-gray-800">k'sobell</span>
-                            <span class="soft-btn text-[9px] px-1.5 py-0.5 text-pink-600 font-bold bg-pink-50">LINE</span>
+
+                <!-- 5. CREDITS & REVIEWS VIEW (Right 2) -->
+                <div id="view-credits" class="view-content">
+                    <h3>รีวิว & เครดิตลูกค้า</h3>
+                    <div class="review-form">
+                        <input type="text" id="review-name" placeholder="ชื่อของคุณ...">
+                        <div class="star-rating" id="star-picker">
+                            <span class="star selected" data-value="1">★</span>
+                            <span class="star selected" data-value="2">★</span>
+                            <span class="star selected" data-value="3">★</span>
+                            <span class="star selected" data-value="4">★</span>
+                            <span class="star selected" data-value="5">★</span>
                         </div>
-                        <p class="text-[11px] text-gray-500 mt-0.5">ปกกลุ่มแนวเจ้าหญิง</p>
+                        <textarea id="review-text" placeholder="เขียนรีวิวความประทับใจ..." rows="2"></textarea>
+                        <button class="submit-btn" onclick="submitReview()">ส่งรีวิว</button>
                     </div>
-                    <button class="soft-btn px-3 py-1 text-xs text-pink-600 font-semibold bg-pink-50">เสร็จแล้ว</button>
-                </div>
-                <div class="soft-card relative p-3.5 pl-10 flex justify-between items-center bg-white">
-                    <div class="absolute left-[-6px] top-3 bg-pink-400 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">Q2</div>
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="font-bold text-xs text-gray-800">ไม่ทราบ</span>
-                            <span class="soft-btn text-[9px] px-1.5 py-0.5 text-pink-600 font-bold bg-pink-50">LINE</span>
-                        </div>
-                        <p class="text-[11px] text-gray-500 mt-0.5">Sign / Banner</p>
+                    <div class="reviews-scroll" id="reviews-list-container">
+                        <!-- Reviews list -->
                     </div>
-                    <button class="soft-btn px-3 py-1 text-xs text-amber-600 font-semibold bg-amber-50">กำลังทำ</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3 Physical Buttons -->
+        <div class="button-row">
+            <button class="tama-btn" onclick="switchTab('stamps')"></button>
+            <button class="tama-btn" onclick="switchTab('home')"></button>
+            <button class="tama-btn" onclick="switchTab('queue')"></button>
+        </div>
+    </div>
+
+    <!-- 5 Categories Navigation Bottom -->
+    <div class="nav-categories">
+        <button class="cat-btn" id="nav-stamps" onclick="switchTab('stamps')">
+            <span>🎫</span>สะสมแต้ม
+        </button>
+        <button class="cat-btn" id="nav-group" onclick="switchTab('group')">
+            <span>👥</span>กลุ่ม
+        </button>
+        <button class="cat-btn active" id="nav-home" onclick="switchTab('home')">
+            <span>🏠</span>หน้าหลัก
+        </button>
+        <button class="cat-btn" id="nav-queue" onclick="switchTab('queue')">
+            <span>📋</span>เช็คคิว
+        </button>
+        <button class="cat-btn" id="nav-credits" onclick="switchTab('credits')">
+            <span>⭐</span>เครดิต
+        </button>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal-overlay" id="admin-login-modal">
+        <div class="modal-box">
+            <h2>🔐 เข้าสู่ระบบแอดมิน</h2>
+            <div class="form-group">
+                <label>รหัสผ่าน (ค่าเริ่มต้น: 1234)</label>
+                <input type="password" id="admin-pass-input" placeholder="กรอกรหัสผ่าน...">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-close" onclick="closeModal('admin-login-modal')">ยกเลิก</button>
+                <button class="btn-save" onclick="verifyAdmin()">เข้าสู่ระบบ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div class="modal-overlay" id="admin-dashboard-modal">
+        <div class="modal-box">
+            <h2>⚙️ จัดการหลังบ้านแอดมิน</h2>
+            <div class="form-group">
+                <label>ชื่อร้านค้า</label>
+                <input type="text" id="edit-shop-title" value="TAMAGOTCHI SHOP">
+            </div>
+            <div class="form-group">
+                <label>เปลี่ยนสีธีมตัวเครื่อง (ชมพู / ฟ้า / เหลือง / ม่วง)</label>
+                <select id="edit-theme-color">
+                    <option value="#ffb3d1">ชมพูพาสเทล</option>
+                    <option value="#b3e0ff">ฟ้าสกาย</option>
+                    <option value="#ffffb3">เหลืองเลมอน</option>
+                    <option value="#d9b3ff">ม่วงลาเวนเดอร์</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>อัปโหลดรูปตัวละครทามา (จากมือถือ)</label>
+                <input type="file" id="edit-tama-img-file" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>เพิ่มคิวลูกค้าใหม่</label>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="new-queue-name" placeholder="ชื่อลูกค้า / รายการ...">
+                    <button class="submit-btn" onclick="addQueue()">เพิ่ม</button>
                 </div>
             </div>
-        </div>
-
-        <!-- VIEW 3: POINTS (สะสมแต้ม) -->
-        <div id="view-points" class="w-full flex flex-col items-center justify-center p-8 soft-card bg-white text-center hidden">
-            <span class="text-4xl mb-2">🎟️</span>
-            <h2 class="font-bold text-pink-600 text-base mb-1">ระบบสะสมแต้ม</h2>
-            <p class="text-xs text-gray-500 mb-4">สะสมแต้มทุกครั้งที่ใช้บริการเพื่อแลกรับของรางวัลสุดน่ารัก!</p>
-            <div class="soft-btn px-6 py-2 bg-pink-50 text-pink-600 font-bold text-sm">
-                แต้มของคุณ: 120 คะแนน ⭐
+            <div class="modal-actions">
+                <button class="btn-close" onclick="closeModal('admin-dashboard-modal')">ปิด</button>
+                <button class="btn-save" onclick="saveAdminSettings()">บันทึกการเปลี่ยนแปลง</button>
             </div>
         </div>
-
-        <!-- VIEW 4: GROUP (กลุ่ม) -->
-        <div id="view-group" class="w-full flex flex-col items-center justify-center p-8 soft-card bg-white text-center hidden">
-            <span class="text-4xl mb-2">📁</span>
-            <h2 class="font-bold text-pink-600 text-base mb-1">หมวดหมู่กลุ่ม</h2>
-            <p class="text-xs text-gray-500">รวมผลงาน คอลเลกชัน และกลุ่มสินค้าทั้งหมดของร้านที่นี่</p>
-        </div>
-
-        <!-- VIEW 5: CREDIT (เครดิต / Details) -->
-        <div id="view-credit" class="w-full flex flex-col items-center justify-center p-8 soft-card bg-white text-center hidden">
-            <span class="text-4xl mb-2">💳</span>
-            <h2 class="font-bold text-pink-600 text-base mb-1">เครดิต & ช่องทางติดต่อ</h2>
-            <p class="text-xs text-gray-500 mb-3">ช่องทางการติดต่อและรายละเอียดเครดิตผู้จัดทำ</p>
-            <div class="soft-btn px-4 py-2 bg-pink-50 text-pink-600 text-xs font-bold">
-                Line Official: @hwayemi
-            </div>
-        </div>
-    </main>
-
-    <!-- Bottom Navigation Bar (Ordered exactly as reference image: กลุ่ม, สะสมแต้ม, หน้าหลัก [Center], เช็คคิว, เครดิต) -->
-    <nav class="w-full soft-card bg-white/95 backdrop-blur-md px-2 py-2 flex justify-around items-center z-10 mt-2">
-        <button onclick="switchTab('group')" id="tab-group" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-            <span>กลุ่ม</span>
-        </button>
-        <button onclick="switchTab('points')" id="tab-points" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <span>สะสมแต้ม</span>
-        </button>
-        <button onclick="switchTab('home')" id="tab-home" class="soft-btn soft-btn-active flex flex-col items-center px-4 py-1.5 transition-all text-xs shadow-sm">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <span class="font-bold">หน้าหลัก</span>
-        </button>
-        <button onclick="switchTab('queue')" id="tab-queue" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-            <span>เช็คคิว</span>
-        </button>
-        <button onclick="switchTab('credit')" id="tab-credit" class="soft-btn flex flex-col items-center px-3 py-1 text-gray-400 hover:text-pink-600 transition-all text-xs">
-            <svg class="w-4 h-4 fill-current mb-0.5" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-            <span>เครดิต</span>
-        </button>
-    </nav>
+    </div>
 
     <script>
+        // Real-time Clock
         function updateClock() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('current-time').innerText = `${hours}:${minutes}`;
+            document.getElementById('clock-display').innerText = `${hours}:${minutes}`;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
+        // Navigation Switcher
         function switchTab(tabName) {
-            ['home', 'queue', 'points', 'group', 'credit'].forEach(t => {
-                const viewEl = document.getElementById(`view-${t}`);
-                if (viewEl) viewEl.classList.add('hidden');
-                const btn = document.getElementById(`tab-${t}`);
-                if (btn) {
-                    btn.classList.remove('soft-btn-active');
-                    btn.classList.add('text-gray-400');
-                }
-            });
+            document.querySelectorAll('.view-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.cat-btn').forEach(el => el.classList.remove('active'));
 
-            const activeView = document.getElementById(`view-${tabName}`);
-            if (activeView) activeView.classList.remove('hidden');
-            
-            const activeBtn = document.getElementById(`tab-${tabName}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-gray-400');
-                activeBtn.classList.add('soft-btn-active');
+            document.getElementById(`view-${tabName}`).classList.add('active');
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+
+        // Tamagotchi Interaction
+        let tamaHappyLevel = 0;
+        const messages = [
+            "สวัสดีจ้า! มาเล่นกันเถอะ 💕",
+            "หิวจังเลย หาอะไรกินหน่อยสิ 🍙",
+            "เย้! มีความสุขที่สุดเลย ✨",
+            "ง่วงนอนจ้า zzz...",
+            "รักเจ้าของที่สุดเลย 🥰"
+        ];
+        function feedTama() {
+            tamaHappyLevel = (tamaHappyLevel + 1) % messages.length;
+            document.getElementById('tama-status-msg').innerText = messages[tamaHappyLevel];
+        }
+
+        // Stamp Card System (10 Stamps)
+        let stampCount = 3;
+        function renderStamps() {
+            const container = document.getElementById('stamp-grid-container');
+            container.innerHTML = '';
+            document.getElementById('stamp-count').innerText = stampCount;
+            for (let i = 1; i <= 10; i++) {
+                const item = document.createElement('div');
+                item.className = `stamp-item ${i <= stampCount ? 'filled' : ''}`;
+                item.innerHTML = i <= stampCount ? '🐾' : i;
+                item.onclick = () => {
+                    if (i === stampCount + 1) {
+                        stampCount++;
+                        renderStamps();
+                    }
+                };
+                container.appendChild(item);
+            }
+        }
+        renderStamps();
+
+        // Queue Data
+        let queueData = [
+            { name: "คุณมิน트 - เคสทามา", status: "กำลังทำ" },
+            { name: "คุณมายด์ - พวงกุญแจ", status: "รอคิว" },
+            { name: "คุณพลอย - สติกเกอร์", status: "รอคิว" }
+        ];
+        function renderQueue() {
+            const container = document.getElementById('queue-container');
+            container.innerHTML = '';
+            queueData.forEach((q, idx) => {
+                container.innerHTML += `
+                    <div class="queue-card">
+                        <span>#${idx+1} ${q.name}</span>
+                        <span style="color:${q.status==='กำลังทำ'?'#e6005c':'#666'}"><b>${q.status}</b></span>
+                    </div>
+                `;
+            });
+        }
+        renderQueue();
+
+        function addQueue() {
+            const val = document.getElementById('new-queue-name').value;
+            if (val) {
+                queueData.push({ name: val, status: "รอคิว" });
+                document.getElementById('new-queue-name').value = '';
+                renderQueue();
+                alert("เพิ่มคิวสำเร็จ!");
             }
         }
 
-        document.getElementById('music-btn').addEventListener('click', () => {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
-                oscillator.type = 'triangle';
-                oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
-                oscillator.frequency.setValueAtTime(554.37, audioCtx.currentTime + 0.2);
-                oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.4);
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
-                oscillator.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                oscillator.start();
-                oscillator.stop(audioCtx.currentTime + 0.8);
-            } catch (e) {
-                console.log("Audio not supported or blocked");
-            }
+        // Reviews & Ratings
+        let currentRating = 5;
+        const starPicker = document.querySelectorAll('#star-picker .star');
+        starPicker.forEach((star, index) => {
+            star.onclick = () => {
+                currentRating = index + 1;
+                starPicker.forEach((s, i) => {
+                    if (i < currentRating) s.classList.add('selected');
+                    else s.classList.remove('selected');
+                });
+            };
         });
+
+        let reviewsData = [
+            { name: "คุณก้อย", rating: 5, text: "งานน่ารักมากค่ะ น้องทามาสวยตรงปก!" },
+            { name: "คุณโบว์", rating: 5, text: "ส่งไว แม่ค้าน่ารักมากค่ะ เครดิตดีเลิศ" }
+        ];
+        function renderReviews() {
+            const container = document.getElementById('reviews-list-container');
+            container.innerHTML = '';
+            reviewsData.forEach(r => {
+                let stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+                container.innerHTML += `
+                    <div class="review-card">
+                        <b>${r.name}</b> <span style="color:#ffcc00;">${stars}</span>
+                        <p style="margin-top:2px;">${r.text}</p>
+                    </div>
+                `;
+            });
+        }
+        renderReviews();
+
+        function submitReview() {
+            const name = document.getElementById('review-name').value;
+            const text = document.getElementById('review-text').value;
+            if (name && text) {
+                reviewsData.unshift({ name, rating: currentRating, text });
+                document.getElementById('review-name').value = '';
+                document.getElementById('review-text').value = '';
+                renderReviews();
+                alert("ขอบคุณสำหรับรีวิวค่ะ! 💕");
+            } else {
+                alert("กรุณากรอกชื่อและข้อความรีวิว");
+            }
+        }
+
+        // Admin Modals
+        function openAdminLogin() {
+            document.getElementById('admin-login-modal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function verifyAdmin() {
+            const pass = document.getElementById('admin-pass-input').value;
+            if (pass === "1234") {
+                closeModal('admin-login-modal');
+                document.getElementById('admin-pass-input').value = '';
+                document.getElementById('admin-dashboard-modal').style.display = 'flex';
+            } else {
+                alert("รหัสผ่านไม่ถูกต้อง! (รหัสเริ่มต้น: 1234)");
+            }
+        }
+
+        function saveAdminSettings() {
+            const title = document.getElementById('edit-shop-title').value;
+            if (title) {
+                document.getElementById('shop-title-text').innerText = title;
+            }
+
+            const themeColor = document.getElementById('edit-theme-color').value;
+            document.documentElement.style.setProperty('--case-pink', themeColor);
+
+            const fileInput = document.getElementById('edit-tama-img-file');
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('tama-img').src = e.target.result;
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+
+            closeModal('admin-dashboard-modal');
+            alert("บันทึกข้อมูลเรียบร้อยแล้ว!");
+        }
     </script>
 </body>
 </html>

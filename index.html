@@ -64,10 +64,13 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             padding: 2px 6px;
             border-radius: 50%;
             transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .admin-login-btn:hover {
             background: rgba(0,0,0,0.05);
@@ -76,8 +79,14 @@
         .status-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-size: 13px;
+        }
+
+        .status-right svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-color);
         }
 
         /* Tamagotchi Egg Body */
@@ -96,7 +105,6 @@
             border: 6px solid #fff;
         }
 
-        /* Cute Decors on Egg */
         .tama-container::before {
             content: "🎀";
             position: absolute;
@@ -200,45 +208,48 @@
             box-shadow: 0 1px 0 var(--btn-shadow), 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* 5 Categories Navigation Panel */
+        /* Bottom Menu Bar (Reference Style)[span_1](start_span)[span_1](end_span) */
         .nav-categories {
             width: 100%;
-            max-width: 450px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 6px;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 15px;
             margin-top: 15px;
-            padding: 0 5px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
         .cat-btn {
-            background: #fff;
+            background: transparent;
             border: none;
-            border-radius: 14px;
-            padding: 8px 2px;
-            font-size: 11px;
-            font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #8c7365;
             transition: all 0.2s;
+            padding: 4px 8px;
         }
 
-        .cat-btn span {
-            font-size: 16px;
+        .cat-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: #8c7365;
+            transition: fill 0.2s;
         }
 
         .cat-btn.active {
-            background: var(--case-pink);
-            color: #fff;
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(255,131,179,0.3);
+            color: var(--case-shadow);
         }
-        .cat-btn.active span {
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+
+        .cat-btn.active svg {
+            fill: var(--case-shadow);
         }
 
         /* Modal & Views Inside Screen */
@@ -443,15 +454,20 @@
 </head>
 <body>
 
-    <!-- Top Status Bar -->
+    <!-- Top Status Bar (With Admin Login Button next to time) -->
     <div class="status-bar">
         <div class="status-left">
             <span id="clock-display">21:06</span>
-            <button class="admin-login-btn" onclick="openAdminLogin()" title="ระบบหลังบ้าน">🔐</button>
+            <button class="admin-login-btn" onclick="openAdminLogin()" title="ระบบหลังบ้าน">
+                <!-- Lock Vector SVG -->
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            </button>
         </div>
         <div class="status-right">
-            <span>📶 5G</span>
-            <span>🔋 100%</span>
+            <!-- Wifi SVG -->
+            <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9.5 2.03-12.83 5.33l1.41 1.41C3.54 7.15 7.52 5.5 12 5.5s8.46 1.65 11.42 4.24l1.41-1.41C21.5 5.03 16.97 3 12 3zm0 4c-3.14 0-6 1.28-8.07 3.35l1.41 1.41C7.03 10.23 9.38 9.2 12 9.2s4.97 1.03 6.66 2.71l1.41-1.41C18 8.28 15.14 7 12 7zm0 4c-1.3 0-2.5.5-3.41 1.41l3.41 3.41 3.41-3.41C14.5 11.5 13.3 11 12 11z"/></svg>
+            <!-- Battery SVG -->
+            <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4z"/></svg>
         </div>
     </div>
 
@@ -475,9 +491,7 @@
                 <div id="view-stamps" class="view-content">
                     <h3>บัตรสะสมสแตมป์ (10 ดวง)</h3>
                     <div style="font-size:10px; text-align:center; margin-bottom:2px;">กดที่ช่องเพื่อสะสมแต้ม! (<span id="stamp-count">0</span>/10)</div>
-                    <div class="stamp-grid" id="stamp-grid-container">
-                        <!-- Generated via JS -->
-                    </div>
+                    <div class="stamp-grid" id="stamp-grid-container"></div>
                 </div>
 
                 <!-- 3. GROUP VIEW (Left 2) -->
@@ -493,9 +507,7 @@
                 <!-- 4. QUEUE VIEW (Right 1) -->
                 <div id="view-queue" class="view-content">
                     <h3>เช็คคิวร้านค้า</h3>
-                    <div class="queue-list" id="queue-container">
-                        <!-- Queue items -->
-                    </div>
+                    <div class="queue-list" id="queue-container"></div>
                 </div>
 
                 <!-- 5. CREDITS & REVIEWS VIEW (Right 2) -->
@@ -513,9 +525,7 @@
                         <textarea id="review-text" placeholder="เขียนรีวิวความประทับใจ..." rows="2"></textarea>
                         <button class="submit-btn" onclick="submitReview()">ส่งรีวิว</button>
                     </div>
-                    <div class="reviews-scroll" id="reviews-list-container">
-                        <!-- Reviews list -->
-                    </div>
+                    <div class="reviews-scroll" id="reviews-list-container"></div>
                 </div>
 
             </div>
@@ -529,22 +539,32 @@
         </div>
     </div>
 
-    <!-- 5 Categories Navigation Bottom -->
+    <!-- 5 Categories Navigation Bottom (Vector Icons & Style updated)[span_2](start_span)[span_2](end_span) -->
     <div class="nav-categories">
+        <!-- Stamp / Member or Detail equivalent -->
         <button class="cat-btn" id="nav-stamps" onclick="switchTab('stamps')">
-            <span>🎫</span>สะสมแต้ม
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            Member
         </button>
+        <!-- Group -->
         <button class="cat-btn" id="nav-group" onclick="switchTab('group')">
-            <span>👥</span>กลุ่ม
+            <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+            Group
         </button>
+        <!-- Home -->
         <button class="cat-btn active" id="nav-home" onclick="switchTab('home')">
-            <span>🏠</span>หน้าหลัก
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Home
         </button>
+        <!-- Queue -->
         <button class="cat-btn" id="nav-queue" onclick="switchTab('queue')">
-            <span>📋</span>เช็คคิว
+            <svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+            Queue
         </button>
+        <!-- Credits / Detail -->
         <button class="cat-btn" id="nav-credits" onclick="switchTab('credits')">
-            <span>⭐</span>เครดิต
+            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            Detail
         </button>
     </div>
 
@@ -656,7 +676,7 @@
 
         // Queue Data
         let queueData = [
-            { name: "คุณมิน트 - เคสทามา", status: "กำลังทำ" },
+            { name: "คุณมินท์ - เคสทามา", status: "กำลังทำ" },
             { name: "คุณมายด์ - พวงกุญแจ", status: "รอคิว" },
             { name: "คุณพลอย - สติกเกอร์", status: "รอคิว" }
         ];
@@ -774,3 +794,4 @@
     </script>
 </body>
 </html>
+

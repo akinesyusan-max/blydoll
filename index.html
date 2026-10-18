@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tiaseramour - credit & review</title>
     
-    <!-- Open Graph Meta Tags (เพื่อให้เวลาแชร์ลิงก์ใน LINE / Facebook ขึ้นรูปพรีวิวสวยๆ แบบในรูปตัวอย่าง)[span_1](start_span)[span_1](end_span) -->
-    <meta property="og:title" content="tiaseramour">
-    <meta property="og:description" content="ขอบพระคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกบกวนแจ้งเค้าด้วยนะคะ ♡">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600">
+    <!-- Open Graph Meta Tags (อัปเดตแบบไดนามิกผ่าน JavaScript ได้) -->
+    <meta property="og:title" id="og-title-meta" content="tiaseramour">
+    <meta property="og:description" id="og-desc-meta" content="ขอบพระคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกบกวนแจ้งเค้าด้วยนะคะ ♡">
+    <meta property="og:image" id="og-image-meta" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600">
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
 
@@ -229,7 +229,7 @@
             display: flex;
         }
 
-        /* =================== GROUP VIEW (Strict Left Alignment) =================== */
+        /* =================== GROUP VIEW =================== */
         #view-group {
             background: #fff;
             border-radius: 24px;
@@ -809,6 +809,10 @@
                 <input type="file" id="edit-tama-img-file" accept="image/*">
             </div>
             <div class="form-group">
+                <label>อัปโหลดรูปพรีวิวการ์ดแชร์ลิงก์ (Open Graph Image)</label>
+                <input type="file" id="edit-og-img-file" accept="image/*">
+            </div>
+            <div class="form-group">
                 <label>เพิ่มคิวลูกค้าใหม่</label>
                 <div style="display:flex; gap:5px;">
                     <input type="text" id="new-queue-name" placeholder="ชื่อลูกค้า / รายการ...">
@@ -981,6 +985,7 @@
             const title = document.getElementById('edit-shop-title').value;
             if (title) {
                 document.getElementById('shop-title-text').innerText = title;
+                document.getElementById('og-title-meta').setAttribute('content', title);
             }
 
             const themeColor = document.getElementById('edit-theme-color').value;
@@ -993,6 +998,15 @@
                     document.getElementById('tama-img').src = e.target.result;
                 }
                 reader.readAsDataURL(fileInput.files[0]);
+            }
+
+            const ogFileInput = document.getElementById('edit-og-img-file');
+            if (ogFileInput.files && ogFileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('og-image-meta').setAttribute('content', e.target.result);
+                }
+                reader.readAsDataURL(ogFileInput.files[0]);
             }
 
             closeModal('admin-dashboard-modal');

@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tamagotchi Shop</title>
+    <title>tiaseramour - credit & review</title>
+    
+    <!-- Open Graph Meta Tags (เพื่อให้เวลาแชร์ลิงก์ใน LINE / Facebook ขึ้นรูปพรีวิวสวยๆ แบบในรูปตัวอย่าง)[span_1](start_span)[span_1](end_span) -->
+    <meta property="og:title" content="tiaseramour">
+    <meta property="og:description" content="ขอบพระคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกบกวนแจ้งเค้าด้วยนะคะ ♡">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -86,7 +94,7 @@
             fill: var(--text-color);
         }
 
-        /* Tamagotchi Egg Body (Home View Container) */
+        /* Tamagotchi Egg Body */
         .tama-container {
             position: relative;
             width: 320px;
@@ -230,7 +238,7 @@
             max-width: 420px;
             margin: 0 auto;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            align-items: flex-start !important; /* บังคับจัดชิดซ้ายทั้งหมด */
+            align-items: flex-start !important;
         }
 
         .group-header-title {
@@ -522,7 +530,7 @@
             text-align: left;
         }
 
-        /* Floating Bottom Dock (Reference Style Position)[span_1](start_span)[span_1](end_span) */
+        /* Floating Bottom Dock */
         .bottom-dock-wrapper {
             position: fixed;
             bottom: 15px;
@@ -643,7 +651,7 @@
     <!-- 1. HOME VIEW (Center - Tamagotchi Egg) -->
     <div id="view-home" class="view-content active" style="align-items: center;">
         <div class="tama-container" id="tama-case">
-            <div class="shop-title-tag" id="shop-title-text">TAMAGOTCHI SHOP</div>
+            <div class="shop-title-tag" id="shop-title-text">tiaseramour</div>
             <div class="lcd-screen">
                 <div class="screen-inner">
                     <div style="display:flex; flex-direction:column; align-items:center; width:100%; justify-content:center; height:100%;">
@@ -667,7 +675,7 @@
         <div class="stamp-grid" id="stamp-grid-container"></div>
     </div>
 
-    <!-- 3. GROUP VIEW (Strict Left Aligned) -->
+    <!-- 3. GROUP VIEW -->
     <div id="view-group" class="view-content">
         <div class="group-header-title">Group</div>
         <div class="group-search-row">
@@ -785,7 +793,7 @@
             <h2>⚙️ จัดการหลังบ้านแอดมิน</h2>
             <div class="form-group">
                 <label>ชื่อร้านค้า</label>
-                <input type="text" id="edit-shop-title" value="TAMAGOTCHI SHOP">
+                <input type="text" id="edit-shop-title" value="tiaseramour">
             </div>
             <div class="form-group">
                 <label>เปลี่ยนสีธีมตัวเครื่อง (ชมพู / ฟ้า / เหลือง / ม่วง)</label>
@@ -806,6 +814,9 @@
                     <input type="text" id="new-queue-name" placeholder="ชื่อลูกค้า / รายการ...">
                     <button class="submit-btn" onclick="addQueue()">เพิ่ม</button>
                 </div>
+            </div>
+            <div class="form-actions" style="margin-top: 15px;">
+                <button class="submit-btn" style="width:100%; margin-bottom:8px; background:#8c7365;" onclick="copyShareText()">📋 คัดลอกข้อความพร้อมลิงก์แชร์</button>
             </div>
             <div class="modal-actions">
                 <button class="btn-close" onclick="closeModal('admin-dashboard-modal')">ปิด</button>
@@ -986,6 +997,13 @@
 
             closeModal('admin-dashboard-modal');
             alert("บันทึกข้อมูลเรียบร้อยแล้ว!");
+        }
+
+        function copyShareText() {
+            const shareText = `ขอบคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกबกวนแจ้งเค้าด้วยนะคะ ♡\n\n` + window.location.href;
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert("คัดลอกข้อความและลิงก์เรียบร้อยแล้ว! นำไปวางส่งให้ลูกค้าได้เลยค่ะ 💖");
+            });
         }
     </script>
 </body>

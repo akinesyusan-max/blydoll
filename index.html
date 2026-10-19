@@ -6,7 +6,7 @@
     <title>tiaseramour - credit & review</title>
     
     <meta property="og:title" id="og-title-meta" content="tiaseramour">
-    <meta property="og:description" id="og-desc-meta" content="ขอบพระคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกबกวนแจ้งเค้าด้วยนะคะ ♡">
+    <meta property="og:description" id="og-desc-meta" content="ขอบพระคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกบกวนแจ้งเค้าด้วยนะคะ ♡">
     <meta property="og:image" id="og-image-meta" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600">
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
@@ -228,7 +228,7 @@
             display: flex;
         }
 
-        /* =================== STAMPS / MEMBER VIEW (New Design) =================== */
+        /* =================== STAMPS / MEMBER VIEW =================== */
         #view-stamps {
             background: #fff;
             border-radius: 24px;
@@ -401,19 +401,161 @@
         .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
         .group-btn-ex:hover { background: #faf8f6; }
 
-        /* =================== OTHER VIEWS =================== */
-        h3 { font-size: 13px; margin-bottom: 6px; color: #333; text-align: center; }
-        .queue-list { width: 100%; max-height: 130px; overflow-y: auto; margin-top: 5px; }
-        .queue-card { background: #fff; padding: 4px 8px; border-radius: 8px; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        /* =================== QUEUE VIEW (Exact Match to Image 9) =================== */
+        #view-queue {
+            background: #fff6f9;
+            border-radius: 24px;
+            padding: 16px;
+            max-width: 420px;
+            margin: 0 auto;
+            align-items: stretch !important;
+        }
+
+        .queue-top-banner {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 12px;
+            padding: 10px;
+        }
+
+        .queue-banner-img {
+            width: 100%;
+            height: 160px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #f7f3f0;
+        }
+
+        .queue-banner-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .queue-mid-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: stretch;
+        }
+
+        .queue-search-field {
+            flex: 1;
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 24px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .queue-search-field svg { width: 16px; height: 16px; fill: #b0a095; }
+        .queue-search-field input { border: none; background: transparent; outline: none; font-size: 12px; width: 100%; color: #5c3a21; }
+
+        .queue-info-card {
+            flex: 1.2;
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 24px;
+            padding: 12px 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .queue-info-card-title {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #6e554d;
+            margin-bottom: 4px;
+        }
+
+        .queue-info-card-title svg { width: 14px; height: 14px; fill: #6e554d; }
+
+        .queue-info-card-desc {
+            font-size: 10.5px;
+            color: #8c7365;
+            line-height: 1.3;
+        }
+
+        .queue-ticket-card {
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 24px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .queue-ticket-number {
+            font-size: 11px;
+            color: #b0a095;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .queue-ticket-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #6e554d;
+            margin-bottom: 2px;
+        }
+
+        .queue-ticket-name {
+            font-size: 12px;
+            color: #8c7365;
+        }
+
+        .queue-complete-btn {
+            background: #ffffff;
+            border: 1px solid #e0d4d0;
+            border-radius: 20px;
+            padding: 8px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #6e554d;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .queue-complete-btn:hover {
+            background: #faf8f6;
+        }
+
+        /* =================== CREDITS & REVIEWS VIEW =================== */
+        #view-credits {
+            background: #fff;
+            border-radius: 24px;
+            padding: 16px;
+            max-width: 420px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            align-items: stretch !important;
+        }
 
         .review-form { display: flex; flex-direction: column; gap: 4px; width: 100%; margin-top: 4px; }
-        .review-form input, .review-form textarea { padding: 4px 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 11px; width: 100%; }
-        .star-rating { display: flex; gap: 3px; justify-content: center; font-size: 16px; cursor: pointer; margin: 2px 0; }
+        .review-form input, .review-form textarea { padding: 8px 12px; border-radius: 14px; border: 1px solid #e0d4d0; font-size: 12px; width: 100%; outline: none; background: #faf8f6; }
+        .star-rating { display: flex; gap: 3px; justify-content: center; font-size: 18px; cursor: pointer; margin: 4px 0; }
         .star { color: #ddd; transition: color 0.2s; }
         .star.selected { color: #ffcc00; }
-        .submit-btn { background: var(--case-pink); color: #fff; border: none; padding: 4px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 11px; }
-        .reviews-scroll { width: 100%; max-height: 90px; overflow-y: auto; margin-top: 5px; }
-        .review-card { background: #fff; padding: 5px; border-radius: 6px; margin-bottom: 4px; font-size: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); text-align: left; }
+        .submit-btn { background: #ff80b3; color: #fff; border: none; padding: 6px; border-radius: 14px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .reviews-scroll { width: 100%; max-height: 150px; overflow-y: auto; margin-top: 8px; }
+        .review-card { background: #faf8f6; padding: 10px; border-radius: 14px; margin-bottom: 6px; font-size: 11px; border: 1px solid #f0eae6; text-align: left; }
 
         /* Floating Bottom Dock */
         .bottom-dock-wrapper {
@@ -481,30 +623,24 @@
         </div>
     </div>
 
-    <!-- 2. STAMPS / MEMBER VIEW (ค้นหาชื่อเพื่อดูแต้ม และสิทธิพิเศษเมื่อสะสมครบ) -->
-    <div id="view-stamps" class="view-content">
+    <!-- 2. STAMPS / MEMBER VIEW -->
+    <div id="view-stamps" class="view-content" style="background:#fff; border-radius:24px; padding:16px; max-width:420px; margin:0 auto; box-shadow:0 4px 20px rgba(0,0,0,0.03); align-items:stretch !important;">
         <div class="stamp-section-title">✨ บัตรสะสมสแตมป์ร้านค้า</div>
-        
         <div class="reward-info-box">
             🎁 <b>สะสมครบ 10 ดวง รับสิทธิพิเศษ:</b><br>
             <span>รับส่วนลด 50 บาท หรือรับฟรีพวงกุญแจทามา 1 ชิ้น!</span>
         </div>
-
         <div style="font-size:11px; margin-bottom:4px; font-weight:bold;">ค้นหาชื่อลูกค้าเพื่อดูแต้มสะสม:</div>
         <div class="member-search-box">
             <input type="text" id="customer-name-input" placeholder="พิมพ์ชื่อ-นามสกุล หรือชื่อเล่น...">
             <button onclick="searchMemberStamps()">ค้นหา</button>
         </div>
-
-        <!-- ผลลัพธ์การค้นหาบัตรสแตมป์ -->
         <div class="member-card-result" id="member-result-box">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                 <span style="font-weight:bold; font-size:13px; color:#5c3a21;" id="res-name-display">-</span>
                 <span style="font-size:11px; background:#ffe6f0; color:#e6005c; padding:2px 8px; border-radius:10px; font-weight:bold;" id="res-count-display">0/10 ดวง</span>
             </div>
-            <div class="stamp-grid" id="customer-stamp-grid">
-                <!-- ตารางสแตมป์ 10 ช่อง -->
-            </div>
+            <div class="stamp-grid" id="customer-stamp-grid"></div>
             <div style="font-size:10px; color:#8c7365; text-align:center; margin-top:8px;" id="res-status-text">-</div>
         </div>
     </div>
@@ -553,14 +689,45 @@
         </div>
     </div>
 
-    <!-- 4. QUEUE VIEW -->
-    <div id="view-queue" class="view-content" style="padding: 16px; max-width:420px; margin:0 auto; background:#fff; border-radius:24px;">
-        <h3>เช็คคิวร้านค้า</h3>
-        <div class="queue-list" id="queue-container"></div>
+    <!-- 4. QUEUE VIEW (Exact Match to Image 9)[span_1](start_span)[span_1](end_span) -->
+    <div id="view-queue" class="view-content">
+        <!-- Banner ด้านบนสุด -->
+        <div class="queue-top-banner">
+            <div class="queue-banner-img">
+                <img src="https://images.unsplash.com/photo-1499636136210-6f49165337aa?w=600" alt="Banner">
+            </div>
+        </div>
+
+        <!-- แถวกลาง: ช่องค้นหา + รายละเอียดร้านค้า -->
+        <div class="queue-mid-row">
+            <div class="queue-search-field">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" placeholder="ค้นหาคิวงาน...">
+            </div>
+            <div class="queue-info-card">
+                <div class="queue-info-card-title">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    รายละเอียดร้านค้า
+                </div>
+                <div class="queue-info-card-desc">
+                    ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨
+                </div>
+            </div>
+        </div>
+
+        <!-- การ์ดรายการคิว[span_2](start_span)[span_2](end_span) -->
+        <div class="queue-ticket-card">
+            <div>
+                <div class="queue-ticket-number">คิว 01</div>
+                <div class="queue-ticket-title">เริด</div>
+                <div class="queue-ticket-name">เค</div>
+            </div>
+            <button class="queue-complete-btn" onclick="alert('สถานะ: เสร็จแล้ว')">เสร็จแล้ว</button>
+        </div>
     </div>
 
     <!-- 5. CREDITS & REVIEWS VIEW (Detail) -->
-    <div id="view-credits" class="view-content" style="padding: 16px; max-width:420px; margin:0 auto; background:#fff; border-radius:24px;">
+    <div id="view-credits" class="view-content">
         <h3>รีวิว & เครดิตลูกค้า</h3>
         <div class="review-form">
             <input type="text" id="review-name" placeholder="ชื่อของคุณ...">
@@ -646,13 +813,6 @@
                 <label>อัปโหลดรูปพรีวิวการ์ดแชร์ลิงก์ (Open Graph Image)</label>
                 <input type="file" id="edit-og-img-file" accept="image/*">
             </div>
-            <div class="form-group">
-                <label>เพิ่มคิวลูกค้าใหม่</label>
-                <div style="display:flex; gap:5px;">
-                    <input type="text" id="new-queue-name" placeholder="ชื่อลูกค้า / รายการ...">
-                    <button class="submit-btn" onclick="addQueue()">เพิ่ม</button>
-                </div>
-            </div>
             <div class="form-actions" style="margin-top: 15px;">
                 <button class="submit-btn" style="width:100%; margin-bottom:8px; background:#8c7365;" onclick="copyShareText()">📋 คัดลอกข้อความพร้อมลิงก์แชร์</button>
             </div>
@@ -698,7 +858,7 @@
             document.getElementById('tama-status-msg').innerText = messages[tamaHappyLevel];
         }
 
-        // Member Stamp Database (จำลองรายชื่อลูกค้าและแต้มสะสม)
+        // Member Stamp Database
         const memberDatabase = [
             { name: "คุณมินท์", stamps: 7 },
             { name: "คุณมายด์", stamps: 10 },
@@ -719,7 +879,6 @@
                 return;
             }
 
-            // ค้นหารายชื่อจากฐานข้อมูล (รองรับการพิมพ์บางส่วน)
             let found = memberDatabase.find(m => m.name.toLowerCase().includes(query.toLowerCase()));
             
             resultBox.classList.add('show');
@@ -737,42 +896,11 @@
                 statusText.innerHTML = `💪 ขาดอีก <b>${10 - currentStamps} ดวง</b> จะได้รับส่วนลด/ของรางวัลสุดพิเศษ!`;
             }
 
-            // สร้างตารางสแตมป์ 10 ช่อง
             for (let i = 1; i <= 10; i++) {
                 const item = document.createElement('div');
                 item.className = `stamp-item ${i <= currentStamps ? 'filled' : ''}`;
                 item.innerHTML = i <= currentStamps ? '🐾' : i;
                 gridContainer.appendChild(item);
-            }
-        }
-
-        // Queue Data
-        let queueData = [
-            { name: "คุณมินท์ - เคสทามา", status: "กำลังทำ" },
-            { name: "คุณมายด์ - พวงกุญแจ", status: "รอคิว" },
-            { name: "คุณพลอย - สติกเกอร์", status: "รอคิว" }
-        ];
-        function renderQueue() {
-            const container = document.getElementById('queue-container');
-            container.innerHTML = '';
-            queueData.forEach((q, idx) => {
-                container.innerHTML += `
-                    <div class="queue-card">
-                        <span>#${idx+1} ${q.name}</span>
-                        <span style="color:${q.status==='กำลังทำ'?'#e6005c':'#666'}"><b>${q.status}</b></span>
-                    </div>
-                `;
-            });
-        }
-        renderQueue();
-
-        function addQueue() {
-            const val = document.getElementById('new-queue-name').value;
-            if (val) {
-                queueData.push({ name: val, status: "รอคิว" });
-                document.getElementById('new-queue-name').value = '';
-                renderQueue();
-                alert("เพิ่มคิวสำเร็จ!");
             }
         }
 

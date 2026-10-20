@@ -401,7 +401,7 @@
         .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
         .group-btn-ex:hover { background: #faf8f6; }
 
-        /* =================== QUEUE VIEW (Exact Match to Image 11)[span_1](start_span)[span_1](end_span) =================== */
+        /* =================== QUEUE VIEW (Exact Match to Image 12)[span_1](start_span)[span_1](end_span) =================== */
         #view-queue {
             background: #ffffff;
             border-radius: 24px;
@@ -444,23 +444,28 @@
             align-items: stretch;
         }
 
+        .queue-search-col {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .queue-search-field {
-            flex: 1;
             background: #ffffff;
             border: 1px solid #f0eae6;
             border-radius: 24px;
-            padding: 12px 16px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             gap: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        .queue-search-field svg { width: 16px; height: 16px; fill: #b0a095; }
-        .queue-search-field input { border: none; background: transparent; outline: none; font-size: 12px; width: 100%; color: #5c3a21; }
+        .queue-search-field svg { width: 16px; height: 16px; fill: #b0a095; flex-shrink: 0; }
+        .queue-search-field input { border: none; background: transparent; outline: none; font-size: 11.5px; width: 100%; color: #5c3a21; }
 
         .queue-info-card {
-            flex: 1.2;
             background: #ffffff;
             border: 1px solid #f0eae6;
             border-radius: 24px;
@@ -475,18 +480,43 @@
             display: flex;
             align-items: center;
             gap: 4px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
             color: #6e554d;
             margin-bottom: 4px;
         }
 
-        .queue-info-card-title svg { width: 14px; height: 14px; fill: #6e554d; }
+        .queue-info-card-title svg { width: 14px; height: 14px; fill: #6e554d; flex-shrink: 0; }
 
         .queue-info-card-desc {
-            font-size: 10.5px;
+            font-size: 10px;
             color: #8c7365;
-            line-height: 1.3;
+            line-height: 1.35;
+        }
+
+        .queue-right-circle-img {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid #f0eae6;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            flex-shrink: 0;
+            background: #faf8f6;
+            align-self: center;
+        }
+
+        .queue-right-circle-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .queue-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #dcd0cc;
+            margin: 12px 0 16px 0;
         }
 
         .queue-ticket-card {
@@ -498,7 +528,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
         }
 
         .queue-ticket-number {
@@ -690,7 +719,7 @@
         </div>
     </div>
 
-    <!-- 4. QUEUE VIEW (Exact Match to Image 11)[span_2](start_span)[span_2](end_span) -->
+    <!-- 4. QUEUE VIEW (Exact Match to Image 12)[span_2](start_span)[span_2](end_span) -->
     <div id="view-queue" class="view-content">
         <!-- Banner ด้านบนสุด -->
         <div class="queue-top-banner">
@@ -699,22 +728,30 @@
             </div>
         </div>
 
-        <!-- แถวกลาง: ช่องค้นหา + รายละเอียดร้านค้า -->
+        <!-- แถวกลาง: ช่องค้นหา + รายละเอียดร้านค้า (ซ้าย) และรูปวงกลม (ขวา) -->
         <div class="queue-mid-row">
-            <div class="queue-search-field">
-                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <input type="text" placeholder="ค้นหาคิวงาน...">
+            <div class="queue-search-col">
+                <div class="queue-search-field">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                    <input type="text" placeholder="ค้นหาคิวงาน...">
+                </div>
+                <div class="queue-info-card">
+                    <div class="queue-info-card-title">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        รายละเอียดร้านค้า
+                    </div>
+                    <div class="queue-info-card-desc">
+                        ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨
+                    </div>
+                </div>
             </div>
-            <div class="queue-info-card">
-                <div class="queue-info-card-title">
-                    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    รายละเอียดร้านค้า
-                </div>
-                <div class="queue-info-card-desc">
-                    ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨
-                </div>
+            <div class="queue-right-circle-img">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Circle Preview">
             </div>
         </div>
+
+        <!-- เส้นคั่นกลาง -->
+        <div class="queue-divider"></div>
 
         <!-- การ์ดรายการคิว[span_3](start_span)[span_3](end_span) -->
         <div class="queue-ticket-card">

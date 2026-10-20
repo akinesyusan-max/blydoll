@@ -401,7 +401,7 @@
         .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
         .group-btn-ex:hover { background: #faf8f6; }
 
-        /* =================== QUEUE VIEW (Exact Match to Image 12)[span_1](start_span)[span_1](end_span) =================== */
+        /* =================== QUEUE VIEW (Rounded Rectangle Right Image) =================== */
         #view-queue {
             background: #ffffff;
             border-radius: 24px;
@@ -494,10 +494,11 @@
             line-height: 1.35;
         }
 
-        .queue-right-circle-img {
+        /* ปรับรูปด้านขวาให้เป็นสี่เหลี่ยมขอบมน (Rounded Rectangle)[span_1](start_span)[span_1](end_span) */
+        .queue-right-rect-img {
             width: 125px;
             height: 125px;
-            border-radius: 50%;
+            border-radius: 24px;
             overflow: hidden;
             border: 1px solid #f0eae6;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
@@ -506,7 +507,7 @@
             align-self: center;
         }
 
-        .queue-right-circle-img img {
+        .queue-right-rect-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -719,7 +720,7 @@
         </div>
     </div>
 
-    <!-- 4. QUEUE VIEW (Exact Match to Image 12)[span_2](start_span)[span_2](end_span) -->
+    <!-- 4. QUEUE VIEW (Rounded Rectangle Right Image) -->
     <div id="view-queue" class="view-content">
         <!-- Banner ด้านบนสุด -->
         <div class="queue-top-banner">
@@ -728,7 +729,7 @@
             </div>
         </div>
 
-        <!-- แถวกลาง: ช่องค้นหา + รายละเอียดร้านค้า (ซ้าย) และรูปวงกลม (ขวา) -->
+        <!-- แถวกลาง: ช่องค้นหา + รายละเอียดร้านค้า (ซ้าย) และรูปสี่เหลี่ยมขอบมน (ขวา) -->
         <div class="queue-mid-row">
             <div class="queue-search-col">
                 <div class="queue-search-field">
@@ -745,15 +746,15 @@
                     </div>
                 </div>
             </div>
-            <div class="queue-right-circle-img">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Circle Preview">
+            <div class="queue-right-rect-img">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Rounded Rect Preview">
             </div>
         </div>
 
         <!-- เส้นคั่นกลาง -->
         <div class="queue-divider"></div>
 
-        <!-- การ์ดรายการคิว[span_3](start_span)[span_3](end_span) -->
+        <!-- การ์ดรายการคิว -->
         <div class="queue-ticket-card">
             <div>
                 <div class="queue-ticket-number">คิว 01</div>

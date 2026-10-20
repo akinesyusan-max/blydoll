@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tiaseramour - credit & review</title>
+    <title>tiaseramour - queue & admin</title>
     
     <meta property="og:title" id="og-title-meta" content="tiaseramour">
     <meta property="og:description" id="og-desc-meta" content="ขอบพระคุณที่อุดหนุนค่ะ ♡ เค้าฝากพลัสวันใต้โพสต์นี้ ☁️♡ ʕ•ﻌ•ʔ ♡ ₊˚ʚ ꒰ ไม่สะดวกกबกวนแจ้งเค้าด้วยนะคะ ♡">
@@ -401,7 +401,7 @@
         .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
         .group-btn-ex:hover { background: #faf8f6; }
 
-        /* =================== QUEUE VIEW (Rounded Rectangle Right Image) =================== */
+        /* =================== QUEUE VIEW (Dynamic & Interactive) =================== */
         #view-queue {
             background: #ffffff;
             border-radius: 24px;
@@ -494,7 +494,6 @@
             line-height: 1.35;
         }
 
-        /* ปรับรูปด้านขวาให้เป็นสี่เหลี่ยมขอบมน (Rounded Rectangle)[span_1](start_span)[span_1](end_span) */
         .queue-right-rect-img {
             width: 125px;
             height: 125px;
@@ -529,6 +528,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 10px;
         }
 
         .queue-ticket-number {
@@ -550,12 +550,31 @@
             color: #8c7365;
         }
 
+        .queue-status-badge {
+            display: inline-block;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+        .status-waiting { background: #fff3cd; color: #856404; }
+        .status-doing { background: #cce5ff; color: #004085; }
+        .status-done { background: #d4edda; color: #155724; }
+
+        .queue-action-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
         .queue-complete-btn {
             background: #ffffff;
             border: 1px solid #e0d4d0;
             border-radius: 20px;
-            padding: 8px 18px;
-            font-size: 12px;
+            padding: 6px 14px;
+            font-size: 11px;
             font-weight: 700;
             color: #6e554d;
             cursor: pointer;
@@ -563,10 +582,7 @@
             transition: all 0.2s;
             white-space: nowrap;
         }
-
-        .queue-complete-btn:hover {
-            background: #faf8f6;
-        }
+        .queue-complete-btn:hover { background: #faf8f6; }
 
         /* =================== CREDITS & REVIEWS VIEW =================== */
         #view-credits {
@@ -607,15 +623,28 @@
 
         /* Admin Modals */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
-        .modal-box { background: #fff; width: 100%; max-width: 380px; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
-        .modal-box h2 { font-size: 16px; margin-bottom: 12px; text-align: center; color: var(--case-shadow); }
+        .modal-box { background: #fff; width: 100%; max-width: 400px; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
+        .modal-box h2 { font-size: 15px; margin-bottom: 12px; text-align: center; color: var(--case-shadow); }
+        .admin-section-divider { border-top: 1px dashed #ddd; margin: 12px 0; padding-top: 8px; font-weight: bold; font-size: 12px; color: #6e554d; }
         .form-group { margin-bottom: 10px; }
-        .form-group label { font-size: 12px; font-weight: bold; display: block; margin-bottom: 3px; }
-        .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; }
+        .form-group label { font-size: 11.5px; font-weight: bold; display: block; margin-bottom: 3px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px; font-size: 11.5px; outline: none; }
         .modal-actions { display: flex; gap: 10px; margin-top: 15px; }
-        .modal-actions button { flex: 1; padding: 8px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .modal-actions button { flex: 1; padding: 8px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; }
         .btn-save { background: #ff80b3; color: #fff; }
         .btn-close { background: #ddd; color: #333; }
+        
+        .admin-queue-row {
+            background: #faf8f6;
+            padding: 8px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            border: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
@@ -720,12 +749,12 @@
         </div>
     </div>
 
-    <!-- 4. QUEUE VIEW (Rounded Rectangle Right Image) -->
+    <!-- 4. QUEUE VIEW (Dynamic Rendered) -->
     <div id="view-queue" class="view-content">
         <!-- Banner ด้านบนสุด -->
         <div class="queue-top-banner">
             <div class="queue-banner-img">
-                <img src="https://images.unsplash.com/photo-1499636136210-6f49165337aa?w=600" alt="Banner">
+                <img id="display-banner-img" src="https://images.unsplash.com/photo-1499636136210-6f49165337aa?w=600" alt="Banner">
             </div>
         </div>
 
@@ -734,35 +763,28 @@
             <div class="queue-search-col">
                 <div class="queue-search-field">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                    <input type="text" placeholder="ค้นหาคิวงาน...">
+                    <input type="text" id="queue-search-input" placeholder="ค้นหาคิวงาน..." oninput="renderQueueList()">
                 </div>
                 <div class="queue-info-card">
                     <div class="queue-info-card-title">
                         <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                         รายละเอียดร้านค้า
                     </div>
-                    <div class="queue-info-card-desc">
+                    <div class="queue-info-card-desc" id="display-shop-desc">
                         ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨
                     </div>
                 </div>
             </div>
             <div class="queue-right-rect-img">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Rounded Rect Preview">
+                <img id="display-rect-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Rect Preview">
             </div>
         </div>
 
         <!-- เส้นคั่นกลาง -->
         <div class="queue-divider"></div>
 
-        <!-- การ์ดรายการคิว -->
-        <div class="queue-ticket-card">
-            <div>
-                <div class="queue-ticket-number">คิว 01</div>
-                <div class="queue-ticket-title">เริด</div>
-                <div class="queue-ticket-name">เค</div>
-            </div>
-            <button class="queue-complete-btn" onclick="alert('สถานะ: เสร็จแล้ว')">เสร็จแล้ว</button>
-        </div>
+        <!-- รายการคิวทั้งหมด (เรนเดอร์แบบไดนามิก) -->
+        <div id="queue-cards-container" style="width:100%;"></div>
     </div>
 
     <!-- 5. CREDITS & REVIEWS VIEW (Detail) -->
@@ -827,16 +849,17 @@
         </div>
     </div>
 
-    <!-- Admin Dashboard Modal -->
+    <!-- Admin Dashboard Modal (Expanded with Queue Management) -->
     <div class="modal-overlay" id="admin-dashboard-modal">
         <div class="modal-box">
             <h2>⚙️ จัดการหลังบ้านแอดมิน</h2>
+            
             <div class="form-group">
                 <label>ชื่อร้านค้า</label>
                 <input type="text" id="edit-shop-title" value="tiaseramour">
             </div>
             <div class="form-group">
-                <label>เปลี่ยนสีธีมตัวเครื่อง (ชมพู / ฟ้า / เหลือง / ม่วง)</label>
+                <label>เปลี่ยนสีธีมตัวเครื่อง</label>
                 <select id="edit-theme-color">
                     <option value="#ffb3d1">ชมพูพาสเทล</option>
                     <option value="#b3e0ff">ฟ้าสกาย</option>
@@ -845,15 +868,42 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>อัปโหลดรูปตัวละครทามา (จากมือถือ)</label>
+                <label>อัปโหลดรูปตัวละครทามา</label>
                 <input type="file" id="edit-tama-img-file" accept="image/*">
             </div>
             <div class="form-group">
-                <label>อัปโหลดรูปพรีวิวการ์ดแชร์ลิงก์ (Open Graph Image)</label>
+                <label>อัปโหลดรูปพรีวิวการ์ดแชร์ลิงก์ (Open Graph)</label>
                 <input type="file" id="edit-og-img-file" accept="image/*">
             </div>
+
+            <!-- หมวดจัดการหน้าคิว -->
+            <div class="admin-section-divider">📌 จัดการหน้าเช็คคิว</div>
+            <div class="form-group">
+                <label>อัปโหลดรูปแบนเนอร์ด้านบน</label>
+                <input type="file" id="edit-banner-file" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>แก้ไขข้อความรายละเอียดร้านค้า</label>
+                <textarea id="edit-shop-desc" rows="2">ยินดีต้อนรับสู่ร้านค้าออนไลน์ของเรา เลือกชมสินค้าและบริการได้เลยค่ะ ✨</textarea>
+            </div>
+            <div class="form-group">
+                <label>อัปโหลดรูปสี่เหลี่ยมขอบมน (ด้านขวา)</label>
+                <input type="file" id="edit-rect-file" accept="image/*">
+            </div>
+
+            <div class="admin-section-divider">📋 รายการคิว (เพิ่ม / ลบ / เปลี่ยนสถานะ)</div>
+            <div class="form-group">
+                <div style="display:flex; gap:5px; margin-bottom:8px;">
+                    <input type="text" id="new-q-num" placeholder="คิวที่ (เช่น คิว 01)" style="width:30%;">
+                    <input type="text" id="new-q-title" placeholder="ชื่องาน..." style="width:40%;">
+                    <input type="text" id="new-q-name" placeholder="ชื่อลูกค้า..." style="width:30%;">
+                </div>
+                <button class="submit-btn" style="width:100%; background:#8c7365;" onclick="adminAddQueue()">➕ เพิ่มคิวใหม่</button>
+            </div>
+            <div id="admin-queue-list-manager" style="max-height:120px; overflow-y:auto; margin-bottom:10px;"></div>
+
             <div class="form-actions" style="margin-top: 15px;">
-                <button class="submit-btn" style="width:100%; margin-bottom:8px; background:#8c7365;" onclick="copyShareText()">📋 คัดลอกข้อความพร้อมลิงก์แชร์</button>
+                <button class="submit-btn" style="width:100%; margin-bottom:8px; background:#6e554d;" onclick="copyShareText()">📋 คัดลอกข้อความพร้อมลิงก์แชร์</button>
             </div>
             <div class="modal-actions">
                 <button class="btn-close" onclick="closeModal('admin-dashboard-modal')">ปิด</button>
@@ -919,7 +969,6 @@
             }
 
             let found = memberDatabase.find(m => m.name.toLowerCase().includes(query.toLowerCase()));
-            
             resultBox.classList.add('show');
             gridContainer.innerHTML = '';
 
@@ -941,6 +990,98 @@
                 item.innerHTML = i <= currentStamps ? '🐾' : i;
                 gridContainer.appendChild(item);
             }
+        }
+
+        // Queue Data System (สถานะ: รอคิว, กำลังทำ, เสร็จแล้ว)
+        let queueData = [
+            { id: 1, number: "คิว 01", title: "เริด", name: "เค", status: "กำลังทำ" },
+            { id: 2, number: "คิว 02", title: "เคสทามา", name: "มายด์", status: "รอคิว" }
+        ];
+
+        function renderQueueList() {
+            const container = document.getElementById('queue-cards-container');
+            const searchQuery = document.getElementById('queue-search-input').value.toLowerCase();
+            container.innerHTML = '';
+
+            let filtered = queueData.filter(q => 
+                q.number.toLowerCase().includes(searchQuery) || 
+                q.title.toLowerCase().includes(searchQuery) || 
+                q.name.toLowerCase().includes(searchQuery)
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; color:#9c8a82; padding:15px; font-size:11px;">ไม่พบรายการคิวงาน</div>`;
+                return;
+            }
+
+            filtered.forEach(q => {
+                let badgeClass = 'status-waiting';
+                if (q.status === 'กำลังทำ') badgeClass = 'status-doing';
+                if (q.status === 'เสร็จแล้ว') badgeClass = 'status-done';
+
+                container.innerHTML += `
+                    <div class="queue-ticket-card">
+                        <div>
+                            <div class="queue-ticket-number">${q.number}</div>
+                            <div class="queue-ticket-title">${q.title}</div>
+                            <div class="queue-ticket-name">${q.name}</div>
+                            <span class="queue-status-badge ${badgeClass}">${q.status}</span>
+                        </div>
+                        <div class="queue-action-group">
+                            <button class="queue-complete-btn" onclick="cycleQueueStatus(${q.id})">เปลี่ยนสถานะ</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        renderQueueList();
+
+        function cycleQueueStatus(id) {
+            let item = queueData.find(q => q.id === id);
+            if (item) {
+                if (item.status === 'รอคิว') item.status = 'กำลังทำ';
+                else if (item.status === 'กำลังทำ') item.status = 'เสร็จแล้ว';
+                else item.status = 'รอคิว';
+                renderQueueList();
+                renderAdminQueueManager();
+            }
+        }
+
+        function adminAddQueue() {
+            let num = document.getElementById('new-q-num').value.trim();
+            let title = document.getElementById('new-q-title').value.trim();
+            let name = document.getElementById('new-q-name').value.trim();
+
+            if (num && title && name) {
+                queueData.push({ id: Date.now(), number: num, title: title, name: name, status: "รอคิว" });
+                document.getElementById('new-q-num').value = '';
+                document.getElementById('new-q-title').value = '';
+                document.getElementById('new-q-name').value = '';
+                renderQueueList();
+                renderAdminQueueManager();
+                alert("เพิ่มคิวสำเร็จ!");
+            } else {
+                alert("กรุณากรอกข้อมูลคิวให้ครบถ้วน");
+            }
+        }
+
+        function adminDeleteQueue(id) {
+            queueData = queueData.filter(q => q.id !== id);
+            renderQueueList();
+            renderAdminQueueManager();
+        }
+
+        function renderAdminQueueManager() {
+            let managerContainer = document.getElementById('admin-queue-list-manager');
+            managerContainer.innerHTML = '';
+            queueData.forEach(q => {
+                managerContainer.innerHTML += `
+                    <div class="admin-queue-row">
+                        <span><b>${q.number}</b> - ${q.title} (${q.name}) [${q.status}]</span>
+                        <button onclick="adminDeleteQueue(${q.id})" style="background:#ff4d4d; color:#fff; border:none; padding:2px 6px; border-radius:6px; cursor:pointer; font-size:10px;">ลบ</button>
+                    </div>
+                `;
+            });
         }
 
         // Reviews & Ratings
@@ -1003,6 +1144,7 @@
             if (pass === "1234") {
                 closeModal('admin-login-modal');
                 document.getElementById('admin-pass-input').value = '';
+                renderAdminQueueManager();
                 document.getElementById('admin-dashboard-modal').style.display = 'flex';
             } else {
                 alert("รหัสผ่านไม่ถูกต้อง! (รหัสเริ่มต้น: 1234)");
@@ -1019,22 +1161,41 @@
             const themeColor = document.getElementById('edit-theme-color').value;
             document.documentElement.style.setProperty('--case-pink', themeColor);
 
+            const shopDesc = document.getElementById('edit-shop-desc').value;
+            if (shopDesc) {
+                document.getElementById('display-shop-desc').innerText = shopDesc;
+            }
+
+            // Upload Tamagotchi Img
             const fileInput = document.getElementById('edit-tama-img-file');
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('tama-img').src = e.target.result;
-                }
+                reader.onload = function(e) { document.getElementById('tama-img').src = e.target.result; }
                 reader.readAsDataURL(fileInput.files[0]);
             }
 
+            // Upload OG Preview Img
             const ogFileInput = document.getElementById('edit-og-img-file');
             if (ogFileInput.files && ogFileInput.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('og-image-meta').setAttribute('content', e.target.result);
-                }
+                reader.onload = function(e) { document.getElementById('og-image-meta').setAttribute('content', e.target.result); }
                 reader.readAsDataURL(ogFileInput.files[0]);
+            }
+
+            // Upload Banner Img
+            const bannerFile = document.getElementById('edit-banner-file');
+            if (bannerFile.files && bannerFile.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { document.getElementById('display-banner-img').src = e.target.result; }
+                reader.readAsDataURL(bannerFile.files[0]);
+            }
+
+            // Upload Rect Right Img
+            const rectFile = document.getElementById('edit-rect-file');
+            if (rectFile.files && rectFile.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { document.getElementById('display-rect-img').src = e.target.result; }
+                reader.readAsDataURL(rectFile.files[0]);
             }
 
             closeModal('admin-dashboard-modal');

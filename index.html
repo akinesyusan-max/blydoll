@@ -401,7 +401,7 @@
         .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
         .group-btn-ex:hover { background: #faf8f6; }
 
-        /* =================== QUEUE VIEW (Exact Match to Image 14)[span_1](start_span)[span_1](end_span) =================== */
+        /* =================== QUEUE VIEW (Exact Match to Image 15)[span_1](start_span)[span_1](end_span) =================== */
         #view-queue {
             background: #ffffff;
             border-radius: 24px;
@@ -548,28 +548,15 @@
         .queue-ticket-name {
             font-size: 12px;
             color: #8c7365;
-            margin-bottom: 4px;
         }
 
-        /* ป้ายสถานะใต้ชื่อลูกค้า ตรงตามภาพ Image 14 */
-        .queue-status-badge {
-            display: inline-block;
-            font-size: 10.5px;
-            padding: 2px 10px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-        .status-waiting { background: #fff3cd; color: #856404; }
-        .status-doing { background: #e6f0ff; color: #0056b3; }
-        .status-done { background: #e6ffe6; color: #008000; }
-
-        /* ปุ่ม "เปลี่ยนสถานะ" ด้านขวาของการ์ด */
-        .queue-change-status-btn {
+        /* ปุ่มสถานะขอบมนทางขวา ตรงตามภาพ Image 15 */
+        .queue-status-btn {
             background: #ffffff;
             border: 1px solid #e0d4d0;
             border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 11.5px;
+            padding: 8px 18px;
+            font-size: 12px;
             font-weight: 700;
             color: #6e554d;
             cursor: pointer;
@@ -577,7 +564,7 @@
             transition: all 0.2s;
             white-space: nowrap;
         }
-        .queue-change-status-btn:hover {
+        .queue-status-btn:hover {
             background: #faf8f6;
         }
 
@@ -746,7 +733,7 @@
         </div>
     </div>
 
-    <!-- 4. QUEUE VIEW (Dynamic Rendered matching Image 14)[span_2](start_span)[span_2](end_span) -->
+    <!-- 4. QUEUE VIEW (Exact Match to Image 15)[span_2](start_span)[span_2](end_span) -->
     <div id="view-queue" class="view-content">
         <!-- Banner ด้านบนสุด -->
         <div class="queue-top-banner">
@@ -780,7 +767,7 @@
         <!-- เส้นคั่นกลาง -->
         <div class="queue-divider"></div>
 
-        <!-- รายการคิวทั้งหมด[span_3](start_span)[span_3](end_span) -->
+        <!-- รายการคิวทั้งหมด (สถานะแสดงบนปุ่มขวาตาม Image 15)[span_3](start_span)[span_3](end_span) -->
         <div id="queue-cards-container" style="width:100%;"></div>
     </div>
 
@@ -888,12 +875,19 @@
                 <input type="file" id="edit-rect-file" accept="image/*">
             </div>
 
-            <div class="admin-section-divider">📋 รายการคิว (เพิ่ม / ลบ / เปลี่ยนสถานะ)</div>
+            <div class="admin-section-divider">📋 รายการคิว (เพิ่ม / ลบ / ตั้งสถานะ)</div>
             <div class="form-group">
                 <div style="display:flex; gap:5px; margin-bottom:8px;">
-                    <input type="text" id="new-q-num" placeholder="คิวที่ (เช่น คิว 01)" style="width:30%;">
-                    <input type="text" id="new-q-title" placeholder="ชื่องาน..." style="width:40%;">
-                    <input type="text" id="new-q-name" placeholder="ชื่อลูกค้า..." style="width:30%;">
+                    <input type="text" id="new-q-num" placeholder="คิวที่" style="width:25%;">
+                    <input type="text" id="new-q-title" placeholder="ชื่องาน" style="width:35%;">
+                    <input type="text" id="new-q-name" placeholder="ชื่อลูกค้า" style="width:40%;">
+                </div>
+                <div style="display:flex; gap:5px; margin-bottom:8px;">
+                    <select id="new-q-status" style="width:100%;">
+                        <option value="เสร็จแล้ว">สถานะ: เสร็จแล้ว</option>
+                        <option value="กำลังทำ">สถานะ: กำลังทำ</option>
+                        <option value="รอคิว">สถานะ: รอคิว</option>
+                    </select>
                 </div>
                 <button class="submit-btn" style="width:100%; background:#8c7365;" onclick="adminAddQueue()">➕ เพิ่มคิวใหม่</button>
             </div>
@@ -989,10 +983,10 @@
             }
         }
 
-        // Queue Data System (สถานะ: รอคิว, กำลังทำ, เสร็จแล้ว)
+        // Queue Data System
         let queueData = [
-            { id: 1, number: "คิว 01", title: "เริด", name: "เค", status: "กำลังทำ" },
-            { id: 2, number: "คิว 02", title: "เคสทามา", name: "มายด์", status: "รอคิว" }
+            { id: 1, number: "คิว 01", title: "เริด", name: "เค", status: "เสร็จแล้ว" },
+            { id: 2, number: "คิว 02", title: "เคสทามา", name: "มายด์", status: "กำลังทำ" }
         ];
 
         function renderQueueList() {
@@ -1012,19 +1006,14 @@
             }
 
             filtered.forEach(q => {
-                let badgeClass = 'status-waiting';
-                if (q.status === 'กำลังทำ') badgeClass = 'status-doing';
-                if (q.status === 'เสร็จแล้ว') badgeClass = 'status-done';
-
                 container.innerHTML += `
                     <div class="queue-ticket-card">
                         <div>
                             <div class="queue-ticket-number">${q.number}</div>
                             <div class="queue-ticket-title">${q.title}</div>
                             <div class="queue-ticket-name">${q.name}</div>
-                            <div><span class="queue-status-badge ${badgeClass}">${q.status}</span></div>
                         </div>
-                        <button class="queue-change-status-btn" onclick="cycleQueueStatus(${q.id})">เปลี่ยนสถานะ</button>
+                        <button class="queue-status-btn" onclick="cycleQueueStatus(${q.id})">${q.status}</button>
                     </div>
                 `;
             });
@@ -1034,9 +1023,9 @@
         function cycleQueueStatus(id) {
             let item = queueData.find(q => q.id === id);
             if (item) {
-                if (item.status === 'รอคิว') item.status = 'กำลังทำ';
-                else if (item.status === 'กำลังทำ') item.status = 'เสร็จแล้ว';
-                else item.status = 'รอคิว';
+                if (item.status === 'เสร็จแล้ว') item.status = 'กำลังทำ';
+                else if (item.status === 'กำลังทำ') item.status = 'รอคิว';
+                else item.status = 'เสร็จแล้ว';
                 renderQueueList();
                 renderAdminQueueManager();
             }
@@ -1046,9 +1035,10 @@
             let num = document.getElementById('new-q-num').value.trim();
             let title = document.getElementById('new-q-title').value.trim();
             let name = document.getElementById('new-q-name').value.trim();
+            let status = document.getElementById('new-q-status').value;
 
             if (num && title && name) {
-                queueData.push({ id: Date.now(), number: num, title: title, name: name, status: "รอคิว" });
+                queueData.push({ id: Date.now(), number: num, title: title, name: name, status: status });
                 document.getElementById('new-q-num').value = '';
                 document.getElementById('new-q-title').value = '';
                 document.getElementById('new-q-name').value = '';
@@ -1072,7 +1062,7 @@
             queueData.forEach(q => {
                 managerContainer.innerHTML += `
                     <div class="admin-queue-row">
-                        <span><b>${q.number}</b> - ${q.title} (${q.name}) [${q.status}]</span>
+                        <span><b>${q.number}</b> - ${q.title} (${q.name}) [<b>${q.status}</b>]</span>
                         <button onclick="adminDeleteQueue(${q.id})" style="background:#ff4d4d; color:#fff; border:none; padding:2px 6px; border-radius:6px; cursor:pointer; font-size:10px;">ลบ</button>
                     </div>
                 `;

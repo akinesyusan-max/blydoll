@@ -401,7 +401,7 @@
         .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
         .group-btn-ex:hover { background: #faf8f6; }
 
-        /* =================== QUEUE VIEW (Exact Match to Image 15)[span_1](start_span)[span_1](end_span) =================== */
+        /* =================== QUEUE VIEW (Exact Match to Image 15 - Read Only for Customers)[span_1](start_span)[span_1](end_span) =================== */
         #view-queue {
             background: #ffffff;
             border-radius: 24px;
@@ -550,8 +550,8 @@
             color: #8c7365;
         }
 
-        /* ปุ่มสถานะขอบมนทางขวา ตรงตามภาพ Image 15 */
-        .queue-status-btn {
+        /* ป้ายแสดงสถานะสำหรับลูกค้า (Read-Only) ตรงตำแหน่งปุ่มเดิม */
+        .queue-status-display {
             background: #ffffff;
             border: 1px solid #e0d4d0;
             border-radius: 20px;
@@ -559,13 +559,9 @@
             font-size: 12px;
             font-weight: 700;
             color: #6e554d;
-            cursor: pointer;
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-            transition: all 0.2s;
             white-space: nowrap;
-        }
-        .queue-status-btn:hover {
-            background: #faf8f6;
+            cursor: default;
         }
 
         /* =================== CREDITS & REVIEWS VIEW =================== */
@@ -628,6 +624,7 @@
             align-items: center;
             font-size: 11px;
             border: 1px solid #eee;
+            gap: 5px;
         }
     </style>
 </head>
@@ -733,7 +730,7 @@
         </div>
     </div>
 
-    <!-- 4. QUEUE VIEW (Exact Match to Image 15)[span_2](start_span)[span_2](end_span) -->
+    <!-- 4. QUEUE VIEW (Customer View - Read-Only Status)[span_2](start_span)[span_2](end_span) -->
     <div id="view-queue" class="view-content">
         <!-- Banner ด้านบนสุด -->
         <div class="queue-top-banner">
@@ -767,7 +764,7 @@
         <!-- เส้นคั่นกลาง -->
         <div class="queue-divider"></div>
 
-        <!-- รายการคิวทั้งหมด (สถานะแสดงบนปุ่มขวาตาม Image 15)[span_3](start_span)[span_3](end_span) -->
+        <!-- รายการคิวทั้งหมด (สำหรับลูกค้าดูอย่างเดียว ไม่สามารถกดเปลี่ยนสถานะได้) -->
         <div id="queue-cards-container" style="width:100%;"></div>
     </div>
 
@@ -800,6 +797,7 @@
                 Member
             </button>
             <button class="cat-btn" id="nav-group" onclick="switchTab('group')">
+                <switchTab('group')>
                 <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
                 Group
             </button>
@@ -833,7 +831,7 @@
         </div>
     </div>
 
-    <!-- Admin Dashboard Modal -->
+    <!-- Admin Dashboard Modal (Full Admin Control) -->
     <div class="modal-overlay" id="admin-dashboard-modal">
         <div class="modal-box">
             <h2>⚙️ จัดการหลังบ้านแอดมิน</h2>
@@ -875,7 +873,7 @@
                 <input type="file" id="edit-rect-file" accept="image/*">
             </div>
 
-            <div class="admin-section-divider">📋 รายการคิว (เพิ่ม / ลบ / ตั้งสถานะ)</div>
+            <div class="admin-section-divider">📋 จัดการรายการคิว (เพิ่ม / ลบ / เปลี่ยนสถานะ)</div>
             <div class="form-group">
                 <div style="display:flex; gap:5px; margin-bottom:8px;">
                     <input type="text" id="new-q-num" placeholder="คิวที่" style="width:25%;">
@@ -891,7 +889,7 @@
                 </div>
                 <button class="submit-btn" style="width:100%; background:#8c7365;" onclick="adminAddQueue()">➕ เพิ่มคิวใหม่</button>
             </div>
-            <div id="admin-queue-list-manager" style="max-height:120px; overflow-y:auto; margin-bottom:10px;"></div>
+            <div id="admin-queue-list-manager" style="max-height:140px; overflow-y:auto; margin-bottom:10px;"></div>
 
             <div class="form-actions" style="margin-top: 15px;">
                 <button class="submit-btn" style="width:100%; margin-bottom:8px; background:#6e554d;" onclick="copyShareText()">📋 คัดลอกข้อความพร้อมลิงก์แชร์</button>
@@ -989,6 +987,7 @@
             { id: 2, number: "คิว 02", title: "เคสทามา", name: "มายด์", status: "กำลังทำ" }
         ];
 
+        // เรนเดอร์หน้าบ้าน (ลูกค้าดูอย่างเดียว ไม่สามารถกดเปลี่ยนสถานะได้)
         function renderQueueList() {
             const container = document.getElementById('queue-cards-container');
             const searchQuery = document.getElementById('queue-search-input').value.toLowerCase();
@@ -1013,21 +1012,39 @@
                             <div class="queue-ticket-title">${q.title}</div>
                             <div class="queue-ticket-name">${q.name}</div>
                         </div>
-                        <button class="queue-status-btn" onclick="cycleQueueStatus(${q.id})">${q.status}</button>
+                        <div class="queue-status-display">${q.status}</div>
                     </div>
                 `;
             });
         }
         renderQueueList();
 
-        function cycleQueueStatus(id) {
+        // เรนเดอร์หลังบ้านแอดมิน (สำหรับจัดการสถานะ / เพิ่ม / ลบ)
+        function renderAdminQueueManager() {
+            let managerContainer = document.getElementById('admin-queue-list-manager');
+            managerContainer.innerHTML = '';
+            queueData.forEach(q => {
+                managerContainer.innerHTML += `
+                    <div class="admin-queue-row">
+                        <span><b>${q.number}</b> - ${q.title} (${q.name})</span>
+                        <div style="display:flex; gap:4px; align-items:center;">
+                            <select onchange="adminUpdateStatus(${q.id}, this.value)" style="padding:2px; font-size:10px; border-radius:4px;">
+                                <option value="เสร็จแล้ว" ${q.status === 'เสร็จแล้ว' ? 'selected' : ''}>เสร็จแล้ว</option>
+                                <option value="กำลังทำ" ${q.status === 'กำลังทำ' ? 'selected' : ''}>กำลังทำ</option>
+                                <option value="รอคิว" ${q.status === 'รอคิว' ? 'selected' : ''}>รอคิว</option>
+                            </select>
+                            <button onclick="adminDeleteQueue(${q.id})" style="background:#ff4d4d; color:#fff; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:10px;">ลบ</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function adminUpdateStatus(id, newStatus) {
             let item = queueData.find(q => q.id === id);
             if (item) {
-                if (item.status === 'เสร็จแล้ว') item.status = 'กำลังทำ';
-                else if (item.status === 'กำลังทำ') item.status = 'รอคิว';
-                else item.status = 'เสร็จแล้ว';
+                item.status = newStatus;
                 renderQueueList();
-                renderAdminQueueManager();
             }
         }
 
@@ -1054,19 +1071,6 @@
             queueData = queueData.filter(q => q.id !== id);
             renderQueueList();
             renderAdminQueueManager();
-        }
-
-        function renderAdminQueueManager() {
-            let managerContainer = document.getElementById('admin-queue-list-manager');
-            managerContainer.innerHTML = '';
-            queueData.forEach(q => {
-                managerContainer.innerHTML += `
-                    <div class="admin-queue-row">
-                        <span><b>${q.number}</b> - ${q.title} (${q.name}) [<b>${q.status}</b>]</span>
-                        <button onclick="adminDeleteQueue(${q.id})" style="background:#ff4d4d; color:#fff; border:none; padding:2px 6px; border-radius:6px; cursor:pointer; font-size:10px;">ลบ</button>
-                    </div>
-                `;
-            });
         }
 
         // Reviews & Ratings

@@ -632,7 +632,6 @@
             margin-top: 2px;
         }
 
-        /* ปุ่ม "เขียนรีวิว" แทนที่ฟอร์มเดิมตาม Image 17 */
         .open-review-modal-btn {
             width: 100%;
             background: #ffffff;
@@ -750,7 +749,7 @@
         .btn-save { background: #ff80b3; color: #fff; }
         .btn-close { background: #ddd; color: #333; }
         
-        .admin-queue-row {
+        .admin-item-row {
             background: #faf8f6;
             padding: 8px;
             border-radius: 10px;
@@ -763,7 +762,6 @@
             gap: 5px;
         }
 
-        /* Review Form Styling inside Popup */
         .review-input-field {
             width: 100%; background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; padding: 10px 14px; font-size: 12px; outline: none; color: #5c3a21; margin-bottom: 8px;
         }
@@ -777,10 +775,6 @@
             background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
         }
         .review-cam-btn svg { width: 18px; height: 18px; fill: #8c7365; }
-        .review-submit-btn {
-            width: 100%; background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; padding: 10px; text-align: center; font-size: 13px; font-weight: 700; color: #8c7365; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: background 0.2s;
-        }
-        .review-submit-btn:hover { background: #f3e9e4; }
     </style>
 </head>
 <body>
@@ -799,7 +793,7 @@
         </div>
     </div>
 
-    <!-- 1. HOME VIEW (Center - Tamagotchi Egg) -->
+    <!-- 1. HOME VIEW -->
     <div id="view-home" class="view-content active" style="align-items: center;">
         <div class="tama-container" id="tama-case">
             <div class="shop-title-tag" id="shop-title-text">tiaseramour</div>
@@ -874,51 +868,24 @@
         <div id="queue-cards-container" style="width:100%;"></div>
     </div>
 
-    <!-- 4. GROUP VIEW -->
+    <!-- 4. GROUP VIEW (Dynamic Categories & Products with Order & Featured Badge) -->
     <div id="view-group" class="view-content">
         <div class="group-header-title">Group</div>
         <div class="group-search-row">
             <div class="group-search-box">
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <input type="text" placeholder="ค้นหาสินค้า...">
+                <input type="text" id="group-search-input" placeholder="ค้นหาสินค้า..." oninput="renderGroupProducts()">
             </div>
             <button class="group-filter-icon-btn">
                 <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             </button>
         </div>
-        <div class="group-categories-row">
-            <button class="chip-btn active">All</button>
-            <button class="chip-btn">momonga</button>
-            <button class="chip-btn">mimiw</button>
-        </div>
-        <div class="group-items-count">2 items</div>
-        <div class="group-grid">
-            <div class="group-card">
-                <div class="group-card-img-wrap">
-                    <span class="group-badge">แนะนำ</span>
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" alt="Group">
-                </div>
-                <div class="group-card-title">ชื่อกลุ่ม</div>
-                <div class="group-card-price">50 ฿</div>
-                <div class="group-card-actions">
-                    <div class="group-btn-ex">Ex</div>
-                </div>
-            </div>
-            <div class="group-card">
-                <div class="group-card-img-wrap">
-                    <span class="group-badge">แนะนำ</span>
-                    <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300" alt="Group">
-                </div>
-                <div class="group-card-title">ชื่อกลุ่ม</div>
-                <div class="group-card-price">50 ฿</div>
-                <div class="group-card-actions">
-                    <div class="group-btn-ex">Ex</div>
-                </div>
-            </div>
-        </div>
+        <div class="group-categories-row" id="group-categories-container"></div>
+        <div class="group-items-count" id="group-items-count-text">0 items</div>
+        <div class="group-grid" id="group-products-container"></div>
     </div>
 
-    <!-- 5. CREDITS & REVIEWS VIEW (With Button replacing form, triggering modal per Image 17) -->
+    <!-- 5. CREDITS & REVIEWS VIEW -->
     <div id="view-credits" class="view-content">
         <div class="credit-top-banner">
             <div class="credit-banner-img">
@@ -937,7 +904,6 @@
             </div>
         </div>
 
-        <!-- ปุ่มกดเพื่อเปิด Pop-up เขียนรีวิว -->
         <button class="open-review-modal-btn" onclick="openReviewModal()">✍️ เขียนรีวิว</button>
 
         <div class="reviews-section-title">ความคิดเห็นทั้งหมด</div>
@@ -1062,14 +1028,46 @@
                 <input type="file" id="edit-rect-file" accept="image/*">
             </div>
 
-            <!-- หมวดจัดการหน้าเครดิต/รีวิว -->
+            <!-- หมวดจัดการหน้าเครดิต -->
             <div class="admin-section-divider">⭐ จัดการหน้าเครดิต/รีวิว</div>
             <div class="form-group">
                 <label>อัปโหลดรูปแบนเนอร์ด้านบนหน้าเครดิต</label>
                 <input type="file" id="edit-credit-banner-file" accept="image/*">
             </div>
 
-            <div class="admin-section-divider">📋 จัดการรายการคิว (เพิ่ม / ลบ / เปลี่ยนสถานะ)</div>
+            <!-- หมวดจัดการหน้ากลุ่ม (Group/Categories/Products) -->
+            <div class="admin-section-divider">🛍️ จัดการหมวดหมู่สินค้า (Categories)</div>
+            <div class="form-group">
+                <div style="display:flex; gap:5px; margin-bottom:8px;">
+                    <input type="text" id="new-cat-name" placeholder="ชื่อหมวดหมู่ใหม่..." style="flex:1;">
+                    <button class="submit-btn" style="background:#8c7365; padding:0 12px; border-radius:8px; border:none; color:#fff; font-weight:bold; cursor:pointer;" onclick="adminAddCategory()">➕ เพิ่ม</button>
+                </div>
+            </div>
+            <div id="admin-category-list-manager" style="max-height:100px; overflow-y:auto; margin-bottom:10px;"></div>
+
+            <div class="admin-section-divider">📦 จัดการสินค้า (เพิ่ม / แก้ไข / ลบ / ลำดับ / แนะนำ)</div>
+            <div class="form-group">
+                <input type="text" id="new-prod-title" placeholder="ชื่อสินค้า..." style="margin-bottom:6px;">
+                <input type="text" id="new-prod-price" placeholder="ราคา (เช่น 50 ฿)..." style="margin-bottom:6px;">
+                <div style="display:flex; gap:5px; margin-bottom:6px;">
+                    <select id="new-prod-cat" style="flex:1;"></select>
+                    <input type="number" id="new-prod-order" placeholder="ลำดับ" style="width:70px;" value="1">
+                </div>
+                <div style="display:flex; gap:5px; margin-bottom:6px; align-items:center;">
+                    <label style="font-weight:normal; font-size:11px; display:flex; align-items:center; gap:4px; cursor:pointer;">
+                        <input type="checkbox" id="new-prod-featured"> เปิดป้าย "แนะนำ"
+                    </label>
+                </div>
+                <div class="form-group" style="margin-bottom:6px;">
+                    <label style="font-size:11px;">รูปภาพสินค้า (ลิงก์ URL หรือปล่อยว่างเพื่อใช้รูปตัวอย่าง)</label>
+                    <input type="text" id="new-prod-img" placeholder="https://images.unsplash.com/...">
+                </div>
+                <button class="submit-btn" style="width:100%; background:#8c7365;" onclick="adminAddProduct()">➕ เพิ่มสินค้าใหม่</button>
+            </div>
+            <div id="admin-product-list-manager" style="max-height:140px; overflow-y:auto; margin-bottom:10px;"></div>
+
+            <!-- หมวดจัดการคิว -->
+            <div class="admin-section-divider">📋 จัดการรายการคิว</div>
             <div class="form-group">
                 <div style="display:flex; gap:5px; margin-bottom:8px;">
                     <input type="text" id="new-q-num" placeholder="คิวที่" style="width:25%;">
@@ -1085,7 +1083,7 @@
                 </div>
                 <button class="submit-btn" style="width:100%; background:#8c7365;" onclick="adminAddQueue()">➕ เพิ่มคิวใหม่</button>
             </div>
-            <div id="admin-queue-list-manager" style="max-height:140px; overflow-y:auto; margin-bottom:10px;"></div>
+            <div id="admin-queue-list-manager" style="max-height:120px; overflow-y:auto; margin-bottom:10px;"></div>
 
             <div class="form-actions" style="margin-top: 15px;">
                 <button class="submit-btn" style="width:100%; margin-bottom:8px; background:#6e554d;" onclick="copyShareText()">📋 คัดลอกข้อความพร้อมลิงก์แชร์</button>
@@ -1093,6 +1091,43 @@
             <div class="modal-actions">
                 <button class="btn-close" onclick="closeModal('admin-dashboard-modal')">ปิด</button>
                 <button class="btn-save" onclick="saveAdminSettings()">บันทึกการเปลี่ยนแปลง</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal สำหรับแก้ไขสินค้าในหลังบ้าน -->
+    <div class="modal-overlay" id="admin-edit-product-modal">
+        <div class="modal-box">
+            <h2>✏️ แก้ไขสินค้า</h2>
+            <input type="hidden" id="edit-prod-id">
+            <div class="form-group">
+                <label>ชื่อสินค้า</label>
+                <input type="text" id="edit-prod-title">
+            </div>
+            <div class="form-group">
+                <label>ราคา</label>
+                <input type="text" id="edit-prod-price">
+            </div>
+            <div class="form-group">
+                <label>หมวดหมู่</label>
+                <select id="edit-prod-cat"></select>
+            </div>
+            <div class="form-group">
+                <label>ลำดับการแสดงผล</label>
+                <input type="number" id="edit-prod-order">
+            </div>
+            <div class="form-group">
+                <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+                    <input type="checkbox" id="edit-prod-featured"> แสดงป้าย "แนะนำ"
+                </label>
+            </div>
+            <div class="form-group">
+                <label>ลิงก์รูปภาพสินค้า</label>
+                <input type="text" id="edit-prod-img">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-close" onclick="closeModal('admin-edit-product-modal')">ยกเลิก</button>
+                <button class="btn-save" onclick="saveEditedProduct()">บันทึก</button>
             </div>
         </div>
     </div>
@@ -1219,7 +1254,7 @@
             managerContainer.innerHTML = '';
             queueData.forEach(q => {
                 managerContainer.innerHTML += `
-                    <div class="admin-queue-row">
+                    <div class="admin-item-row">
                         <span><b>${q.number}</b> - ${q.title} (${q.name})</span>
                         <div style="display:flex; gap:4px; align-items:center;">
                             <select onchange="adminUpdateStatus(${q.id}, this.value)" style="padding:2px; font-size:10px; border-radius:4px;">
@@ -1267,7 +1302,210 @@
             renderAdminQueueManager();
         }
 
-        // Reviews & Ratings System
+        // =================== GROUP / CATEGORIES & PRODUCTS SYSTEM ===================
+        let categoriesData = ["All", "momonga", "mimiw"];
+        let currentSelectedCategory = "All";
+
+        let productsData = [
+            { id: 1, title: "ชื่อกลุ่ม 1", price: "50 ฿", category: "momonga", order: 1, featured: true, img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300" },
+            { id: 2, title: "ชื่อกลุ่ม 2", price: "50 ฿", category: "mimiw", order: 2, featured: true, img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300" }
+        ];
+
+        function renderGroupCategories() {
+            const catContainer = document.getElementById('group-categories-container');
+            const adminCatContainer = document.getElementById('admin-category-list-manager');
+            const newProdCatSelect = document.getElementById('new-prod-cat');
+            const editProdCatSelect = document.getElementById('edit-prod-cat');
+
+            catContainer.innerHTML = '';
+            adminCatContainer.innerHTML = '';
+            newProdCatSelect.innerHTML = '';
+            editProdCatSelect.innerHTML = '';
+
+            categoriesData.forEach(cat => {
+                // หน้าบ้าน (Chips)
+                let isActive = currentSelectedCategory === cat ? 'active' : '';
+                catContainer.innerHTML += `<button class="chip-btn ${isActive}" onclick="filterGroupCategory('${cat}')">${cat}</button>`;
+
+                // หลังบ้าน (Categories Manager)
+                if (cat !== "All") {
+                    adminCatContainer.innerHTML += `
+                        <div class="admin-item-row">
+                            <span><b>หมวดหมู่:</b> ${cat}</span>
+                            <button onclick="adminDeleteCategory('${cat}')" style="background:#ff4d4d; color:#fff; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:10px;">ลบ</button>
+                        </div>
+                    `;
+                }
+
+                // Dropdown ในฟอร์มเพิ่ม/แก้ไขสินค้า
+                if (cat !== "All") {
+                    newProdCatSelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+                    editProdCatSelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+                }
+            });
+        }
+
+        function filterGroupCategory(cat) {
+            currentSelectedCategory = cat;
+            renderGroupCategories();
+            renderGroupProducts();
+        }
+
+        function renderGroupProducts() {
+            const prodContainer = document.getElementById('group-products-container');
+            const countText = document.getElementById('group-items-count-text');
+            const searchQuery = document.getElementById('group-search-input').value.toLowerCase();
+
+            prodContainer.innerHTML = '';
+
+            // กรองตามหมวดหมู่และค้นหา และจัดเรียงตามลำดับ (order)
+            let filtered = productsData.filter(p => {
+                let matchCat = (currentSelectedCategory === "All" || p.category === currentSelectedCategory);
+                let matchQuery = p.title.toLowerCase().includes(searchQuery);
+                return matchCat && matchQuery;
+            });
+
+            filtered.sort((a, b) => a.order - b.order);
+
+            countText.innerText = `${filtered.length} items`;
+
+            if (filtered.length === 0) {
+                prodContainer.innerHTML = `<div style="grid-column: span 2; text-align:center; color:#9c8a82; padding:15px; font-size:11px;">ไม่พบสินค้าในหมวดหมู่นี้</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                let badgeHTML = p.featured ? `<span class="group-badge">แนะนำ</span>` : '';
+                prodContainer.innerHTML += `
+                    <div class="group-card">
+                        <div class="group-card-img-wrap">
+                            ${badgeHTML}
+                            <img src="${p.img}" alt="Product">
+                        </div>
+                        <div class="group-card-title">${p.title}</div>
+                        <div class="group-card-price">${p.price}</div>
+                        <div class="group-card-actions">
+                            <div class="group-btn-ex">Ex</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderAdminProductManager() {
+            const adminProdContainer = document.getElementById('admin-product-list-manager');
+            adminProdContainer.innerHTML = '';
+
+            productsData.forEach(p => {
+                adminProdContainer.innerHTML += `
+                    <div class="admin-item-row">
+                        <span><b>[ลำดับ ${p.order}]</b> ${p.title} (${p.category}) - ${p.price} ${p.featured ? '⭐' : ''}</span>
+                        <div style="display:flex; gap:4px;">
+                            <button onclick="openEditProductModal(${p.id})" style="background:#8c7365; color:#fff; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:10px;">แก้ไข</button>
+                            <button onclick="adminDeleteProduct(${p.id})" style="background:#ff4d4d; color:#fff; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:10px;">ลบ</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function adminAddCategory() {
+            let catName = document.getElementById('new-cat-name').value.trim();
+            if (catName && !categoriesData.includes(catName)) {
+                categoriesData.push(catName);
+                document.getElementById('new-cat-name').value = '';
+                renderGroupCategories();
+                alert("เพิ่มหมวดหมู่สำเร็จ!");
+            } else {
+                alert("กรุณากรอกชื่อหมวดหมู่ใหม่ที่ไม่ซ้ำกัน");
+            }
+        }
+
+        function adminDeleteCategory(catName) {
+            categoriesData = categoriesData.filter(c => c !== catName);
+            if (currentSelectedCategory === catName) currentSelectedCategory = "All";
+            renderGroupCategories();
+            renderGroupProducts();
+        }
+
+        function adminAddProduct() {
+            let title = document.getElementById('new-prod-title').value.trim();
+            let price = document.getElementById('new-prod-price').value.trim();
+            let category = document.getElementById('new-prod-cat').value;
+            let order = parseInt(document.getElementById('new-prod-order').value) || 1;
+            let featured = document.getElementById('new-prod-featured').checked;
+            let img = document.getElementById('new-prod-img').value.trim();
+
+            if (!img) {
+                img = "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300";
+            }
+
+            if (title && price) {
+                productsData.push({
+                    id: Date.now(),
+                    title,
+                    price,
+                    category,
+                    order,
+                    featured,
+                    img
+                });
+                document.getElementById('new-prod-title').value = '';
+                document.getElementById('new-prod-price').value = '';
+                document.getElementById('new-prod-img').value = '';
+                document.getElementById('new-prod-featured').checked = false;
+                renderGroupProducts();
+                renderAdminProductManager();
+                alert("เพิ่มสินค้าสำเร็จ!");
+            } else {
+                alert("กรุณากรอกชื่อและราคาสินค้า");
+            }
+        }
+
+        function adminDeleteProduct(id) {
+            productsData = productsData.filter(p => p.id !== id);
+            renderGroupProducts();
+            renderAdminProductManager();
+        }
+
+        function openEditProductModal(id) {
+            let p = productsData.find(item => item.id === id);
+            if (p) {
+                document.getElementById('edit-prod-id').value = p.id;
+                document.getElementById('edit-prod-title').value = p.title;
+                document.getElementById('edit-prod-price').value = p.price;
+                document.getElementById('edit-prod-cat').value = p.category;
+                document.getElementById('edit-prod-order').value = p.order;
+                document.getElementById('edit-prod-featured').checked = p.featured;
+                document.getElementById('edit-prod-img').value = p.img;
+                document.getElementById('admin-edit-product-modal').style.display = 'flex';
+            }
+        }
+
+        function saveEditedProduct() {
+            let id = parseInt(document.getElementById('edit-prod-id').value);
+            let p = productsData.find(item => item.id === id);
+            if (p) {
+                p.title = document.getElementById('edit-prod-title').value.trim();
+                p.price = document.getElementById('edit-prod-price').value.trim();
+                p.category = document.getElementById('edit-prod-cat').value;
+                p.order = parseInt(document.getElementById('edit-prod-order').value) || 1;
+                p.featured = document.getElementById('edit-prod-featured').checked;
+                let imgInput = document.getElementById('edit-prod-img').value.trim();
+                if (imgInput) p.img = imgInput;
+
+                closeModal('admin-edit-product-modal');
+                renderGroupProducts();
+                renderAdminProductManager();
+                alert("บันทึกการแก้ไขสินค้าสำเร็จ!");
+            }
+        }
+
+        // Initialize Group Group
+        renderGroupCategories();
+        renderGroupProducts();
+
+        // =================== REVIEWS & RATINGS SYSTEM ===================
         let currentRating = 5;
         const starPicker = document.querySelectorAll('#star-picker .review-star');
         starPicker.forEach((star, index) => {
@@ -1350,6 +1588,7 @@
                 closeModal('admin-login-modal');
                 document.getElementById('admin-pass-input').value = '';
                 renderAdminQueueManager();
+                renderAdminProductManager();
                 document.getElementById('admin-dashboard-modal').style.display = 'flex';
             } else {
                 alert("รหัสผ่านไม่ถูกต้อง! (รหัสเริ่มต้น: 1234)");

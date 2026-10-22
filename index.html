@@ -563,7 +563,7 @@
             cursor: default;
         }
 
-        /* =================== CREDITS & REVIEWS VIEW (Exact Match to Image 16)[span_1](start_span)[span_1](end_span) =================== */
+        /* =================== CREDITS & REVIEWS VIEW =================== */
         #view-credits {
             background: #ffffff;
             border-radius: 24px;
@@ -574,7 +574,6 @@
             align-items: stretch !important;
         }
 
-        /* แบนเนอร์บนสุดหน้าเครดิต/รีวิว */
         .credit-top-banner {
             width: 100%;
             background: #ffffff;
@@ -600,7 +599,6 @@
             object-fit: cover;
         }
 
-        /* การ์ดสถิติ (Reviews & Rating) ตาม Image 16 */
         .review-stats-card {
             background: #ffffff;
             border: 1px solid #f0eae6;
@@ -634,94 +632,24 @@
             margin-top: 2px;
         }
 
-        /* กล่องฟอร์มเขียนรีวิวตาม Image 16 */
-        .review-input-card {
+        /* ปุ่ม "เขียนรีวิว" แทนที่ฟอร์มเดิมตาม Image 17 */
+        .open-review-modal-btn {
+            width: 100%;
             background: #ffffff;
             border: 1px solid #f0eae6;
             border-radius: 24px;
             padding: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .review-input-field {
-            width: 100%;
-            background: #faf8f6;
-            border: 1px solid #f0eae6;
-            border-radius: 20px;
-            padding: 10px 14px;
-            font-size: 12px;
-            outline: none;
-            color: #5c3a21;
-        }
-
-        .review-star-box {
-            width: 100%;
-            background: #faf8f6;
-            border: 1px solid #f0eae6;
-            border-radius: 20px;
-            padding: 8px;
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .review-star {
-            color: #e0d4d0;
-            transition: color 0.2s;
-        }
-
-        .review-star.selected {
-            color: #f4c430;
-        }
-
-        .review-bottom-row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .review-cam-btn {
-            background: #faf8f6;
-            border: 1px solid #f0eae6;
-            border-radius: 20px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .review-cam-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: #8c7365;
-        }
-
-        .review-submit-btn {
-            width: 100%;
-            background: #faf8f6;
-            border: 1px solid #f0eae6;
-            border-radius: 20px;
-            padding: 10px;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
-            color: #8c7365;
+            color: #6e554d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            margin-bottom: 20px;
             transition: background 0.2s;
         }
-
-        .review-submit-btn:hover {
-            background: #f3e9e4;
+        .open-review-modal-btn:hover {
+            background: #faf8f6;
         }
 
         .reviews-section-title {
@@ -731,7 +659,6 @@
             margin-bottom: 10px;
         }
 
-        /* การ์ดแสดงความคิดเห็นตาม Image 16 */
         .review-item-card {
             background: #ffffff;
             border: 1px solid #f0eae6;
@@ -810,7 +737,7 @@
         .cat-btn.active { color: var(--case-shadow); }
         .cat-btn.active svg { fill: var(--case-shadow); }
 
-        /* Admin Modals */
+        /* Admin Modals & Review Popup Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
         .modal-box { background: #fff; width: 100%; max-width: 400px; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
         .modal-box h2 { font-size: 15px; margin-bottom: 12px; text-align: center; color: var(--case-shadow); }
@@ -835,6 +762,25 @@
             border: 1px solid #eee;
             gap: 5px;
         }
+
+        /* Review Form Styling inside Popup */
+        .review-input-field {
+            width: 100%; background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; padding: 10px 14px; font-size: 12px; outline: none; color: #5c3a21; margin-bottom: 8px;
+        }
+        .review-star-box {
+            background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; padding: 8px; display: flex; justify-content: center; gap: 6px; cursor: pointer; font-size: 22px; margin-bottom: 8px;
+        }
+        .review-star { color: #e0d4d0; transition: color 0.2s; }
+        .review-star.selected { color: #f4c430; }
+        .review-bottom-row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+        .review-cam-btn {
+            background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;
+        }
+        .review-cam-btn svg { width: 18px; height: 18px; fill: #8c7365; }
+        .review-submit-btn {
+            width: 100%; background: #faf8f6; border: 1px solid #f0eae6; border-radius: 20px; padding: 10px; text-align: center; font-size: 13px; font-weight: 700; color: #8c7365; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: background 0.2s;
+        }
+        .review-submit-btn:hover { background: #f3e9e4; }
     </style>
 </head>
 <body>
@@ -972,49 +918,62 @@
         </div>
     </div>
 
-    <!-- 5. CREDITS & REVIEWS VIEW (Exact Match to Image 16 with Banner)[span_2](start_span)[span_2](end_span) -->
+    <!-- 5. CREDITS & REVIEWS VIEW (With Button replacing form, triggering modal per Image 17) -->
     <div id="view-credits" class="view-content">
-        <!-- แบนเนอร์บนสุดหน้าเครดิต -->
         <div class="credit-top-banner">
             <div class="credit-banner-img">
                 <img id="display-credit-banner-img" src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600" alt="Credit Banner">
             </div>
         </div>
 
-        <!-- การ์ดแสดงสถิติคะแนนรีวิว -->
         <div class="review-stats-card">
             <div class="stat-col">
                 <div class="stat-number" id="stat-review-count">2</div>
                 <div class="stat-label">reviews</div>
             </div>
             <div class="stat-col divider-left">
-                <div class="stat-number" id="stat-rating-avg">★ 4.5</div>
+                <div class="stat-number" id="stat-rating-avg">★ 5.0</div>
                 <div class="stat-label">rating</div>
             </div>
         </div>
 
-        <!-- ฟอร์มกรอกรีวิวตามดีไซน์ Image 16 -->
-        <div class="review-input-card">
-            <input type="text" id="review-name" class="review-input-field" placeholder="ชื่อของคุณ...">
-            <div class="review-star-box" id="star-picker">
-                <span class="review-star selected" data-value="1">★</span>
-                <span class="review-star selected" data-value="2">★</span>
-                <span class="review-star selected" data-value="3">★</span>
-                <span class="review-star selected" data-value="4">★</span>
-                <span class="review-star selected" data-value="5">★</span>
-            </div>
-            <div class="review-bottom-row">
-                <label class="review-cam-btn" title="แนบรูปภาพ">
-                    <svg viewBox="0 0 24 24"><path d="M4 5h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm8 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
-                    <input type="file" id="review-img-file" accept="image/*" style="display:none;">
-                </label>
-                <input type="text" id="review-text" class="review-input-field" placeholder="พิมพ์รีวิวของคุณที่นี่...">
-            </div>
-            <button class="review-submit-btn" onclick="submitReview()">ส่ง</button>
-        </div>
+        <!-- ปุ่มกดเพื่อเปิด Pop-up เขียนรีวิว -->
+        <button class="open-review-modal-btn" onclick="openReviewModal()">✍️ เขียนรีวิว</button>
 
         <div class="reviews-section-title">ความคิดเห็นทั้งหมด</div>
         <div id="reviews-list-container" style="width:100%;"></div>
+    </div>
+
+    <!-- Popup Modal สำหรับเขียนรีวิว -->
+    <div class="modal-overlay" id="review-form-modal">
+        <div class="modal-box">
+            <h2>✍️ เขียนรีวิวความประทับใจ</h2>
+            <div class="form-group">
+                <input type="text" id="review-name" class="review-input-field" placeholder="ชื่อของคุณ...">
+            </div>
+            <div class="form-group">
+                <div class="review-star-box" id="star-picker">
+                    <span class="review-star selected" data-value="1">★</span>
+                    <span class="review-star selected" data-value="2">★</span>
+                    <span class="review-star selected" data-value="3">★</span>
+                    <span class="review-star selected" data-value="4">★</span>
+                    <span class="review-star selected" data-value="5">★</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="review-bottom-row">
+                    <label class="review-cam-btn" title="แนบรูปภาพ">
+                        <svg viewBox="0 0 24 24"><path d="M4 5h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm8 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                        <input type="file" id="review-img-file" accept="image/*" style="display:none;">
+                    </label>
+                    <input type="text" id="review-text" class="review-input-field" placeholder="พิมพ์รีวิวของคุณที่นี่..." style="margin-bottom:0;">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-close" onclick="closeModal('review-form-modal')">ยกเลิก</button>
+                <button class="btn-save" onclick="submitReview()">ส่งรีวิว</button>
+            </div>
+        </div>
     </div>
 
     <!-- Floating Bottom Menu Dock -->
@@ -1330,7 +1289,6 @@
             const container = document.getElementById('reviews-list-container');
             container.innerHTML = '';
             
-            // อัปเดตสถิติด้านบน
             document.getElementById('stat-review-count').innerText = reviewsData.length;
             let totalRating = reviewsData.reduce((sum, r) => sum + r.rating, 0);
             let avgRating = reviewsData.length > 0 ? (totalRating / reviewsData.length).toFixed(1) : "5.0";
@@ -1356,6 +1314,10 @@
         }
         renderReviews();
 
+        function openReviewModal() {
+            document.getElementById('review-form-modal').style.display = 'flex';
+        }
+
         function submitReview() {
             const name = document.getElementById('review-name').value.trim();
             const text = document.getElementById('review-text').value.trim();
@@ -1366,6 +1328,7 @@
                 currentRating = 5;
                 starPicker.forEach((s, i) => s.classList.add('selected'));
                 renderReviews();
+                closeModal('review-form-modal');
                 alert("ส่งรีวิวเรียบร้อยแล้วค่ะ! 💕");
             } else {
                 alert("กรุณากรอกชื่อและข้อความรีวิวให้ครบถ้วน");

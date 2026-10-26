@@ -228,9 +228,9 @@
             display: flex;
         }
 
-        /* =================== STAMPS / MEMBER VIEW =================== */
+        /* =================== STAMPS / MEMBER VIEW (Updated Order) =================== */
         #view-stamps {
-            background: #fff;
+            background: #ffffff;
             border-radius: 24px;
             padding: 16px;
             max-width: 420px;
@@ -239,22 +239,44 @@
             align-items: stretch !important;
         }
 
-        .stamp-section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #6e554d;
-            margin-bottom: 8px;
-            text-align: center;
+        /* แบนเนอร์บนสุดหน้าสะสมแต้ม */
+        .stamp-top-banner {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 12px;
+            padding: 10px;
         }
 
+        .stamp-banner-img {
+            width: 100%;
+            height: 150px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f7f3f0;
+        }
+
+        .stamp-banner-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* กล่องข้อความรางวัล (Reward Box) */
         .reward-info-box {
-            background: #fff6f9;
-            border: 1px dashed #ff80b3;
-            border-radius: 14px;
-            padding: 10px;
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 24px;
+            padding: 14px;
             margin-bottom: 12px;
-            font-size: 11px;
+            font-size: 11.5px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            color: #6e554d;
+            line-height: 1.4;
         }
 
         .reward-info-box span {
@@ -262,31 +284,46 @@
             font-weight: bold;
         }
 
+        /* ช่องค้นหาชื่อลูกค้า */
+        .member-search-container {
+            background: #ffffff;
+            border: 1px solid #f0eae6;
+            border-radius: 24px;
+            padding: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 12px;
+        }
+
         .member-search-box {
             display: flex;
             gap: 6px;
-            margin-bottom: 14px;
+            margin-top: 6px;
         }
 
         .member-search-box input {
             flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #e0d4d0;
-            border-radius: 18px;
+            padding: 10px 14px;
+            border: 1px solid #f0eae6;
+            border-radius: 20px;
             font-size: 12px;
             outline: none;
             background: #faf8f6;
+            color: #5c3a21;
         }
 
         .member-search-box button {
-            background: #ff80b3;
-            color: #fff;
-            border: none;
-            padding: 0 14px;
-            border-radius: 18px;
+            background: #faf8f6;
+            border: 1px solid #f0eae6;
+            color: #8c7365;
+            padding: 0 16px;
+            border-radius: 20px;
             font-weight: bold;
             font-size: 12px;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+        .member-search-box button:hover {
+            background: #f3e9e4;
         }
 
         .member-card-result {
@@ -295,6 +332,7 @@
             padding: 12px;
             border: 1px solid #f0eae6;
             display: none;
+            margin-top: 10px;
         }
 
         .member-card-result.show {
@@ -324,82 +362,6 @@
             background: #ffe6f0;
             border-color: #ff80b3;
         }
-
-        /* =================== GROUP VIEW =================== */
-        #view-group {
-            background: #fff;
-            border-radius: 24px;
-            padding: 16px;
-            text-align: left;
-            max-width: 420px;
-            margin: 0 auto;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            align-items: flex-start !important;
-        }
-
-        .group-header-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #6e554d;
-            margin-bottom: 12px;
-            text-align: left;
-            width: 100%;
-        }
-
-        .group-search-row {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-            align-items: center;
-            width: 100%;
-        }
-
-        .group-search-box {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            background: #faf8f6;
-            border: 1px solid #eee;
-            border-radius: 25px;
-            padding: 8px 14px;
-            gap: 8px;
-        }
-
-        .group-search-box svg { width: 16px; height: 16px; fill: #b0a095; }
-        .group-search-box input { border: none; background: transparent; outline: none; font-size: 12px; width: 100%; color: #5c3a21; }
-
-        .group-filter-icon-btn {
-            background: #faf8f6;
-            border: 1px solid #eee;
-            width: 42px; height: 42px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-        }
-        .group-filter-icon-btn svg { width: 20px; height: 20px; fill: #8c7365; }
-
-        .group-categories-row {
-            display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 14px; width: 100%; scrollbar-width: none;
-        }
-        .group-categories-row::-webkit-scrollbar { display: none; }
-
-        .chip-btn {
-            background: #faf8f6; border: 1px solid #e8e0dc; border-radius: 20px; padding: 6px 16px; font-size: 12px; font-weight: 600; color: #8c7365; cursor: pointer; white-space: nowrap; transition: all 0.2s;
-        }
-        .chip-btn.active { background: #a88379; color: #fff; border-color: #a88379; }
-
-        .group-items-count { font-size: 12px; color: #9c8a82; margin-bottom: 10px; text-align: left; width: 100%; }
-        .group-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; padding-bottom: 20px; }
-        .group-card { background: #ffffff; border: 1px solid #f0eae6; border-radius: 20px; padding: 10px; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.03); position: relative; text-align: left; }
-        .group-card-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 14px; overflow: hidden; position: relative; background: #f7f3f0; margin-bottom: 8px; }
-        .group-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-        .group-badge { position: absolute; top: 8px; left: 8px; background: #f3e9e4; color: #8c7365; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 8px; }
-        .group-card-title { font-size: 13px; font-weight: 700; color: #5c3a21; margin-bottom: 2px; }
-        .group-card-price { font-size: 12px; font-weight: 700; color: #8c7365; margin-bottom: 8px; }
-        .group-card-actions { display: flex; gap: 6px; margin-top: auto; }
-        .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
-        .group-btn-ex:hover { background: #faf8f6; }
 
         /* =================== QUEUE VIEW =================== */
         #view-queue {
@@ -562,6 +524,82 @@
             white-space: nowrap;
             cursor: default;
         }
+
+        /* =================== GROUP VIEW =================== */
+        #view-group {
+            background: #fff;
+            border-radius: 24px;
+            padding: 16px;
+            text-align: left;
+            max-width: 420px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            align-items: flex-start !important;
+        }
+
+        .group-header-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6e554d;
+            margin-bottom: 12px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .group-search-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .group-search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #faf8f6;
+            border: 1px solid #eee;
+            border-radius: 25px;
+            padding: 8px 14px;
+            gap: 8px;
+        }
+
+        .group-search-box svg { width: 16px; height: 16px; fill: #b0a095; }
+        .group-search-box input { border: none; background: transparent; outline: none; font-size: 12px; width: 100%; color: #5c3a21; }
+
+        .group-filter-icon-btn {
+            background: #faf8f6;
+            border: 1px solid #eee;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .group-filter-icon-btn svg { width: 20px; height: 20px; fill: #8c7365; }
+
+        .group-categories-row {
+            display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 14px; width: 100%; scrollbar-width: none;
+        }
+        .group-categories-row::-webkit-scrollbar { display: none; }
+
+        .chip-btn {
+            background: #faf8f6; border: 1px solid #e8e0dc; border-radius: 20px; padding: 6px 16px; font-size: 12px; font-weight: 600; color: #8c7365; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+        }
+        .chip-btn.active { background: #a88379; color: #fff; border-color: #a88379; }
+
+        .group-items-count { font-size: 12px; color: #9c8a82; margin-bottom: 10px; text-align: left; width: 100%; }
+        .group-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; width: 100%; padding-bottom: 20px; }
+        .group-card { background: #ffffff; border: 1px solid #f0eae6; border-radius: 20px; padding: 10px; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.03); position: relative; text-align: left; }
+        .group-card-img-wrap { width: 100%; aspect-ratio: 1; border-radius: 14px; overflow: hidden; position: relative; background: #f7f3f0; margin-bottom: 8px; }
+        .group-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .group-badge { position: absolute; top: 8px; left: 8px; background: #f3e9e4; color: #8c7365; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 8px; }
+        .group-card-title { font-size: 13px; font-weight: 700; color: #5c3a21; margin-bottom: 2px; }
+        .group-card-price { font-size: 12px; font-weight: 700; color: #8c7365; margin-bottom: 8px; }
+        .group-card-actions { display: flex; gap: 6px; margin-top: auto; }
+        .group-btn-ex { width: 100%; background: #ffffff; border: 1px solid #e0d4d0; border-radius: 18px; padding: 7px 0; text-align: center; font-size: 12px; font-weight: 600; color: #6e554d; cursor: pointer; transition: all 0.2s; }
+        .group-btn-ex:hover { background: #faf8f6; }
 
         /* =================== CREDITS & REVIEWS VIEW =================== */
         #view-credits {
@@ -813,25 +851,36 @@
         </div>
     </div>
 
-    <!-- 2. STAMPS / MEMBER VIEW -->
-    <div id="view-stamps" class="view-content" style="background:#fff; border-radius:24px; padding:16px; max-width:420px; margin:0 auto; box-shadow:0 4px 20px rgba(0,0,0,0.03); align-items:stretch !important;">
-        <div class="stamp-section-title">✨ บัตรสะสมสแตมป์ร้านค้า</div>
+    <!-- 2. STAMPS / MEMBER VIEW (Updated Order: Banner -> Reward Box -> Search) -->
+    <div id="view-stamps" class="view-content">
+        <!-- แบนเนอร์บนสุดหน้าสะสมแต้ม -->
+        <div class="stamp-top-banner">
+            <div class="stamp-banner-img">
+                <img id="display-stamp-banner-img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600" alt="Stamp Banner">
+            </div>
+        </div>
+
+        <!-- กล่องข้อความรางวัล -->
         <div class="reward-info-box">
             🎁 <b>สะสมครบ 10 ดวง รับสิทธิพิเศษ:</b><br>
             <span>รับส่วนลด 50 บาท หรือรับฟรีพวงกุญแจทามา 1 ชิ้น!</span>
         </div>
-        <div style="font-size:11px; margin-bottom:4px; font-weight:bold;">ค้นหาชื่อลูกค้าเพื่อดูแต้มสะสม:</div>
-        <div class="member-search-box">
-            <input type="text" id="customer-name-input" placeholder="พิมพ์ชื่อ-นามสกุล หรือชื่อเล่น...">
-            <button onclick="searchMemberStamps()">ค้นหา</button>
-        </div>
-        <div class="member-card-result" id="member-result-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <span style="font-weight:bold; font-size:13px; color:#5c3a21;" id="res-name-display">-</span>
-                <span style="font-size:11px; background:#ffe6f0; color:#e6005c; padding:2px 8px; border-radius:10px; font-weight:bold;" id="res-count-display">0/10 ดวง</span>
+
+        <!-- ค้นหาชื่อลูกค้า -->
+        <div class="member-search-container">
+            <div style="font-size:11.5px; font-weight:bold; color:#6e554d; margin-bottom:4px;">🔍 ค้นหาชื่อลูกค้าเพื่อดูแต้มสะสม:</div>
+            <div class="member-search-box">
+                <input type="text" id="customer-name-input" placeholder="พิมพ์ชื่อ-นามสกุล หรือชื่อเล่น...">
+                <button onclick="searchMemberStamps()">ค้นหา</button>
             </div>
-            <div class="stamp-grid" id="customer-stamp-grid"></div>
-            <div style="font-size:10px; color:#8c7365; text-align:center; margin-top:8px;" id="res-status-text">-</div>
+            <div class="member-card-result" id="member-result-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <span style="font-weight:bold; font-size:13px; color:#5c3a21;" id="res-name-display">-</span>
+                    <span style="font-size:11px; background:#ffe6f0; color:#e6005c; padding:2px 8px; border-radius:10px; font-weight:bold;" id="res-count-display">0/10 ดวง</span>
+                </div>
+                <div class="stamp-grid" id="customer-stamp-grid"></div>
+                <div style="font-size:10px; color:#8c7365; text-align:center; margin-top:8px;" id="res-status-text">-</div>
+            </div>
         </div>
     </div>
 
@@ -868,7 +917,7 @@
         <div id="queue-cards-container" style="width:100%;"></div>
     </div>
 
-    <!-- 4. GROUP VIEW (Dynamic Categories & Products with Order & Featured Badge) -->
+    <!-- 4. GROUP VIEW -->
     <div id="view-group" class="view-content">
         <div class="group-header-title">Group</div>
         <div class="group-search-row">
@@ -1011,6 +1060,13 @@
             <div class="form-group">
                 <label>อัปโหลดรูปพรีวิวการ์ดแชร์ลิงก์ (Open Graph)</label>
                 <input type="file" id="edit-og-img-file" accept="image/*">
+            </div>
+
+            <!-- หมวดจัดการหน้าสะสมแต้ม (Member Banner) -->
+            <div class="admin-section-divider">✨ จัดการหน้าสะสมแต้ม (Member)</div>
+            <div class="form-group">
+                <label>อัปโหลดรูปแบนเนอร์หน้าสะสมแต้ม</label>
+                <input type="file" id="edit-stamp-banner-file" accept="image/*">
             </div>
 
             <!-- หมวดจัดการหน้าคิว -->
@@ -1323,11 +1379,9 @@
             editProdCatSelect.innerHTML = '';
 
             categoriesData.forEach(cat => {
-                // หน้าบ้าน (Chips)
                 let isActive = currentSelectedCategory === cat ? 'active' : '';
                 catContainer.innerHTML += `<button class="chip-btn ${isActive}" onclick="filterGroupCategory('${cat}')">${cat}</button>`;
 
-                // หลังบ้าน (Categories Manager)
                 if (cat !== "All") {
                     adminCatContainer.innerHTML += `
                         <div class="admin-item-row">
@@ -1335,10 +1389,6 @@
                             <button onclick="adminDeleteCategory('${cat}')" style="background:#ff4d4d; color:#fff; border:none; padding:3px 6px; border-radius:4px; cursor:pointer; font-size:10px;">ลบ</button>
                         </div>
                     `;
-                }
-
-                // Dropdown ในฟอร์มเพิ่ม/แก้ไขสินค้า
-                if (cat !== "All") {
                     newProdCatSelect.innerHTML += `<option value="${cat}">${cat}</option>`;
                     editProdCatSelect.innerHTML += `<option value="${cat}">${cat}</option>`;
                 }
@@ -1358,7 +1408,6 @@
 
             prodContainer.innerHTML = '';
 
-            // กรองตามหมวดหมู่และค้นหา และจัดเรียงตามลำดับ (order)
             let filtered = productsData.filter(p => {
                 let matchCat = (currentSelectedCategory === "All" || p.category === currentSelectedCategory);
                 let matchQuery = p.title.toLowerCase().includes(searchQuery);
@@ -1366,7 +1415,6 @@
             });
 
             filtered.sort((a, b) => a.order - b.order);
-
             countText.innerText = `${filtered.length} items`;
 
             if (filtered.length === 0) {
@@ -1441,15 +1489,7 @@
             }
 
             if (title && price) {
-                productsData.push({
-                    id: Date.now(),
-                    title,
-                    price,
-                    category,
-                    order,
-                    featured,
-                    img
-                });
+                productsData.push({ id: Date.now(), title, price, category, order, featured, img });
                 document.getElementById('new-prod-title').value = '';
                 document.getElementById('new-prod-price').value = '';
                 document.getElementById('new-prod-img').value = '';
@@ -1501,7 +1541,6 @@
             }
         }
 
-        // Initialize Group Group
         renderGroupCategories();
         renderGroupProducts();
 
@@ -1626,6 +1665,14 @@
                 reader.readAsDataURL(ogFileInput.files[0]);
             }
 
+            // Upload Stamp Banner Img
+            const stampBannerFile = document.getElementById('edit-stamp-banner-file');
+            if (stampBannerFile.files && stampBannerFile.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { document.getElementById('display-stamp-banner-img').src = e.target.result; }
+                reader.readAsDataURL(stampBannerFile.files[0]);
+            }
+
             // Upload Banner Img
             const bannerFile = document.getElementById('edit-banner-file');
             if (bannerFile.files && bannerFile.files[0]) {
@@ -1663,4 +1710,3 @@
     </script>
 </body>
 </html>
-
